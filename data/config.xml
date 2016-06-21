@@ -1,0 +1,1226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config debug="false">
+  <global>
+    <timezone>Europe/Berlin</timezone>
+    <longitude>6.547151</longitude>
+    <latitude>51.264168</latitude>
+    <multiDeviceSleep>500</multiDeviceSleep>
+    <country>Deutschland</country>
+    <plz>47877</plz>
+    <city>Willich</city>
+    <timerRunOnce>false</timerRunOnce>
+    <installpath>/volume1/web/fb-switch_1.0-STABLE</installpath>
+    <timerPingUser>false</timerPingUser>
+    <EnergyCosts>0.25</EnergyCosts>
+    <sendRaspi>false</sendRaspi>
+    <timerCheckFBdect200>true</timerCheckFBdect200>
+  </global>
+  <gui>
+    <showRoomButtonInDevices>false</showRoomButtonInDevices>
+    <showMenuOnLoad>false</showMenuOnLoad>
+    <sortOrderDevices>SORT_BY_XML</sortOrderDevices>
+    <sortOrderGroups>SORT_BY_XML</sortOrderGroups>
+    <sortOrderRooms>SORT_BY_XML</sortOrderRooms>
+    <sortOrderTimers>SORT_BY_TYPE_AND_NAME</sortOrderTimers>
+    <showAllOnOffBtnInMenu>false</showAllOnOffBtnInMenu>
+    <showTimerBtnInMenu>true</showTimerBtnInMenu>
+    <showRoomsBtnInMenu>false</showRoomsBtnInMenu>
+    <showGroupsBtnInMenu>true</showGroupsBtnInMenu>
+    <showActionBtnInMenu>true</showActionBtnInMenu>
+  </gui>
+  <connairs>
+    <connair>
+      <id>1</id>
+      <address>192.168.1.134</address>
+      <port>49880</port>
+      <techdata>Vendor: Brennenstuhl - FW: V016</techdata>
+    </connair>
+  </connairs>
+  <milightwifis>
+    <milightwifi>
+      <id>10</id>
+      <address>192.168.1.121</address>
+      <port>8899</port>
+      <mac></mac>
+    </milightwifi>
+    <milightwifi>
+      <id>11</id>
+      <address>192.168.1.122</address>
+      <port>8899</port>
+      <mac></mac>
+    </milightwifi>
+    <milightwifi>
+      <id>12</id>
+      <address>192.168.1.111</address>
+      <port>8899</port>
+      <mac></mac>
+    </milightwifi>
+    <milightwifi>
+      <id>13</id>
+      <address>192.168.1.113</address>
+      <port>8899</port>
+      <mac></mac>
+    </milightwifi>
+  </milightwifis>
+  <devices>
+    <device>
+      <id>1</id>
+      <name>LED-Baum</name>
+      <vendor>fbdect200</vendor>
+      <address>
+        <masterdip>087610155356</masterdip>
+        <slavedip/>
+        <tx433version/>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Garten</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+    </device>
+    <device>
+      <id>2</id>
+      <name>Licht Beete</name>
+      <vendor>fbdect200</vendor>
+      <address>
+        <masterdip>087610156110</masterdip>
+        <slavedip/>
+        <tx433version/>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Garten</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+    </device>
+    <device>
+      <id>21</id>
+      <name>Lampe Terrasse</name>
+      <vendor>milight</vendor>
+      <address>
+        <masterdip>12</masterdip>
+        <slavedip>4</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Garten</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+      <milight>
+        <color>#ffc300</color>
+        <mode>Farbe</mode>
+        <brightnesscolor>100</brightnesscolor>
+        <brightnesswhite>100</brightnesswhite>
+      </milight>
+    </device>
+    <device>
+      <id>9</id>
+      <name>Dekokugel Terrasse</name>
+      <vendor>milight</vendor>
+      <address>
+        <masterdip>10</masterdip>
+        <slavedip>1</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Garten</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+      <milight>
+        <mode>Farbe</mode>
+        <color>#ffc300</color>
+        <brightnesscolor>50</brightnesscolor>
+        <brightnesswhite>60</brightnesswhite>
+      </milight>
+    </device>
+    <device>
+      <id>3</id>
+      <name>Lichtschlauch Terrasse</name>
+      <vendor>brennenstuhl</vendor>
+      <address>
+        <masterdip>01110</masterdip>
+        <slavedip>10011</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Garten</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+    </device>
+    <device>
+      <id>7</id>
+      <name>LEDs Arbeitsbereich</name>
+      <vendor>milight</vendor>
+      <address>
+        <masterdip>11</masterdip>
+        <slavedip>2</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Küche</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+      <milight>
+        <color>#ff006e</color>
+        <mode>Weiß</mode>
+        <brightnesscolor>80</brightnesscolor>
+        <brightnesswhite>100</brightnesswhite>
+      </milight>
+    </device>
+    <device>
+      <id>24</id>
+      <name>Weihnachtsbaum</name>
+      <vendor>brennenstuhl</vendor>
+      <address>
+        <masterdip>01010</masterdip>
+        <slavedip>10101</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Wohnzimmer</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+    </device>
+    <device>
+      <id>6</id>
+      <name>Lampe Esstisch</name>
+      <vendor>milight</vendor>
+      <address>
+        <masterdip>13</masterdip>
+        <slavedip>1</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Wohnzimmer</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+      <milight>
+        <color>#9d00ff</color>
+        <mode>Weiß</mode>
+        <brightnesscolor>40</brightnesscolor>
+        <brightnesswhite>60</brightnesswhite>
+      </milight>
+    </device>
+    <device>
+      <id>20</id>
+      <name>Lampe Schrankwand</name>
+      <vendor>milight</vendor>
+      <address>
+        <masterdip>12</masterdip>
+        <slavedip>3</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Wohnzimmer</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+      <milight>
+        <color>#8800ff</color>
+        <mode>Weiß</mode>
+        <brightnesscolor>50</brightnesscolor>
+        <brightnesswhite>80</brightnesswhite>
+      </milight>
+    </device>
+    <device>
+      <id>5</id>
+      <name>LEDs Schrankwand</name>
+      <vendor>milight</vendor>
+      <address>
+        <masterdip>10</masterdip>
+        <slavedip>2</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Wohnzimmer</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+      <milight>
+        <color>#b700ff</color>
+        <mode>Farbe</mode>
+        <brightnesscolor>50</brightnesscolor>
+        <brightnesswhite>50</brightnesswhite>
+      </milight>
+    </device>
+    <device>
+      <id>4</id>
+      <name>LEDs Sideboard</name>
+      <vendor>milight</vendor>
+      <address>
+        <masterdip>10</masterdip>
+        <slavedip>3</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Wohnzimmer</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+      <milight>
+        <color>#ff00ea</color>
+        <mode>Farbe</mode>
+        <brightnesscolor>30</brightnesscolor>
+        <brightnesswhite>50</brightnesswhite>
+      </milight>
+    </device>
+    <device>
+      <id>13</id>
+      <name>LEDs Schreibtisch</name>
+      <vendor>milight</vendor>
+      <address>
+        <masterdip>11</masterdip>
+        <slavedip>1</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Wohnzimmer</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+      <milight>
+        <color>#ff00ea</color>
+        <mode>Farbe</mode>
+        <brightnesscolor>30</brightnesscolor>
+        <brightnesswhite>50</brightnesswhite>
+      </milight>
+    </device>
+    <device>
+      <id>25</id>
+      <name>Lichtergirlande</name>
+      <vendor>brennenstuhl</vendor>
+      <address>
+        <masterdip>01010</masterdip>
+        <slavedip>01110</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Wohnzimmer</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+    </device>
+    <device>
+      <id>14</id>
+      <name>Lautsprecher Sideboard</name>
+      <vendor>brennenstuhl</vendor>
+      <address>
+        <masterdip>10101</masterdip>
+        <slavedip>01010</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Wohnzimmer</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+    </device>
+    <device buttonLabelOn="WOL" hideButtonOff="yes">
+      <id>10</id>
+      <name>Bigfoot</name>
+      <vendor>computer</vendor>
+      <address>
+        <masterdip>#PLATZHALTER.IP#</masterdip>
+        <slavedip>#PLATZHALTER.MAC#</slavedip>
+        <tx433version/>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Wohnzimmer</room>
+      <senderid/>
+      <status>ON</status>
+      <showDeviceStatus>OFF</showDeviceStatus>
+    </device>
+    <device>
+      <id>8</id>
+      <name>LEDs Schuhschrank</name>
+      <vendor>milight</vendor>
+      <address>
+        <masterdip>11</masterdip>
+        <slavedip>3</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Diele</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+      <milight>
+        <mode>Farbe</mode>
+        <color>#ff00ea</color>
+        <brightnesscolor>20</brightnesscolor>
+        <brightnesswhite>30</brightnesswhite>
+      </milight>
+    </device>
+    <device>
+      <id>16</id>
+      <name>LEDs Kommode</name>
+      <vendor>milight</vendor>
+      <address>
+        <masterdip>12</masterdip>
+        <slavedip>2</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Schlafzimmer</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+      <milight>
+        <mode>Farbe</mode>
+        <color>#ff00ea</color>
+        <brightnesscolor>20</brightnesscolor>
+        <brightnesswhite>30</brightnesswhite>
+      </milight>
+    </device>
+    <device>
+      <id>19</id>
+      <name>Lampe Fensterbank</name>
+      <vendor>milight</vendor>
+      <address>
+        <masterdip>12</masterdip>
+        <slavedip>1</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Schlafzimmer</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+      <milight>
+        <mode>Farbe</mode>
+        <color>#9d00ff</color>
+        <brightnesscolor>50</brightnesscolor>
+        <brightnesswhite>80</brightnesswhite>
+      </milight>
+    </device>
+    <device>
+      <id>22</id>
+      <name>Sternenvorhang</name>
+      <vendor>brennenstuhl</vendor>
+      <address>
+        <masterdip>01001</masterdip>
+        <slavedip>01010</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Schlafzimmer</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+    </device>
+    <device>
+      <id>11</id>
+      <name>Lampen Kommoden</name>
+      <vendor>milight</vendor>
+      <address>
+        <masterdip>10</masterdip>
+        <slavedip>4</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Kinderzimmer</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+      <milight>
+        <mode>Farbe</mode>
+        <color>#ff9100</color>
+        <brightnesscolor>100</brightnesscolor>
+        <brightnesswhite>100</brightnesswhite>
+      </milight>
+    </device>
+    <device>
+      <id>17</id>
+      <name>LED Bett</name>
+      <vendor>milight</vendor>
+      <address>
+        <masterdip>11</masterdip>
+        <slavedip>4</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Kinderzimmer</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+      <milight>
+        <mode>Farbe</mode>
+        <brightnesswhite>80</brightnesswhite>
+        <color>#ff0000</color>
+        <brightnesscolor>100</brightnesscolor>
+      </milight>
+    </device>
+    <device>
+      <id>23</id>
+      <name>Sternenspieße</name>
+      <vendor>brennenstuhl</vendor>
+      <address>
+        <masterdip>10101</masterdip>
+        <slavedip>01110</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Kinderzimmer</room>
+      <senderid/>
+      <status>OFF</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+    </device>
+    <device hideButtonOff="yes" hideButtonOn="yes">
+      <id>15</id>
+      <name>Schrankwand</name>
+      <vendor>fbdect200</vendor>
+      <address>
+        <masterdip>087610178978</masterdip>
+        <slavedip/>
+        <tx433version/>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Infrastruktur</room>
+      <senderid/>
+      <status>ON</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+    </device>
+    <device hideButtonOff="yes" hideButtonOn="yes">
+      <id>18</id>
+      <name>Kühlschränke / Spülmaschine</name>
+      <vendor>fbdect200</vendor>
+      <address>
+        <masterdip>087610216000</masterdip>
+        <slavedip/>
+        <tx433version/>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Infrastruktur</room>
+      <senderid/>
+      <status>ON</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+    </device>
+    <device>
+      <id>12</id>
+      <name>MiLight-Bridges</name>
+      <vendor>brennenstuhl</vendor>
+      <address>
+        <masterdip>10101</masterdip>
+        <slavedip>11111</slavedip>
+        <tx433version>2</tx433version>
+        <rawCodeOn/>
+        <rawCodeOff/>
+      </address>
+      <room>Infrastruktur</room>
+      <senderid/>
+      <status>ON</status>
+      <showDeviceStatus>BUTTON_ICON</showDeviceStatus>
+    </device>
+  </devices>
+  <groups>
+    <group>
+      <id>1</id>
+      <name>Licht Garten</name>
+      <deviceid>1</deviceid>
+      <deviceid>2</deviceid>
+      <deviceid>21</deviceid>
+      <deviceid>9</deviceid>
+      <deviceid>3</deviceid>
+    </group>
+    <group>
+      <id>3</id>
+      <name>Licht Küche</name>
+      <deviceid>7</deviceid>
+    </group>
+    <group>
+      <id>2</id>
+      <name>Licht Wohnzimmer</name>
+      <deviceid>24</deviceid>
+      <deviceid>6</deviceid>
+      <deviceid>20</deviceid>
+      <deviceid>5</deviceid>
+      <deviceid>4</deviceid>
+      <deviceid>13</deviceid>
+      <deviceid>25</deviceid>
+    </group>
+    <group>
+      <id>4</id>
+      <name>Licht Schlafzimmer</name>
+      <deviceid>16</deviceid>
+      <deviceid>19</deviceid>
+      <deviceid>22</deviceid>
+    </group>
+    <group>
+      <id>5</id>
+      <name>Licht Kinderzimmer</name>
+      <deviceid>11</deviceid>
+      <deviceid>17</deviceid>
+    </group>
+  </groups>
+  <timers debug="false">
+    <timer>
+      <id>1</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>1</typeid>
+      <day>MDMDFSS</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn offset="-15">SD</timerOn>
+      <timerOff>23:30</timerOff>
+    </timer>
+    <timer>
+      <id>2</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>1</typeid>
+      <day>MDMDF__</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>06:30</timerOn>
+      <timerOff offset="15">SU</timerOff>
+    </timer>
+    <timer>
+      <id>3</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>9</typeid>
+      <day>MDMDFSS</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn offset="-15">SD</timerOn>
+      <milight>
+        <mode>Farbe</mode>
+      </milight>
+      <timerOff>23:30</timerOff>
+    </timer>
+    <timer>
+      <id>4</id>
+      <active>off</active>
+      <type>device</type>
+      <typeid>2</typeid>
+      <day>MDMDFSS</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>SD</timerOn>
+      <timerOff>23:30</timerOff>
+    </timer>
+    <timer>
+      <id>5</id>
+      <active>on</active>
+      <type>group</type>
+      <typeid>2</typeid>
+      <day>MDMDFSS</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn offset="-30">SD</timerOn>
+      <timerOff/>
+    </timer>
+    <timer>
+      <id>6</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>11</typeid>
+      <day>MDMDFSS</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn offset="-30">SD</timerOn>
+      <milight>
+        <mode>Weiß</mode>
+      </milight>
+      <timerOff/>
+    </timer>
+    <timer>
+      <id>7</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>8</typeid>
+      <day>MDMDFSS</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn offset="-30">SD</timerOn>
+      <milight>
+        <mode>Farbe</mode>
+      </milight>
+      <timerOff>20:30</timerOff>
+    </timer>
+    <timer>
+      <id>8</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>16</typeid>
+      <day>MDMDFSS</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn offset="-30">SD</timerOn>
+      <milight>
+        <mode>Farbe</mode>
+      </milight>
+      <timerOff/>
+    </timer>
+    <timer>
+      <id>9</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>17</typeid>
+      <day>MDMDFSS</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn offset="-30">SD</timerOn>
+      <milight>
+        <mode>Farbe</mode>
+      </milight>
+      <timerOff>20:30</timerOff>
+    </timer>
+    <timer>
+      <id>10</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>7</typeid>
+      <day>MDMDF__</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>06:40</timerOn>
+      <milight>
+        <mode>Weiß</mode>
+      </milight>
+      <timerOff>08:30</timerOff>
+    </timer>
+    <timer>
+      <id>11</id>
+      <active>on</active>
+      <type>group</type>
+      <typeid>2</typeid>
+      <day>MDMDF__</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>06:40</timerOn>
+      <timerOff>08:30</timerOff>
+    </timer>
+    <timer>
+      <id>12</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>8</typeid>
+      <day>MDMDF__</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>06:40</timerOn>
+      <milight>
+        <mode>Farbe</mode>
+      </milight>
+      <timerOff>08:30</timerOff>
+    </timer>
+    <timer>
+      <id>13</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>17</typeid>
+      <day>MDMDF__</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>06:15</timerOn>
+      <milight>
+        <mode>Nacht</mode>
+      </milight>
+      <timerOff/>
+    </timer>
+    <timer>
+      <id>14</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>16</typeid>
+      <day>MDMDF__</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>07:30</timerOn>
+      <milight>
+        <mode>Farbe</mode>
+      </milight>
+      <timerOff>08:30</timerOff>
+    </timer>
+    <timer>
+      <id>15</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>7</typeid>
+      <day>MDMDFSS</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn offset="-30">SD</timerOn>
+      <milight>
+        <mode>Weiß</mode>
+      </milight>
+      <timerOff/>
+    </timer>
+    <timer>
+      <id>16</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>17</typeid>
+      <day>MDMDF__</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>07:30</timerOn>
+      <milight>
+        <mode>Farbe</mode>
+      </milight>
+      <timerOff>08:30</timerOff>
+    </timer>
+    <timer>
+      <id>17</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>11</typeid>
+      <day>MDMDF__</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>07:45</timerOn>
+      <milight>
+        <mode>Nacht</mode>
+      </milight>
+      <timerOff/>
+    </timer>
+    <timer>
+      <id>18</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>11</typeid>
+      <day>MDMDF__</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>08:00</timerOn>
+      <milight>
+        <mode>Farbe</mode>
+      </milight>
+      <timerOff>08:30</timerOff>
+    </timer>
+    <timer>
+      <id>19</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>22</typeid>
+      <day>MDMDFSS</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn offset="-30">SD</timerOn>
+      <timerOff/>
+    </timer>
+    <timer>
+      <id>20</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>19</typeid>
+      <day>MDMDF__</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>07:30</timerOn>
+      <milight>
+        <mode>Farbe</mode>
+      </milight>
+      <timerOff>08:30</timerOff>
+    </timer>
+    <timer>
+      <id>21</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>9</typeid>
+      <day>MDMDF__</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>06:30</timerOn>
+      <milight>
+        <mode>Farbe</mode>
+      </milight>
+      <timerOff offset="15">SU</timerOff>
+    </timer>
+    <timer>
+      <id>22</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>11</typeid>
+      <day>MDMDFSS</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>20:10</timerOn>
+      <milight>
+        <mode>Farbe</mode>
+      </milight>
+      <timerOff>20:30</timerOff>
+    </timer>
+    <timer>
+      <id>23</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>21</typeid>
+      <day>MDMDFSS</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn offset="-15">SD</timerOn>
+      <milight>
+        <mode>Farbe</mode>
+      </milight>
+      <timerOff>23:30</timerOff>
+    </timer>
+    <timer>
+      <id>24</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>21</typeid>
+      <day>MDMDF__</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>06:30</timerOn>
+      <milight>
+        <mode>Farbe</mode>
+      </milight>
+      <timerOff offset="15">SU</timerOff>
+    </timer>
+    <timer>
+      <id>25</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>20</typeid>
+      <day>MDMDFSS</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn offset="-30">SD</timerOn>
+      <milight>
+        <mode>Weiß</mode>
+      </milight>
+      <timerOff/>
+    </timer>
+    <timer>
+      <id>26</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>20</typeid>
+      <day>MDMDF__</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>06:40</timerOn>
+      <milight>
+        <mode>Weiß</mode>
+      </milight>
+      <timerOff>08:30</timerOff>
+    </timer>
+    <timer>
+      <id>27</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>6</typeid>
+      <day>MDMDFSS</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn offset="-30">SD</timerOn>
+      <milight>
+        <mode>Weiß</mode>
+      </milight>
+      <timerOff/>
+    </timer>
+    <timer>
+      <id>28</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>6</typeid>
+      <day>MDMDF__</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>06:40</timerOn>
+      <milight>
+        <mode>Weiß</mode>
+      </milight>
+      <timerOff>08:30</timerOff>
+    </timer>
+    <timer>
+      <id>29</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>23</typeid>
+      <day>MDMDF__</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>06:30</timerOn>
+      <timerOff offset="15">SU</timerOff>
+    </timer>
+    <timer>
+      <id>30</id>
+      <active>on</active>
+      <type>device</type>
+      <typeid>23</typeid>
+      <day>MDMDFSS</day>
+      <pingstatus>OFF</pingstatus>
+      <invertSwitchOnNoPing>false</invertSwitchOnNoPing>
+      <usage>time</usage>
+      <pingto/>
+      <timerOn>SD</timerOn>
+      <timerOff>23:30</timerOff>
+    </timer>
+  </timers>
+  <fritzbox>
+    <address>192.168.1.1</address>
+    <username/>
+    <password/>
+  </fritzbox>
+  <actions>
+    <action>
+      <id>14</id>
+      <name>Licht AN (ohne Max)</name>
+      <do type="device" id="1" action="on"/>
+      <do type="device" id="21" action="on" mode="Farbe"/>
+      <do type="device" id="9" action="on" mode="Farbe"/>
+      <do type="device" id="7" action="on" mode="Weiß"/>
+      <do type="device" id="4" action="on" mode="Farbe"/>
+      <do type="device" id="5" action="on" mode="Farbe"/>
+      <do type="device" id="6" action="on" mode="Weiß"/>
+      <do type="device" id="13" action="on" mode="Farbe"/>
+      <do type="device" id="20" action="on" mode="Weiß"/>
+      <do type="device" id="24" action="on"/>
+      <do type="device" id="25" action="on"/>
+      <do type="device" id="8" action="on" mode="Farbe"/>
+      <do type="device" id="16" action="on" mode="Farbe"/>
+      <do type="device" id="19" action="off"/>
+      <do type="device" id="22" action="on"/>
+      <do type="device" id="11" action="off"/>
+      <do type="device" id="17" action="off"/>
+      <do type="device" id="23" action="on"/>
+    </action>
+    <action>
+      <id>16</id>
+      <name>Licht AN (nur Außen)</name>
+      <do type="device" id="1" action="on"/>
+      <do type="device" id="21" action="on" mode="Farbe"/>
+      <do type="device" id="9" action="on" mode="Farbe"/>
+      <do type="device" id="23" action="on"/>
+    </action>
+    <action>
+      <id>12</id>
+      <name>Licht AN</name>
+      <do type="device" id="1" action="on"/>
+      <do type="device" id="21" action="on" mode="Farbe"/>
+      <do type="device" id="9" action="on" mode="Farbe"/>
+      <do type="device" id="7" action="on" mode="Weiß"/>
+      <do type="device" id="4" action="on" mode="Farbe"/>
+      <do type="device" id="5" action="on" mode="Farbe"/>
+      <do type="device" id="6" action="on" mode="Weiß"/>
+      <do type="device" id="13" action="on" mode="Farbe"/>
+      <do type="device" id="20" action="on" mode="Weiß"/>
+      <do type="device" id="24" action="on"/>
+      <do type="device" id="25" action="on"/>
+      <do type="device" id="8" action="on" mode="Farbe"/>
+      <do type="device" id="16" action="on" mode="Farbe"/>
+      <do type="device" id="19" action="off"/>
+      <do type="device" id="22" action="on"/>
+      <do type="device" id="11" action="on" mode="Weiß"/>
+      <do type="device" id="17" action="on" mode="Farbe"/>
+      <do type="device" id="23" action="on"/>
+    </action>
+    <action>
+      <id>15</id>
+      <name>Licht AUS (nur Innen)</name>
+      <do type="group" id="3" action="off"/>
+      <do type="group" id="2" action="off"/>
+      <do type="device" id="8" action="off"/>
+      <do type="group" id="4" action="off"/>
+      <do type="group" id="5" action="off"/>
+    </action>
+    <action>
+      <id>13</id>
+      <name>Licht AUS</name>
+      <do type="group" id="1" action="off"/>
+      <do type="group" id="3" action="off"/>
+      <do type="group" id="2" action="off"/>
+      <do type="device" id="8" action="off"/>
+      <do type="group" id="4" action="off"/>
+      <do type="group" id="5" action="off"/>
+      <do type="device" id="23" action="off"/>
+    </action>
+    <action>
+      <id>11</id>
+      <name>NACHTMODUS</name>
+      <do type="group" id="1" action="off"/>
+      <do type="group" id="3" action="off"/>
+      <do type="group" id="2" action="off"/>
+      <do type="device" id="8" action="off"/>
+      <do type="group" id="4" action="off"/>
+      <do type="group" id="5" action="off"/>
+      <do type="device" id="23" action="off"/>
+      <do type="device" id="6" action="on" mode="Nacht"/>
+      <do type="device" id="7" action="on" mode="Nacht"/>
+      <do type="device" id="20" action="on" mode="Nacht"/>
+      <do type="device" id="19" action="on" mode="Nacht"/>
+    </action>
+    <action>
+      <id>1</id>
+      <name>Terrasse hell</name>
+      <do type="device" id="21" action="on" mode="Weiß"/>
+      <do type="device" id="9" action="on" mode="Weiß"/>
+    </action>
+    <action>
+      <id>2</id>
+      <name>Terrasse gemütlich</name>
+      <do type="device" id="21" action="on" mode="Farbe"/>
+      <do type="device" id="9" action="on" mode="Farbe"/>
+    </action>
+    <action>
+      <id>3</id>
+      <name>Wohnzimmer hell</name>
+      <do type="device" id="24" action="on"/>
+      <do type="device" id="4" action="on" mode="Farbe"/>
+      <do type="device" id="5" action="on" mode="Farbe"/>
+      <do type="device" id="6" action="on" mode="Weiß"/>
+      <do type="device" id="13" action="on" mode="Farbe"/>
+      <do type="device" id="20" action="on" mode="Weiß"/>
+      <do type="device" id="25" action="on"/>
+    </action>
+    <action>
+      <id>4</id>
+      <name>Wohnzimmer gemütlich</name>
+      <do type="device" id="24" action="on"/>
+      <do type="device" id="4" action="on" mode="Farbe"/>
+      <do type="device" id="5" action="on" mode="Farbe"/>
+      <do type="device" id="6" action="on" mode="Farbe"/>
+      <do type="device" id="13" action="on" mode="Farbe"/>
+      <do type="device" id="20" action="on" mode="Farbe"/>
+      <do type="device" id="25" action="on"/>
+    </action>
+    <action>
+      <id>5</id>
+      <name>Schlafzimmer hell</name>
+      <do type="device" id="16" action="on" mode="Farbe"/>
+      <do type="device" id="19" action="off"/>
+      <do type="device" id="22" action="on"/>
+    </action>
+    <action>
+      <id>6</id>
+      <name>Schlafzimmer gemütlich</name>
+      <do type="device" id="16" action="on" mode="Farbe"/>
+      <do type="device" id="19" action="on" mode="Farbe"/>
+      <do type="device" id="22" action="off"/>
+    </action>
+    <action>
+      <id>7</id>
+      <name>Schlafzimmer Nacht</name>
+      <do type="device" id="16" action="off"/>
+      <do type="device" id="19" action="on" mode="Nacht"/>
+      <do type="device" id="22" action="off"/>
+    </action>
+    <action>
+      <id>8</id>
+      <name>Kinderzimmer hell</name>
+      <do type="device" id="11" action="on" mode="Weiß"/>
+      <do type="device" id="17" action="on" mode="Farbe"/>
+    </action>
+    <action>
+      <id>9</id>
+      <name>Kinderzimmer gemütlich</name>
+      <do type="device" id="11" action="on" mode="Farbe"/>
+      <do type="device" id="17" action="on" mode="Farbe"/>
+    </action>
+    <action>
+      <id>10</id>
+      <name>Kinderzimmer Nacht</name>
+      <do type="device" id="11" action="on" mode="Nacht"/>
+      <do type="device" id="17" action="off"/>
+    </action>
+  </actions>
+  <persons>
+    <person>
+      <id>1</id>
+      <name>Standard-Benutzer</name>
+      <pingto/>
+      <theme>DARK</theme>
+      <theme_bg>desktop_bg_asteroids</theme_bg>
+      <ShowSettingsMenue>true</ShowSettingsMenue>
+      <ShowFBdect200EnergyData>true</ShowFBdect200EnergyData>
+      <AutoRefreshDeviceData>false</AutoRefreshDeviceData>
+      <favoritgroups>1,3,2,4,5</favoritgroups>
+      <favoritactions>14,16,12,15,13,11</favoritactions>
+      <favoritdevices>1,2,21,9,3,24,6,20,5,4,13,25,14,8,16,19,22,11,17,23</favoritdevices>
+      <status/>
+    </person>
+  </persons>
+</config>
