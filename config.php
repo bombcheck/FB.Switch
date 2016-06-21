@@ -6,7 +6,8 @@ error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 $CONFIG_FILENAME = __DIR__."/data/config.xml";
 $plugin = false;
 $SysAlertMsg="FB.NET System Status KRITISCH";
-$FileVer="1.56";
+$NoTimerAlertMsg="Timer ist deaktiviert";
+$FileVer="1.79";
 
 //config.xml dateisystem rechte überprüfen
 if(!file_exists($CONFIG_FILENAME)) {
@@ -109,6 +110,11 @@ foreach($personsFound as $user){
             $ShowSettingsMenue = $active_user->ShowSettingsMenue;
         }
         else $ShowSettingsMenue = "true";
+
+        if(isset($active_user->IndoorTempSource)){
+            $IndoorTempSource = $active_user->IndoorTempSource;
+        }
+        else $IndoorTempSource = "99999";
         
 		break;
 	}else{
@@ -147,6 +153,12 @@ foreach($personsFound as $user){
             $ShowSettingsMenue = $xml->persons->person->ShowSettingsMenue;
         }else{
             $ShowSettingsMenue = "true";
+        }
+
+        if(isset($xml->persons->person->IndoorTempSource)){
+            $IndoorTempSource = $xml->persons->person->IndoorTempSource;
+        }else{
+            $IndoorTempSource = "99999";
         }
 	}
 }
@@ -329,5 +341,11 @@ if($xml->global->installpath == "" OR $xml->global->installpath != __DIR__){
         if(check_config_global()) {
 			config_save($CONFIG_FILENAME, $xml);
 		}
+}
+
+if(isset($xml->global->OutdoorTempSource)){
+    $OutdoorTempSource = $xml->global->OutdoorTempSource;
+}else{
+    $OutdoorTempSource = "99999";
 }
 ?>

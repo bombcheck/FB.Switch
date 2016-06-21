@@ -64,6 +64,34 @@ function Fritzbox_DECT200_Switch($deviceain, $wert) {
     }
 } */
 
+function Fritzbox_GetHAactorsInfoXML()
+{
+    global $xml;
+    $SID=Fritzbox_login();
+    $fritzbox_address = $xml->fritzbox->address;
+
+    $URL = "http://".$fritzbox_address."/webservices/homeautoswitch.lua?switchcmd=".urlencode('getdevicelistinfos')."&sid=".urlencode($SID);
+    $ret = file_get_contents($URL);
+    if (trim($ret) == "inval" || $ret === FALSE || $ret == "") $ret = "-1";
+    return trim($ret);
+}
+
+function Fritzbox_GetHAactorTemperatureFromXML($XMLdata,$ain)
+{
+    $FBdectTemp=-1000;
+    if ($XMLdata == -1) return $FBdectTemp;
+    
+    $FBdevices = new SimpleXMLElement($XMLdata);
+    foreach ($FBdevices->device as $devices) {
+        //$FBdectTemp[(int)$devices['id'][0]] = (int)$devices->temperature->celsius[0];
+        if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+            if ((int)$devices->temperature->celsius[0] != "") $FBdectTemp=(int)$devices->temperature->celsius[0];
+        }
+    }
+    unset($FBdevices);
+    return (int)$FBdectTemp;
+}
+
 function Fritzbox_DECT200_Energie($deviceAIN) {
         global $xml;
         $SID=Fritzbox_login();

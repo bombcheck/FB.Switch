@@ -45,8 +45,8 @@ if (isset($_POST['todo'])) {
 if (isset($_GET['timerrun'])) {
     require("send_msg.php");
     require("timer.php");
-	include("coundowntimer.php");
-    timer_check();
+	include("countdowntimer.php");
+    if ($xml->global->timerGlobalRun != "false") timer_check();
 	ping_check();
 	countdowntimer_check();
     fbdect_check();
