@@ -121,6 +121,23 @@
                     </div>
                 </div>
             </li>
+            <li id="notimermsg_devs" style="<? if ($xml->global->timerGlobalRun != "false") echo "display:none;"; ?>background-color:#B63737;-moz-border-radius:.5em;-webkit-border-radius:.5em;border-radius:.5em;">
+                <div class="ui-grid-a" style="width:100%;background-color:#B63737;">
+                    <div class="ui-block-a" style="width:100%;background-color:#B63737;text-align:left">
+                        <h2><?php echo $NoTimerAlertMsg; ?></h2>
+                    </div>
+                </div>
+            </li>
+            <li id="tempmsg_devs" style="display:none;">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <font class="tempmsg_devs_indoor"></font>
+                    </div>
+                    <div class="ui-block-b" style="text-align:right">
+                        <font class="tempmsg_devs_outdoor"></font>
+                    </div>
+                </div>
+            </li>
 <?php
     $roomDevices = array();
     foreach($xml->devices->device as $device) {
@@ -395,7 +412,7 @@
                                                 <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="send_milight('<?php echo $device->id; ?>','rgbwDiscoFaster','')">S+</button>
                                                 <div id="milight_<?php echo $device->id; ?>_brightness_controls" class="<?php echo ( $device->milight->mode == 'Farbe' || $device->milight->mode == 'Weiß' ) ? 'show' : 'hide' ?>">
                                                     <br><br>
-                                                    <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) > 10) { send_milight('<?php echo $device->id; ?>','SetBrightness',parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) - 10); }">Dunkler</button>&nbsp;&nbsp;
+                                                    <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) > 5) { send_milight('<?php echo $device->id; ?>','SetBrightness',parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) - 5); }">Dunkler</button>&nbsp;&nbsp;
                                                     <?php
                                                         $ThisBrightness = 0;
                                                         if ($device->milight->mode == 'Farbe') $ThisBrightness = $device->milight->brightnesscolor;
@@ -403,7 +420,7 @@
                                                         if ($ThisBrightness == "") $ThisBrightness = 0;
                                                     ?>
                                                     <button name="milight_<?php echo $device->id; ?>_brightness" id="milight_<?php echo $device->id; ?>_brightness" data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" value="<?php echo $ThisBrightness; ?>%" onclick="send_milight('<?php echo $device->id; ?>','SetBrightness',parseInt(this.value))"></button>&nbsp;&nbsp;
-                                                    <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) < 100) { send_milight('<?php echo $device->id; ?>','SetBrightness',parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) + 10); }">Heller</button>
+                                                    <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) < 100) { send_milight('<?php echo $device->id; ?>','SetBrightness',parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) + 5); }">Heller</button>
                                                 </div>
                                             </div>
                                         <?php } ?>

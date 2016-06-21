@@ -54,6 +54,23 @@
                     </div>
                 </div>
             </li> 
+            <li id="notimermsg_actions" style="<? if ($xml->global->timerGlobalRun != "false") echo "display:none;"; ?>background-color:#B63737;-moz-border-radius:.5em;-webkit-border-radius:.5em;border-radius:.5em;">
+                <div class="ui-grid-a" style="width:100%;background-color:#B63737;">
+                    <div class="ui-block-a" style="width:100%;background-color:#B63737;text-align:left">
+                        <h2><?php echo $NoTimerAlertMsg; ?></h2>
+                    </div>
+                </div>
+            </li>
+            <li id="tempmsg_actions" style="display:none;">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <font class="tempmsg_actions_indoor"></font>
+                    </div>
+                    <div class="ui-block-b" style="text-align:right">
+                        <font class="tempmsg_actions_outdoor"></font>
+                    </div>
+                </div>
+            </li>
 <?php
     $actionsFound = array();
     foreach($xml->actions->action as $action) {

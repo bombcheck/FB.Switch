@@ -93,8 +93,8 @@ $(document).ready(function() {
                 echo '<li data-role="fieldcontain">
                     <label for="theme">Design:</label>
                     <select name="theme" id="theme">
-                        <option value="LIGHT"'; if($parent[0]->theme == "LIGHT") { echo "selected"; } echo '>Hell</option>
-                        <option value="DARK"'; if($parent[0]->theme == "DARK") { echo "selected"; } echo'>Dunkel</option>
+                        <option value="LIGHT"'; if($parent[0]->theme == "LIGHT") { echo " selected"; } echo '>Hell</option>
+                        <option value="DARK"'; if($parent[0]->theme == "DARK") { echo " selected"; } echo'>Dunkel</option>
                     </select>
                 </li>';?>
                 <li data-role="fieldcontain">
@@ -131,6 +131,34 @@ $(document).ready(function() {
                     </select>
                 </li>
                 <li data-role="fieldcontain">
+                    <label for="IndoorTempSource">Sensor für Innentemperatur (FBdect200):</label>
+                    <select name="IndoorTempSource" id="IndoorTempSource">
+                        <?php
+                            $ActSource = $parent[0]->IndoorTempSource;
+                            $devices = array();
+                            foreach($xml->devices->device as $device) {
+                                if ($device->vendor == "fbdect200") $devices[] = $device;
+                            }
+                            switch ($xml->gui->sortOrderDevices){
+                                case "SORT_BY_NAME":
+                                    usort($devices, "compareDevicesByName");
+                                    break;
+                                case "SORT_BY_ID":
+                                    usort($devices, "compareDevicesByID");
+                                    break;
+                                default:
+                                    break;
+                            }
+                            echo "<option value=\"99999\">Keine Anzeige</option>";
+                            foreach($devices as $device ) {
+                            	?>
+                            	<option value="<?php echo $device->id; ?>" <?php if ((int)$ActSource == (int)$device->id) { echo "selected"; } ?>><?php echo $device->id.": ".$device->name." (".$device->room.")"; ?></option>
+                            	<?php
+                            }
+                            ?>
+                    </select>
+                </li>
+                <li data-role="fieldcontain">
                     <label for="ShowSettingsMenue">Konfig-Menü anzeigen:</label>
                     <select name="ShowSettingsMenue" id="ShowSettingsMenue" data-role="slider">
                         <option value="false" <?php if($parent[0]->ShowSettingsMenue == "false") { echo "selected"; } ?>>Nein</option>
@@ -149,6 +177,13 @@ $(document).ready(function() {
                     <select name="AutoRefreshDeviceData" id="AutoRefreshDeviceData" data-role="slider">
                         <option value="false" <?php if($parent[0]->AutoRefreshDeviceData == "false") { echo "selected"; } ?>>Nein</option>
                         <option value="true" <?php if($parent[0]->AutoRefreshDeviceData == "true") { echo "selected"; } ?>>Ja</option>
+                    </select>
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="FBnetSysStateAlert">FB.NET System-Status überwachen:</label>
+                    <select name="FBnetSysStateAlert" id="FBnetSysStateAlert" data-role="slider">
+                        <option value="false" <?php if($parent[0]->FBnetSysStateAlert == "false") { echo "selected"; } ?>>Nein</option>
+                        <option value="true" <?php if($parent[0]->FBnetSysStateAlert == "true") { echo "selected"; } ?>>Ja</option>
                     </select>
                 </li>
                 <li data-role="list-divider">

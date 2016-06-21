@@ -147,6 +147,14 @@ function autodetect_milight()
         Timer
         </li>
         <li data-role="fieldcontain">
+            <label for="timerGlobalRun">Timer aktiv:</label>
+            <select name="timerGlobalRun" id="timerGlobalRun" data-role="slider">
+                <option value="false" <?php if($xml->global->timerGlobalRun == "false") { echo "selected"; } ?>>Nein</option>
+                <option value="true" <?php if($xml->global->timerGlobalRun == "true" || $xml->global->timerGlobalRun == "") { echo "selected"; } ?>>Ja</option>
+            </select>
+            <div>Die Präsenz- und FBdect200-Prüfung wird von dieser Einstellung nicht beeinflusst.</div>
+        </li>
+        <li data-role="fieldcontain">
             <label for="timerRunOnce">Timer schaltet nur wenn nötig:</label>
             <select name="timerRunOnce" id="timerRunOnce" data-role="slider">
                 <option value="false" <?php if($xml->global->timerRunOnce == "false") { echo "selected"; } ?>>Nein</option>
@@ -234,7 +242,53 @@ function autodetect_milight()
             <input name="fritzboxPassword" id="fritzboxPassword" value="<?php echo $xml->fritzbox->password; ?>" data-clear-btn="true" type="text">
         </li>
         <li data-role="list-divider">
+        FB.NET-Backend (FRITZ!Dect / Logging)
+        </li>
+        <li data-role="fieldcontain">
+            <label for="FBNETbackendURL">Backend-URL:</label>
+            <input name="FBNETbackendURL" id="FBNETbackendURL" value="<?php echo $xml->backend->url; ?>" data-clear-btn="true" type="text">
+        </li>
+        <li data-role="fieldcontain">
+            <label for="FBNETsidSource">SID-Quelle:</label>
+            <input name="FBNETsidSource" id="FBNETsidSource" value="<?php echo $xml->backend->sidsource; ?>" data-clear-btn="true" type="text">
+        </li>
+        <li data-role="fieldcontain">
+            <label for="EnableLoggingToBE">Aktivitäten in BE loggen:</label>
+            <select name="EnableLoggingToBE" id="EnableLoggingToBE" data-role="slider">
+                <option value="false" <?php if($xml->backend->logging == "false") { echo "selected"; } ?>>Nein</option>
+                <option value="true" <?php if($xml->backend->logging == "true") { echo "selected"; } ?>>Ja</option>
+            </select>
+        </li>
+        <li data-role="list-divider">
         Standort
+        </li>
+        <li data-role="fieldcontain">
+            <label for="OutdoorTempSource">Sensor für Aussentemperatur (FBdect200):</label>
+            <select name="OutdoorTempSource" id="OutdoorTempSource">
+                <?php
+                    $ActTempSource = $xml->global->OutdoorTempSource;
+                    $devices = array();
+                    foreach($xml->devices->device as $device) {
+                        if ($device->vendor == "fbdect200") $devices[] = $device;
+                    }
+                    switch ($xml->gui->sortOrderDevices){
+                        case "SORT_BY_NAME":
+                            usort($devices, "compareDevicesByName");
+                            break;
+                        case "SORT_BY_ID":
+                            usort($devices, "compareDevicesByID");
+                            break;
+                        default:
+                            break;
+                    }
+                    echo "<option value=\"99999\">Keine Anzeige</option>";
+                    foreach($devices as $device ) {
+                        ?>
+                        <option value="<?php echo $device->id; ?>" <?php if ((int)$ActTempSource == (int)$device->id) { echo "selected"; } ?>><?php echo $device->id.": ".$device->name." (".$device->room.")"; ?></option>
+                        <?php
+                    }
+                    ?>
+            </select>
         </li>
         <li data-role="fieldcontain">
             <label for="longitude">Longitude:</label>
