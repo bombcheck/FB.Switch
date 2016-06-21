@@ -10,7 +10,7 @@ Features:
 - Unterstützt das Schalten sowie die Farb- und Moduswahl von MiLight-RGBW-LED-Lampen über ein entsprechendes LAN-Gateway
 - Verwaltung von Geräten und Gerätegruppen
 - Definierung von Timern für Geräte und Gruppen. Für MiLight-Geräte kann im Timer definiert werden mit welchem Modus/Farbe/Helligkeit eingeschaltet werden soll
-- Definierung von Aktionen für Geräte und Gruppen. Für MiLight-Geräte kann in der Aktionr definiert werden mit welchem Modus/Farbe/Helligkeit eingeschaltet werden soll.
+- Definierung von Aktionen für Geräte und Gruppen. Für MiLight-Geräte kann in der Aktion definiert werden mit welchem Modus/Farbe/Helligkeit eingeschaltet werden soll.
 - Benutzerverwaltung: Identifikation anhand einer Client-Geräte-IP
 - Benutzerverwaltung: Für jeden Benutzer können individuelle Einstellungen wie Theme, Favoriten, Auto-Refresh usw. eingestellt werden
 
