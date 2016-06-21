@@ -1,0 +1,85 @@
+.ui-field-contain div.ui-slider-switch, .ui-field-contain.ui-hide-label div.ui-slider-switch {width:150px;overflow:hidden}
+.ui-slider-switch .ui-slider-label-b {margin-right: 10px;}
+.timer_activ_on  {color: #6AB638;}
+.timer_activ_off  {	color: #B63737;}
+/* icon größe von der liste */
+.ui-li-thumb, .ui-li-icon {
+    left: 1px;
+    max-height: 32px; 
+    max-width: 32px;
+    position: absolute;
+    top: 0;
+}
+
+.ui-icon-on {
+	background-image: url("../images/app-icon-on.png");
+}
+.ui-icon-off {
+	background-image: url("../images/app-icon-off.png");
+}
+
+.ui-dialog-contain {
+	width: 92.5%;
+	max-width: 1100px;
+	margin: 0% auto 15px auto;
+	padding: 0;
+	position: relative;
+	top: -20px;
+}
+
+.navigation{
+display:none;
+}
+/*
+.ui-grid-a .ui-block-a { width: 66.95%; }
+.ui-grid-a .ui-block-b { width: 32.925%; }
+.ui-grid-a .ui-block-a { clear: left; }
+*/
+
+.hide {
+    visibility:hidden;
+    display:none;
+}
+.show {
+    visibility:visible;
+
+    display:inline;
+}
+
+@media (min-width:28em) and (max-width:35em) {
+.ui-field-contain div.ui-slider-switch, .ui-field-contain.ui-hide-label div.ui-slider-switch {width:150px}}
+
+@media (min-width:35em) {
+ 
+/* wrap on wide viewports once open */
+
+.ui-field-contain div.ui-slider-switch, .ui-field-contain.ui-hide-label div.ui-slider-switch {width:150px}
+ 
+.ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push.ui-panel-content-fixed-toolbar-position-left,
+.ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal.ui-panel-content-fixed-toolbar-position-left,
+.ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-push.ui-panel-content-wrap-position-left,
+.ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-reveal.ui-panel-content-wrap-position-left {
+    margin-right: 17em;
+}
+.ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push.ui-panel-content-fixed-toolbar-position-right,
+.ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal.ui-panel-content-fixed-toolbar-position-right,
+.ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-push.ui-panel-content-wrap-position-right,
+.ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-reveal.ui-panel-content-wrap-position-right {
+    margin-left: 17em;
+}
+.ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push,
+.ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal {
+    width: auto;	
+}
+ 
+/* disable "dismiss" on wide viewports */
+.ui-responsive-panel .ui-panel-dismiss-display-push {
+    display: none;
+}
+ 
+}
+
+.ui-loading .ui-loader
+{
+  display: none !important;
+}
