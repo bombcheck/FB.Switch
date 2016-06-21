@@ -14,6 +14,7 @@ Features:
 - Benutzerverwaltung: Identifikation anhand einer Client-Geräte-IP
 - Benutzerverwaltung: Für jeden Benutzer können individuelle Einstellungen wie Theme, Favoriten, Auto-Refresh usw. eingestellt werden
 
+
 Voraussetzungen:
 - Webserver mit Apache/PHP5 (z.B. einen Raspberry Pi)
 - Benötigt keine Datenbank!
