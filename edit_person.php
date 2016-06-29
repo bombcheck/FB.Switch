@@ -14,7 +14,6 @@ $r_theme_bg = (string)$_POST['theme_bg'];
 $r_ShowSettingsMenue = (string)$_POST['ShowSettingsMenue'];
 $r_ShowFBdect200EnergyData = (string)$_POST['ShowFBdect200EnergyData'];
 $r_AutoRefreshDeviceData = (string)$_POST['AutoRefreshDeviceData'];
-$r_FBnetSysStateAlert = (string)$_POST['FBnetSysStateAlert'];
 $r_IndoorTempSource = (string)$_POST['IndoorTempSource'];
 $r_favoritgroups = $_POST['favoritgroups'];
 $r_favoritactions = $_POST['favoritactions'];
@@ -44,7 +43,6 @@ switch ($r_action) {
         $newdevice->addChild('ShowSettingsMenue', $r_ShowSettingsMenue);
         $newdevice->addChild('ShowFBdect200EnergyData', $r_ShowFBdect200EnergyData);
         $newdevice->addChild('AutoRefreshDeviceData', $r_AutoRefreshDeviceData);
-        $newdevice->addChild('FBnetSysStateAlert', $r_FBnetSysStateAlert);
         $newdevice->addChild('IndoorTempSource', $r_IndoorTempSource);
         $newdevice->addChild('favoritgroups', $r_favoritgroups);
         $newdevice->addChild('favoritactions', $r_favoritactions);
@@ -73,7 +71,6 @@ switch ($r_action) {
         $parent[0]->ShowSettingsMenue = $r_ShowSettingsMenue;
         $parent[0]->ShowFBdect200EnergyData = $r_ShowFBdect200EnergyData;
         $parent[0]->AutoRefreshDeviceData = $r_AutoRefreshDeviceData;
-        $parent[0]->FBnetSysStateAlert = $r_FBnetSysStateAlert;
         $parent[0]->IndoorTempSource = $r_IndoorTempSource;
         $parent[0]->favoritgroups = $r_favoritgroups;
         $parent[0]->favoritactions = $r_favoritactions;
