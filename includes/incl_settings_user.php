@@ -179,13 +179,6 @@ $(document).ready(function() {
                         <option value="true" <?php if($parent[0]->AutoRefreshDeviceData == "true") { echo "selected"; } ?>>Ja</option>
                     </select>
                 </li>
-                <li data-role="fieldcontain">
-                    <label for="FBnetSysStateAlert">FB.NET System-Status überwachen:</label>
-                    <select name="FBnetSysStateAlert" id="FBnetSysStateAlert" data-role="slider">
-                        <option value="false" <?php if($parent[0]->FBnetSysStateAlert == "false") { echo "selected"; } ?>>Nein</option>
-                        <option value="true" <?php if($parent[0]->FBnetSysStateAlert == "true") { echo "selected"; } ?>>Ja</option>
-                    </select>
-                </li>
                 <li data-role="list-divider">
                     Favoriten
                 </li>
