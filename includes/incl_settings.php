@@ -242,24 +242,6 @@ function autodetect_milight()
             <input name="fritzboxPassword" id="fritzboxPassword" value="<?php echo $xml->fritzbox->password; ?>" data-clear-btn="true" type="text">
         </li>
         <li data-role="list-divider">
-        FB.NET-Backend (FRITZ!Dect / Logging)
-        </li>
-        <li data-role="fieldcontain">
-            <label for="FBNETbackendURL">Backend-URL:</label>
-            <input name="FBNETbackendURL" id="FBNETbackendURL" value="<?php echo $xml->backend->url; ?>" data-clear-btn="true" type="text">
-        </li>
-        <li data-role="fieldcontain">
-            <label for="FBNETsidSource">SID-Quelle:</label>
-            <input name="FBNETsidSource" id="FBNETsidSource" value="<?php echo $xml->backend->sidsource; ?>" data-clear-btn="true" type="text">
-        </li>
-        <li data-role="fieldcontain">
-            <label for="EnableLoggingToBE">Aktivitäten in BE loggen:</label>
-            <select name="EnableLoggingToBE" id="EnableLoggingToBE" data-role="slider">
-                <option value="false" <?php if($xml->backend->logging == "false") { echo "selected"; } ?>>Nein</option>
-                <option value="true" <?php if($xml->backend->logging == "true") { echo "selected"; } ?>>Ja</option>
-            </select>
-        </li>
-        <li data-role="list-divider">
         Standort
         </li>
         <li data-role="fieldcontain">
