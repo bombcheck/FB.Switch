@@ -19,5 +19,7 @@ Voraussetzungen:
 - Webserver mit Apache/PHP5 (z.B. einen Raspberry Pi)
 - Benötigt keine Datenbank!
 
+Hinweis: Bitte bei der Benamung der Geräte, Gruppen usw. keine ":" und "|" verwenden!
+
 Weitere Infos, Hilfe und Support gibt es im Forum:
 http://forum.power-switch.eu/viewtopic.php?f=24&t=367&p=6457
