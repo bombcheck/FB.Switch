@@ -39,9 +39,14 @@ header("Content-Type: text/html; charset=utf-8");
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <!-- iPhone -->
 <link href="images/apple-touch-icon-57x57-precomposed.png?v=<?php echo $FileVer; ?>" sizes="57x57" rel="apple-touch-icon">
+<link href="images/apple-touch-icon-60x60-precomposed.png?v=<?php echo $FileVer; ?>" sizes="60x60" rel="apple-touch-icon">
 <link href="images/apple-touch-icon-72x72-precomposed.png?v=<?php echo $FileVer; ?>" sizes="72x72" rel="apple-touch-icon">
+<link href="images/apple-touch-icon-76x76-precomposed.png?v=<?php echo $FileVer; ?>" sizes="76x76" rel="apple-touch-icon">
 <link href="images/apple-touch-icon-114x114-precomposed.png?v=<?php echo $FileVer; ?>" sizes="114x114" rel="apple-touch-icon">
+<link href="images/apple-touch-icon-120x120-precomposed.png?v=<?php echo $FileVer; ?>" sizes="120x120" rel="apple-touch-icon">
 <link href="images/apple-touch-icon-144x144-precomposed.png?v=<?php echo $FileVer; ?>" sizes="144x144" rel="apple-touch-icon">
+<link href="images/apple-touch-icon-152x152-precomposed.png?v=<?php echo $FileVer; ?>" sizes="152x152" rel="apple-touch-icon">
+<link href="images/apple-touch-icon-180x180-precomposed.png?v=<?php echo $FileVer; ?>" sizes="180x180" rel="apple-touch-icon">
 <!-- <link href="images/apple-touch-startup-image-320x460.png?v=<?php echo $FileVer; ?>" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image"> -->
 <!-- iPhone (Retina) -->
 <!-- <link href="images/apple-touch-icon-114x114.png?v=<?php echo $FileVer; ?>" sizes="114x114" rel="apple-touch-icon"> -->
