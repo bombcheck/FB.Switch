@@ -22,7 +22,7 @@ function ping($host)
 	$FBping = explode("/",$FBping);
 	if ($FBping[1] != "") return 0;
 	else return 1; */
-	$FBping = exec("/opt/bin/ping -q -c1 ".$host,$out,$ret);
+	$FBping = exec("ping -q -c1 ".$host,$out,$ret);
 	return $ret;
 }
 
