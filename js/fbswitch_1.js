@@ -485,5 +485,10 @@
 				$("#BusyLoader").remove();
 			}
 		}
+
+        function PlaySound(file) {
+            var sound = document.getElementById(file);
+            sound.play();
+        }
 		
 </script>

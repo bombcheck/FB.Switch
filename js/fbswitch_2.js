@@ -36,6 +36,7 @@
 
 
         function send_connair(action, type, id) {
+            PlaySound('buttonClickSound');
             BusyAni('show');
 			
 			var data={ 'action': action, 'type': type, 'id': id };
@@ -51,10 +52,12 @@
 						if (FBdectTimer != "") window.clearTimeout(FBdectTimer);
 						FBdectTimer = setTimeout(function () { GetFBdectEnergy()}, 10000);
 					<?php } ?>
+                    PlaySound('doneSound');
 					BusyAni('hide');
 					toast(response);
                 },
                 error: function(response) {
+                    PlaySound('errorSound');
                     BusyAni('hide');
 					toast(response);
                 }
@@ -62,7 +65,8 @@
         }
 
         function send_milight(id, command, value) {
-			BusyAni('show');
+			PlaySound('buttonClickSound');
+            BusyAni('show');
             
 			var ToDo = "sendmilight";
             var data={ 'todo': ToDo, 'id': id, 'command': command, 'value': value };
@@ -74,11 +78,13 @@
                 async: true,
                 success: function(response) {
 					CheckDeviceStatus();
+                    PlaySound('doneSound');
 					BusyAni('hide');
 					if (response.indexOf('#OK#') < 0) toast(response);
                 },
                 error: function(response) {
-					BusyAni('hide');
+					PlaySound('errorSound');
+                    BusyAni('hide');
                     toast('Konnte MiLight-Kommando nicht senden!');
                 }
             });
