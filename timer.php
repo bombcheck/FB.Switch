@@ -22,7 +22,7 @@ function ping($host)
 	$FBping = explode("/",$FBping);
 	if ($FBping[1] != "") return 0;
 	else return 1; */
-	$FBping = exec("ping -q -c1 ".$host,$out,$ret);
+	$FBping = exec("/opt/bin/ping -q -c1 ".$host,$out,$ret);
 	return $ret;
 }
 
@@ -80,9 +80,11 @@ function fbdect_check(){
 	if ($xml->global->timerCheckFBdect200 == "true") {
 		$CntDect=0;
 		$CntChng=0;
+		$XMLdata = Fritzbox_GetHAactorsInfoXML();
 		foreach($xml->devices->device as $device) {
 			if($device->vendor == "fbdect200") {
-				$ActStatus = Fritzbox_DECT200_SwitchState($device->address->masterdip);
+				if ($XMLdata != -1) $ActStatus = Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'state');
+				else $ActStatus = Fritzbox_DECT200_SwitchState($device->address->masterdip);
 				if ($ActStatus == 0) $ActStatus = "OFF";
 				elseif ($ActStatus == 1) $ActStatus = "ON";
 				$OldStatus = $device->status;
