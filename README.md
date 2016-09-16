@@ -1,4 +1,4 @@
-FB.Switch v1.0.4-DEV
+FB.Switch v1.0.5-DEV
 ---------------------
 Webapp zur Steuerung und Verwaltung von 433-MHz-Funksteckdosen, FritzDect 200-Steckdosen und MiLight-Lampen.
 
@@ -13,6 +13,7 @@ Features:
 - Definierung von Aktionen für Geräte und Gruppen. Für MiLight-Geräte kann in der Aktion definiert werden mit welchem Modus/Farbe/Helligkeit eingeschaltet werden soll.
 - Benutzerverwaltung: Identifikation anhand einer Client-Geräte-IP
 - Benutzerverwaltung: Für jeden Benutzer können individuelle Einstellungen wie Theme, Favoriten, Auto-Refresh usw. eingestellt werden
+- Audio-Feedback beim Betätigen bestimmter Buttons und dem Abschluss bestimmter Operationen
 
 
 Voraussetzungen:
