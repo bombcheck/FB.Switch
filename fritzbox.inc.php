@@ -76,20 +76,82 @@ function Fritzbox_GetHAactorsInfoXML()
     return trim($ret);
 }
 
-function Fritzbox_GetHAactorTemperatureFromXML($XMLdata,$ain)
+function Fritzbox_GetHAactorDataFromXML($XML,$ain,$mode)
 {
-    $FBdectTemp=-1000;
-    if ($XMLdata == -1) return $FBdectTemp;
-    
-    $FBdevices = new SimpleXMLElement($XMLdata);
-    foreach ($FBdevices->device as $devices) {
-        //$FBdectTemp[(int)$devices['id'][0]] = (int)$devices->temperature->celsius[0];
-        if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
-            if ((int)$devices->temperature->celsius[0] != "") $FBdectTemp=(int)$devices->temperature->celsius[0];
+    $FBdectVal=-1000;
+    if ($XML == -1) return $FBdectVal;
+
+    $FBdevices = new SimpleXMLElement($XML);
+    if ($mode == "id") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=(int)$devices['id'][0];
+            }
         }
-    }
+    } elseif ($mode == "fwversion") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=$devices['fwversion'][0];
+            }
+        }
+    } elseif ($mode == "manufacturer") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=$devices['manufacturer'][0];
+            }
+        }
+    } elseif ($mode == "productname") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=$devices['productname'][0];
+            }
+        }
+    } elseif ($mode == "present") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=(int)$devices->present[0];
+            }
+        }
+    } elseif ($mode == "name") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=$devices->name[0];
+            }
+        }
+    } elseif ($mode == "state") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=(int)$devices->switch->state[0];
+            }
+        }
+    } elseif ($mode == "lock") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=(int)$devices->switch->lock[0];
+            }
+        }
+    } elseif ($mode == "power") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=(int)$devices->powermeter->power[0];
+            }
+        }
+    } elseif ($mode == "energy") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=(int)$devices->powermeter->energy[0];
+            }
+        }
+    } elseif ($mode == "temperature") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=(int)$devices->temperature->celsius[0];
+            }
+        }
+    } 
+
     unset($FBdevices);
-    return (int)$FBdectTemp;
+    return trim($FBdectVal);
 }
 
 function Fritzbox_DECT200_Energie($deviceAIN) {
@@ -146,6 +208,7 @@ function Fritzbox_login() {
         $fritzbox_address = $xml->fritzbox->address;
         $fritzbox_username = $xml->fritzbox->username;
         $fritzbox_password = $xml->fritzbox->password;
+ 
         $ch = curl_init('http://'.$fritzbox_address.'/login_sid.lua');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $login = curl_exec($ch);
