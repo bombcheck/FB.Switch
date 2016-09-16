@@ -1,6 +1,5 @@
 <?php
 if((!isset($directaccess)) OR (!$directaccess)) die();
-
 //error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 
 $debug_timer=empty($xml->timers["debug"]) ? "false" : $xml->timers["debug"];
