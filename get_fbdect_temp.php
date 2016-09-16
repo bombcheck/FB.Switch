@@ -28,7 +28,7 @@ $ResStr="";
 $XMLdata = Fritzbox_GetHAactorsInfoXML();
 foreach($xml->devices->device as $device) {
 	if ($device->vendor == "fbdect200") {
-	   $ResStr .= trim($device->id).":".Fritzbox_GetHAactorTemperatureFromXML($XMLdata,$device->address->masterdip)."|";
+	   $ResStr .= trim($device->id).":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'temperature')."|";
     }
 }
 echo substr($ResStr, 0, strlen($ResStr)-1);

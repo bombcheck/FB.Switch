@@ -25,9 +25,19 @@ if (!$xml) {
 }
 
 $ResStr="";
-foreach($xml->devices->device as $device) {
-	if ($device->vendor == "fbdect200") {
-	   $ResStr .= trim($device->id).":".Fritzbox_DECT200_Power($device->address->masterdip).":".Fritzbox_DECT200_Energie($device->address->masterdip)."|";
+$XMLdata = Fritzbox_GetHAactorsInfoXML();
+if ($XMLdata != -1) {
+    foreach($xml->devices->device as $device) {
+        if ($device->vendor == "fbdect200") {
+           $ResStr .= trim($device->id).":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'power').":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'energy')."|";
+        }
+    }
+}
+else {
+    foreach($xml->devices->device as $device) {
+    	if ($device->vendor == "fbdect200") {
+    	   $ResStr .= trim($device->id).":".Fritzbox_DECT200_Power($device->address->masterdip).":".Fritzbox_DECT200_Energie($device->address->masterdip)."|";
+        }
     }
 }
 echo substr($ResStr, 0, strlen($ResStr)-1);
