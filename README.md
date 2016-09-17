@@ -20,6 +20,12 @@ Voraussetzungen:
 - Webserver mit Apache/PHP5 (z.B. einen Raspberry Pi)
 - Benötigt keine Datenbank!
 
+Installation:
+- Einfach in einen Ordner auf dem Webserver kopieren.
+- Webserver braucht Schreibrechte auf das data-Verzeichnis sowie dessen Unterverzeichnisse und aller Dateien.
+- Webserver braucht auch Schreibrechte auf das root-Verzeichnis der Installation.
+- Ggf. die Pfade in der Datei manifest.json anpassen (wird für Android benötigt).
+
 Hinweis: Bitte bei der Benamung der Geräte, Gruppen usw. keine ":" und "|" verwenden!
 
 Weitere Infos, Hilfe und Support gibt es im Forum:
