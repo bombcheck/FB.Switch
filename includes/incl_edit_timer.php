@@ -348,7 +348,7 @@ for ($i = 0; $i < strlen($string); $i++) {
                             $string = substr($data['timerOn'], -5 ,-3);
                             for ($i = 0; $i <= 23; $i++) {
                                 ?>
-                                <option <? echo(intval($string) == sprintf ("%02d", $i) ) ? 'selected="selected"': '' ?> value="<?php echo sprintf ("%02d", $i)?>"> <?php echo sprintf ("%02d", $i); ?> </option>
+                                <option <?php echo(intval($string) == sprintf ("%02d", $i) ) ? 'selected="selected"': '' ?> value="<?php echo sprintf ("%02d", $i)?>"> <?php echo sprintf ("%02d", $i); ?> </option>
                                 <?php
                             }
                             ?>
@@ -360,7 +360,7 @@ for ($i = 0; $i < strlen($string); $i++) {
                             $string = substr($data['timerOn'], 3 ,5);
                             for ($i = 0; $i <= 59; $i++) {
                                 ?>
-                                <option <? echo(intval($string) == sprintf ("%02d", $i) ) ? 'selected="selected"': '' ?> value="<?php echo sprintf ("%02d", $i)?>"> <?php echo sprintf ("%02d", $i); ?> </option>
+                                <option <?php echo(intval($string) == sprintf ("%02d", $i) ) ? 'selected="selected"': '' ?> value="<?php echo sprintf ("%02d", $i)?>"> <?php echo sprintf ("%02d", $i); ?> </option>
                                 <?php
                             }
                             ?>
@@ -369,7 +369,7 @@ for ($i = 0; $i < strlen($string); $i++) {
                 </div>
                 <div data-role="fieldcontain" id="timeronoffset_box" <?php echo (  ($data['timerOn'] == 'SD') or ($data['timerOn'] == 'SU') && ($data['timerOff'] != "")  ) ? 'class="show"' : 'class="hide"' ?> >
                            <label for="timeronoffset">Offset:</label>
-                           <input type="range" name="timeronoffset" id="timeronoffset" value="<?echo (isset($data['timerOn']['offset'])) ? $data['timerOn']['offset'] : '0' ?>" min="-240" max="240" step="5" />
+                           <input type="range" name="timeronoffset" id="timeronoffset" value="<?phpecho (isset($data['timerOn']['offset'])) ? $data['timerOn']['offset'] : '0' ?>" min="-240" max="240" step="5" />
                 </div>
             </li>
             <li data-role="fieldcontain">
@@ -396,7 +396,7 @@ for ($i = 0; $i < strlen($string); $i++) {
                             $string = substr($data['timerOff'], -5 ,-3);
                             for ($i = 0; $i <= 23; $i++) {
                                 ?>
-                                <option <? echo(intval($string) == sprintf ("%02d", $i) ) ? 'selected="selected"': '' ?> value="<?php echo sprintf ("%02d", $i)?>"> <?php echo sprintf ("%02d", $i); ?> </option>
+                                <option <?php echo(intval($string) == sprintf ("%02d", $i) ) ? 'selected="selected"': '' ?> value="<?php echo sprintf ("%02d", $i)?>"> <?php echo sprintf ("%02d", $i); ?> </option>
                                 <?php
                             }
                             ?>
@@ -409,7 +409,7 @@ for ($i = 0; $i < strlen($string); $i++) {
                             $string = substr($data['timerOff'], 3 ,5);
                             for ($i = 0; $i <= 59; $i++) {
                                 ?>
-                                <option <? echo(intval($string) == sprintf ("%02d", $i) ) ? 'selected="selected"': '' ?> value="<?php echo sprintf ("%02d", $i)?>"> <?php echo sprintf ("%02d", $i); ?> </option>
+                                <option <?php echo(intval($string) == sprintf ("%02d", $i) ) ? 'selected="selected"': '' ?> value="<?php echo sprintf ("%02d", $i)?>"> <?php echo sprintf ("%02d", $i); ?> </option>
                                 <?php
                             }
                             ?>
@@ -419,7 +419,7 @@ for ($i = 0; $i < strlen($string); $i++) {
                 </div>
                 <div data-role="fieldcontain" id="timeroffoffset_box" <?php echo (  ($data['timerOff'] == 'SD') or ($data['timerOff'] == 'SU')  ) ? 'class="show"' : 'class="hide"' ?> >
                                <label for="timeroffoffset">Offset:</label>
-                               <input type="range" name="timeroffoffset" id="timeroffoffset" value="<?echo (isset($data['timerOff']['offset'])) ? $data['timerOff']['offset'] : '0' ?>" min="-240" max="240" step="5" />
+                               <input type="range" name="timeroffoffset" id="timeroffoffset" value="<?phpecho (isset($data['timerOff']['offset'])) ? $data['timerOff']['offset'] : '0' ?>" min="-240" max="240" step="5" />
                 </div>
             </li>
         </div>

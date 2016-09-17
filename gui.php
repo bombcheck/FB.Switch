@@ -68,14 +68,14 @@ header("Content-Type: text/html; charset=utf-8");
 </div>
 
 <script type="text/javascript" charset="utf-8" src="js/jquery-1.9.0.min.js?v=<?php echo $FileVer; ?>"></script>
-<? require_once('js/fbswitch_1.js'); ?>
+<?php require_once('js/fbswitch_1.js'); ?>
 <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.3.0.min.js?v=<?php echo $FileVer; ?>"></script>
 <script type="text/javascript" charset="utf-8" src="js/jquery.toast.mobile.js?v=<?php echo $FileVer; ?>"></script>
-<? require_once('js/fbswitch_2.js'); ?>
+<?php require_once('js/fbswitch_2.js'); ?>
 <script type="text/javascript" charset="utf-8" src="js/spectrum.js?v=<?php echo $FileVer; ?>"></script>
 
 <div id="bg"></div>
-<?
+<?php
 // GUI-Komponenten inkludieren
 // ---------------------------
 // Favoriten

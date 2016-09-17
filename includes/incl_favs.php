@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </li>
-            <li id="notimermsg_favs" style="<? if ($xml->global->timerGlobalRun != "false") echo "display:none;"; ?>background-color:#B63737;-moz-border-radius:.5em;-webkit-border-radius:.5em;border-radius:.5em;">
+            <li id="notimermsg_favs" style="<?php if ($xml->global->timerGlobalRun != "false") echo "display:none;"; ?>background-color:#B63737;-moz-border-radius:.5em;-webkit-border-radius:.5em;border-radius:.5em;">
                 <div class="ui-grid-a" style="width:100%;background-color:#B63737;">
                     <div class="ui-block-a" style="width:100%;background-color:#B63737;text-align:left">
                         <h2><?php echo $NoTimerAlertMsg; ?></h2>
@@ -164,7 +164,7 @@ if($active_user == "false" AND $_GET['user'] == ""  ){
                     </a>
                 <?php } else { ?>
                     Gruppen
-                <? } ?>
+                <?php } ?>
             </li>
 <?php
         for($i=0;$i<count($favorite); $i++){

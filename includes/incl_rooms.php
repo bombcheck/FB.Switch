@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </li>
-            <li id="notimermsg_rooms" style="<? if ($xml->global->timerGlobalRun != "false") echo "display:none;"; ?>background-color:#B63737;-moz-border-radius:.5em;-webkit-border-radius:.5em;border-radius:.5em;">
+            <li id="notimermsg_rooms" style="<?php if ($xml->global->timerGlobalRun != "false") echo "display:none;"; ?>background-color:#B63737;-moz-border-radius:.5em;-webkit-border-radius:.5em;border-radius:.5em;">
                 <div class="ui-grid-a" style="width:100%;background-color:#B63737;">
                     <div class="ui-block-a" style="width:100%;background-color:#B63737;text-align:left">
                         <h2><?php echo $NoTimerAlertMsg; ?></h2>

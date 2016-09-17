@@ -258,7 +258,7 @@ $(document).ready(function() {
                 <li data-role="fieldcontain">
                     <fieldset data-role="controlgroup" data-mini="true" data-type="vertical" id ="timerdays_select">
                        <legend>Aktionen:</legend>
-						<? foreach($actions as $action ) { ?>
+						<?php foreach($actions as $action ) { ?>
                                 <input type="checkbox" name="favoritactions[]" id="<?php echo $action->id; ?>" value="<?php echo $action->id;?>" <?php echo (in_array($action->id, $favoritactions)) ? 'checked="checked"' : ''  ?>  />
                                 <label for="<?php echo $action->id; ?>"><?php echo "$action->name" ?></label>
                             <?php
