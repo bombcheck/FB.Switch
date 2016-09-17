@@ -7,7 +7,7 @@ $CONFIG_FILENAME = __DIR__."/data/config.xml";
 $plugin = false;
 $SysAlertMsg="FB.NET System Status KRITISCH";
 $NoTimerAlertMsg="Timer ist deaktiviert";
-$FileVer="1.99";
+$FileVer="2.11";
 
 //config.xml dateisystem rechte überprüfen
 if(!file_exists($CONFIG_FILENAME)) {

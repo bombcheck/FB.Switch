@@ -1,5 +1,6 @@
 <?php
 if((!isset($directaccess)) OR (!$directaccess)) die();
+
 error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 header("Content-Type: text/html; charset=utf-8");
 ?>

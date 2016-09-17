@@ -1,8 +1,8 @@
     {
       "name": "FB.Switch",
       "short_name": "FB.Switch",
-      "scope": "/fb-switch/",
-      "start_url": "/fb-switch/index.php",
+      "scope": "/fb-switch-dev/",
+      "start_url": "/fb-switch-dev/index.php",
       "display": "fullscreen",
 
       "icons": [
