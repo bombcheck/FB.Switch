@@ -148,6 +148,12 @@ function Fritzbox_GetHAactorDataFromXML($XML,$ain,$mode)
                 $FBdectVal=(int)$devices->temperature->celsius[0];
             }
         }
+    } elseif ($mode == "tempoffset") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=(int)$devices->temperature->offset[0];
+            }
+        }
     } 
 
     unset($FBdevices);
