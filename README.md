@@ -1,5 +1,5 @@
-FB.Switch v1.0.6-DEV
----------------------
+FB.Switch v1.0.6-STABLE
+-----------------------
 Webapp zur Steuerung und Verwaltung von 433-MHz-Funksteckdosen, FritzDect 200-Steckdosen und MiLight-Lampen.
 
 Features:
