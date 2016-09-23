@@ -1,19 +1,19 @@
     {
       "name": "FB.Switch",
       "short_name": "FB.Switch",
-      "scope": "/fb-switch/",
-      "start_url": "/fb-switch/index.php",
+      "scope": "/fb-switch-dev/",
+      "start_url": "/fb-switch-dev/index.php",
       "display": "fullscreen",
 
       "icons": [
         {
-          "src": "images/apple-touch-icon-57x57-precomposed.png",
+          "src": "images/apple-touch-icon-36x36-precomposed.png",
           "sizes": "36x36",
           "type": "image/png",
           "density": "0.75"
         },
         {
-          "src": "images/apple-touch-icon-57x57-precomposed.png",
+          "src": "images/apple-touch-icon-48x48-precomposed.png",
           "sizes": "48x48",
           "type": "image/png",
           "density": "1.0"
@@ -25,7 +25,7 @@
           "density": "1.5"
         },
         {
-          "src": "images/apple-touch-icon-114x114-precomposed.png",
+          "src": "images/apple-touch-icon-96x96-precomposed.png",
           "sizes": "96x96",
           "type": "image/png",
           "density": "2.0"
@@ -37,7 +37,7 @@
           "density": "3.0"
         },
         {
-          "src": "images/apple-touch-icon-144x144-precomposed.png",
+          "src": "images/apple-touch-icon-192x192-precomposed.png",
           "sizes": "192x192",
           "type": "image/png",
           "density": "4.0"

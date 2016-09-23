@@ -93,8 +93,8 @@ $(document).ready(function() {
                 echo '<li data-role="fieldcontain">
                     <label for="theme">Design:</label>
                     <select name="theme" id="theme">
-                        <option value="LIGHT"'; if($parent[0]->theme == "LIGHT") { echo "selected"; } echo '>Hell</option>
-                        <option value="DARK"'; if($parent[0]->theme == "DARK") { echo "selected"; } echo'>Dunkel</option>
+                        <option value="LIGHT"'; if($parent[0]->theme == "LIGHT") { echo " selected"; } echo '>Hell</option>
+                        <option value="DARK"'; if($parent[0]->theme == "DARK") { echo " selected"; } echo'>Dunkel</option>
                     </select>
                 </li>';?>
                 <li data-role="fieldcontain">
@@ -128,6 +128,34 @@ $(document).ready(function() {
                         <option value="desktop_bg_09" <?php if($parent[0]->theme_bg == "desktop_bg_09") { echo "selected"; } ?>>Carbon</option>
                         <option value="desktop_bg_black" <?php if($parent[0]->theme_bg == "desktop_bg_black") { echo "selected"; } ?>>Schwarz</option>
                         </optgroup>
+                    </select>
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="IndoorTempSource">Sensor für Innentemperatur (FBdect200):</label>
+                    <select name="IndoorTempSource" id="IndoorTempSource">
+                        <?php
+                            $ActSource = $parent[0]->IndoorTempSource;
+                            $devices = array();
+                            foreach($xml->devices->device as $device) {
+                                if ($device->vendor == "fbdect200") $devices[] = $device;
+                            }
+                            switch ($xml->gui->sortOrderDevices){
+                                case "SORT_BY_NAME":
+                                    usort($devices, "compareDevicesByName");
+                                    break;
+                                case "SORT_BY_ID":
+                                    usort($devices, "compareDevicesByID");
+                                    break;
+                                default:
+                                    break;
+                            }
+                            echo "<option value=\"99999\">Keine Anzeige</option>";
+                            foreach($devices as $device ) {
+                            	?>
+                            	<option value="<?php echo $device->id; ?>" <?php if ((int)$ActSource == (int)$device->id) { echo "selected"; } ?>><?php echo $device->id.": ".$device->name." (".$device->room.")"; ?></option>
+                            	<?php
+                            }
+                            ?>
                     </select>
                 </li>
                 <li data-role="fieldcontain">
@@ -230,7 +258,7 @@ $(document).ready(function() {
                 <li data-role="fieldcontain">
                     <fieldset data-role="controlgroup" data-mini="true" data-type="vertical" id ="timerdays_select">
                        <legend>Aktionen:</legend>
-						<? foreach($actions as $action ) { ?>
+						<?php foreach($actions as $action ) { ?>
                                 <input type="checkbox" name="favoritactions[]" id="<?php echo $action->id; ?>" value="<?php echo $action->id;?>" <?php echo (in_array($action->id, $favoritactions)) ? 'checked="checked"' : ''  ?>  />
                                 <label for="<?php echo $action->id; ?>"><?php echo "$action->name" ?></label>
                             <?php

@@ -22,7 +22,7 @@ function ping($host)
 	$FBping = explode("/",$FBping);
 	if ($FBping[1] != "") return 0;
 	else return 1; */
-	$FBping = exec("ping -q -c1 ".$host,$out,$ret);
+	$FBping = exec("/opt/bin/ping -q -c1 ".$host,$out,$ret);
 	return $ret;
 }
 
@@ -33,7 +33,7 @@ function ping_check(){
 	if($debug_timer=="true") debug_timer("Benutzer-Anwesenheit pruefen:");
 	if ($xml->global->timerPingUser == "true") {
 		if(@count($xml->persons->children()) > 0 ) {
-			debug_timer("Standard-Benutzer wird nie auf Anwesenheit geprueft.\n");
+			if($debug_timer=="true") debug_timer("Standard-Benutzer wird nie auf Anwesenheit geprueft.\n");
 			foreach($xml->persons->person as $person){
 				if($person->name != "Standard-Benutzer") {
 					$ip = $person->pingto;
@@ -80,9 +80,11 @@ function fbdect_check(){
 	if ($xml->global->timerCheckFBdect200 == "true") {
 		$CntDect=0;
 		$CntChng=0;
+		$XMLdata = Fritzbox_GetHAactorsInfoXML();
 		foreach($xml->devices->device as $device) {
 			if($device->vendor == "fbdect200") {
-				$ActStatus = Fritzbox_DECT200_SwitchState($device->address->masterdip);
+				if ($XMLdata != -1) $ActStatus = Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'state');
+				else $ActStatus = Fritzbox_DECT200_SwitchState($device->address->masterdip);
 				if ($ActStatus == 0) $ActStatus = "OFF";
 				elseif ($ActStatus == 1) $ActStatus = "ON";
 				$OldStatus = $device->status;
@@ -239,10 +241,10 @@ function timer_check() {
 					$status = ping($ip);
 					if($status == 0){
 						$pingaktive = "true";
-						debug_timer($ip." = anwesend \n");
+						if($debug_timer=="true") debug_timer($ip." = anwesend \n");
 					}else{
 						$pingaktive = "false";
-						debug_timer($ip." = abwesend \n");
+						if($debug_timer=="true") debug_timer($ip." = abwesend \n");
 					}
 				}elseif(!is_numeric($ip)){
 					$xpath='//person/name[.="'.$timer->pingto.'"]/parent::*';
@@ -250,9 +252,9 @@ function timer_check() {
 					$parenttime = $res[0];
 					if($parenttime[0]->status == 'anwesend'){
 						$pingaktive = "true";
-						debug_timer($parenttime[0]->name." anwesend\n");
+						if($debug_timer=="true") debug_timer($parenttime[0]->name." anwesend\n");
 					}else{
-						debug_timer($parenttime[0]->name." abwesend\n");
+						if($debug_timer=="true") debug_timer($parenttime[0]->name." abwesend\n");
 						$pingaktive = "false";
 					}
 				}
@@ -261,27 +263,27 @@ function timer_check() {
 			/*****************Variablen durchprüfen und schalten*********************/
 			if($timer->usage == "ping" AND $timer->active == "on" AND $pingaktive == "true"){
 				timer_switch($timer, $timer->pingstatus);
-				debug_timer("Dieser Timer beachtet den Ping (anwesend) und schaltet in dieser Minute $timer->pingstatus\n");
+				if($debug_timer=="true") debug_timer("Dieser Timer beachtet den Ping (anwesend) und schaltet in dieser Minute $timer->pingstatus\n");
 			}else if($timer->usage == "ping" AND $timer->active == "on" AND $pingaktive == "false" AND $timer->invertSwitchOnNoPing == "true"){
 				$TPinv="";
 				if ($timer->pingstatus == "OFF") $TPinv="ON";
 				elseif ($timer->pingstatus == "ON") $TPinv="OFF";
 				timer_switch($timer, $TPinv);
-				debug_timer("Dieser Timer beachtet den Ping (abwesend) und schaltet in dieser Minute $TPinv\n");
+				if($debug_timer=="true") debug_timer("Dieser Timer beachtet den Ping (abwesend) und schaltet in dieser Minute $TPinv\n");
 			}else if($timer->usage == "time_ping" AND $timeraktivenowon == "true"  AND $pingaktive == "true" AND $timer->active == "on"){
 				timer_switch($timer, "ON");
-				debug_timer("Dieser Timer beachtet die Zeit und den Ping und schaltet in dieser Minute an\n");
+				if($debug_timer=="true") debug_timer("Dieser Timer beachtet die Zeit und den Ping und schaltet in dieser Minute an\n");
 			}else if($timer->usage == "time_ping" AND $timeraktivenowoff == "true"  AND $pingaktive == "true" AND $timer->active == "on"){
 				timer_switch($timer, "OFF");
-				debug_timer("Dieser Timer beachtet die Zeit und den Ping und schaltet in dieser Minute aus \n");
+				if($debug_timer=="true") debug_timer("Dieser Timer beachtet die Zeit und den Ping und schaltet in dieser Minute aus \n");
 			}elseif($timer->usage == "time" AND $timeraktivenowon == "true" AND $timer->active == "on"){
 				timer_switch($timer, "ON");
-				debug_timer("Dieser Timer beachtet die Zeit und schaltet in dieser Minute an \n");
+				if($debug_timer=="true") debug_timer("Dieser Timer beachtet die Zeit und schaltet in dieser Minute an \n");
 			}elseif($timer->usage == "time" AND $timeraktivenowoff == "true" AND $timer->active == "on"){
 				timer_switch($timer, "OFF");
-				debug_timer("Dieser Timer beachtet die Zeit und schaltet in dieser Minute aus \n");
+				if($debug_timer=="true") debug_timer("Dieser Timer beachtet die Zeit und schaltet in dieser Minute aus \n");
 			}else{
-				debug_timer("Dieser Timer wird nicht geschaltet, keine Vorgaben werden erfuellt \n");
+				if($debug_timer=="true") debug_timer("Dieser Timer wird nicht geschaltet, keine Vorgaben werden erfuellt \n");
 			}
 			$timeraktivenowon = false;
 			$timeraktivenowoff = false;
@@ -299,7 +301,7 @@ function timer_switch($timer, $action) {
     global $xml;
     global $debug_timer;
     global $multiDeviceSleep;
-    debug_timer("Timer: ID:".$timer->id." Action:".$action);
+    if($debug_timer=="true") debug_timer("Timer: ID:".$timer->id." Action:".$action);
     // Timer mit Device
     if (($timer->type)=="device") {
         $devicesFound = $xml->xpath("//devices/device/id[text()='".$timer->typeid."']/parent::*");
@@ -320,7 +322,7 @@ function timer_switch($timer, $action) {
             $devicesFound = $xml->xpath("//devices/device/id[text()='".$deviceid."']/parent::*");
             $device = $devicesFound[0];
             $deviceaction = strtolower($action);
-            debug_timer("Device ".$deviceid." wird '".$deviceaction."'geschaltet");
+            if($debug_timer=="true") debug_timer("Device ".$deviceid." wird '".$deviceaction."'geschaltet");
 
 			if($action == "ON") {
 				if(empty($deviceid['onaction'])) {

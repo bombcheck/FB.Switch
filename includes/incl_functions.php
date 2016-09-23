@@ -1,4 +1,4 @@
-<?
+<?php
 function compareDevicesByName($a, $b) {
    return strcmp($a->name,$b->name);
 }

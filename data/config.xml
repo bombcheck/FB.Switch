@@ -13,6 +13,7 @@
     <timerPingUser>false</timerPingUser>
     <EnergyCosts>0.25</EnergyCosts>
     <sendRaspi>false</sendRaspi>
+    <timerGlobalRun>true</timerGlobalRun>
     <timerCheckFBdect200>true</timerCheckFBdect200>
   </global>
   <gui>
@@ -680,6 +681,8 @@
       <timerOn offset="-30">SD</timerOn>
       <milight>
         <mode>Farbe</mode>
+        <color>#ff00ea</color>
+        <brightness>20</brightness>
       </milight>
       <timerOff>20:30</timerOff>
     </timer>
@@ -757,6 +760,8 @@
       <timerOn>06:40</timerOn>
       <milight>
         <mode>Farbe</mode>
+        <color>#ff00ea</color>
+        <brightness>20</brightness>
       </milight>
       <timerOff>08:30</timerOff>
     </timer>
@@ -1060,7 +1065,7 @@
       <do type="device" id="20" action="on" mode="Weiß"/>
       <do type="device" id="24" action="on"/>
       <do type="device" id="25" action="on"/>
-      <do type="device" id="8" action="on" mode="Farbe"/>
+      <do type="device" id="8" action="on" mode="Farbe" brightness="20" color="#ff00ea"/>
       <do type="device" id="16" action="on" mode="Farbe"/>
       <do type="device" id="19" action="off"/>
       <do type="device" id="22" action="on"/>
@@ -1090,7 +1095,7 @@
       <do type="device" id="20" action="on" mode="Weiß"/>
       <do type="device" id="24" action="on"/>
       <do type="device" id="25" action="on"/>
-      <do type="device" id="8" action="on" mode="Farbe"/>
+      <do type="device" id="8" action="on" mode="Farbe" brightness="20" color="#ff00ea"/>
       <do type="device" id="16" action="on" mode="Farbe"/>
       <do type="device" id="19" action="off"/>
       <do type="device" id="22" action="on"/>

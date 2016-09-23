@@ -64,6 +64,102 @@ function Fritzbox_DECT200_Switch($deviceain, $wert) {
     }
 } */
 
+function Fritzbox_GetHAactorsInfoXML()
+{
+    global $xml;
+    $SID=Fritzbox_login();
+    $fritzbox_address = $xml->fritzbox->address;
+
+    $URL = "http://".$fritzbox_address."/webservices/homeautoswitch.lua?switchcmd=".urlencode('getdevicelistinfos')."&sid=".urlencode($SID);
+    $ret = file_get_contents($URL);
+    if (trim($ret) == "inval" || $ret === FALSE || $ret == "") $ret = "-1";
+    return trim($ret);
+}
+
+function Fritzbox_GetHAactorDataFromXML($XML,$ain,$mode)
+{
+    $FBdectVal=-1000;
+    if ($XML == -1) return $FBdectVal;
+
+    $FBdevices = new SimpleXMLElement($XML);
+    if ($mode == "id") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=(int)$devices['id'][0];
+            }
+        }
+    } elseif ($mode == "fwversion") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=$devices['fwversion'][0];
+            }
+        }
+    } elseif ($mode == "manufacturer") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=$devices['manufacturer'][0];
+            }
+        }
+    } elseif ($mode == "productname") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=$devices['productname'][0];
+            }
+        }
+    } elseif ($mode == "present") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=(int)$devices->present[0];
+            }
+        }
+    } elseif ($mode == "name") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=$devices->name[0];
+            }
+        }
+    } elseif ($mode == "state") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=(int)$devices->switch->state[0];
+            }
+        }
+    } elseif ($mode == "lock") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=(int)$devices->switch->lock[0];
+            }
+        }
+    } elseif ($mode == "power") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=(int)$devices->powermeter->power[0];
+            }
+        }
+    } elseif ($mode == "energy") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=(int)$devices->powermeter->energy[0];
+            }
+        }
+    } elseif ($mode == "temperature") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=(int)$devices->temperature->celsius[0];
+            }
+        }
+    } elseif ($mode == "tempoffset") {
+        foreach ($FBdevices->device as $devices) {
+            if (str_replace(" ", "", $devices['identifier'][0]) == $ain) {
+                $FBdectVal=(int)$devices->temperature->offset[0];
+            }
+        }
+    } 
+
+    unset($FBdevices);
+    return trim($FBdectVal);
+}
+
 function Fritzbox_DECT200_Energie($deviceAIN) {
         global $xml;
         $SID=Fritzbox_login();
@@ -118,6 +214,7 @@ function Fritzbox_login() {
         $fritzbox_address = $xml->fritzbox->address;
         $fritzbox_username = $xml->fritzbox->username;
         $fritzbox_password = $xml->fritzbox->password;
+ 
         $ch = curl_init('http://'.$fritzbox_address.'/login_sid.lua');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $login = curl_exec($ch);

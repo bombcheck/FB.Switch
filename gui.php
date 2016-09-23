@@ -11,11 +11,8 @@ header("Content-Type: text/html; charset=utf-8");
 <meta charset="UTF-8">
 
 <link rel="icon" type="image/x-icon" href="favicon.ico?v=<?php echo $FileVer; ?>">
-<!-- <link rel="icon" type="image/png" href="favicon.png"> -->
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=<?php echo $FileVer; ?>">
-<!-- <link rel="shortcut icon" type="image/png" href="favicon.png"> -->
 <link type="image/x-icon" href="favicon.ico?v=<?php echo $FileVer; ?>">
-<!-- <link type="image/png" href="favicon.png"> -->
 
 <link rel="stylesheet" href="css/jquery.mobile-1.3.0.min.css?v=<?php echo $FileVer; ?>" />
 <link rel="stylesheet" href="css/jquery-mobile-red-button-theme.css?v=<?php echo $FileVer; ?>" />
@@ -39,23 +36,14 @@ header("Content-Type: text/html; charset=utf-8");
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <!-- iPhone -->
 <link href="images/apple-touch-icon-57x57-precomposed.png?v=<?php echo $FileVer; ?>" sizes="57x57" rel="apple-touch-icon">
+<link href="images/apple-touch-icon-60x60-precomposed.png?v=<?php echo $FileVer; ?>" sizes="60x60" rel="apple-touch-icon">
 <link href="images/apple-touch-icon-72x72-precomposed.png?v=<?php echo $FileVer; ?>" sizes="72x72" rel="apple-touch-icon">
+<link href="images/apple-touch-icon-76x76-precomposed.png?v=<?php echo $FileVer; ?>" sizes="76x76" rel="apple-touch-icon">
 <link href="images/apple-touch-icon-114x114-precomposed.png?v=<?php echo $FileVer; ?>" sizes="114x114" rel="apple-touch-icon">
+<link href="images/apple-touch-icon-120x120-precomposed.png?v=<?php echo $FileVer; ?>" sizes="120x120" rel="apple-touch-icon">
 <link href="images/apple-touch-icon-144x144-precomposed.png?v=<?php echo $FileVer; ?>" sizes="144x144" rel="apple-touch-icon">
-<!-- <link href="images/apple-touch-startup-image-320x460.png?v=<?php echo $FileVer; ?>" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image"> -->
-<!-- iPhone (Retina) -->
-<!-- <link href="images/apple-touch-icon-114x114.png?v=<?php echo $FileVer; ?>" sizes="114x114" rel="apple-touch-icon"> -->
-<!-- <link href="images/apple-touch-startup-image-640x920.png?v=<?php echo $FileVer; ?>" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"> -->
-<!-- iPhone 5 -->
-<!-- <link href="images/apple-touch-startup-image-640x1096.png?v=<?php echo $FileVer; ?>" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"> -->
-<!-- iPad -->
-<!-- <link href="images/apple-touch-icon-72x72.png?v=<?php echo $FileVer; ?>" sizes="72x72" rel="apple-touch-icon"> -->
-<!-- <link href="images/apple-touch-startup-image-768x1004.png?v=<?php echo $FileVer; ?>" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image"> -->
-<!-- <link href="images/apple-touch-startup-image-748x1024.png?v=<?php echo $FileVer; ?>" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image"> -->
-<!-- iPad (Retina) -->
-<!-- <link href="images/apple-touch-icon-144x144.png?v=<?php echo $FileVer; ?>" sizes="144x144" rel="apple-touch-icon"> -->
-<!-- <link href="images/apple-touch-startup-image-1536x2008.png?v=<?php echo $FileVer; ?>" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"> -->
-<!-- <link href="images/apple-touch-startup-image-1496x2048.png?v=<?php echo $FileVer; ?>" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"> -->
+<link href="images/apple-touch-icon-152x152-precomposed.png?v=<?php echo $FileVer; ?>" sizes="152x152" rel="apple-touch-icon">
+<link href="images/apple-touch-icon-180x180-precomposed.png?v=<?php echo $FileVer; ?>" sizes="180x180" rel="apple-touch-icon">
 </head>
 
 <body class="contentHolder" id="main-body" style="background-image: url(images/splash_body.jpg); background-repeat: no-repeat; background-color: #000000; background-attachment: absolut; background-position: center center">
@@ -74,16 +62,21 @@ header("Content-Type: text/html; charset=utf-8");
 	<div class="loader-section section-left"></div>
 	<div class="loader-section section-right"></div>
 </div>
+<div id="audioFiles" style="display:none">
+	<audio id="buttonClickSound" src="sounds/button4.wav" autostart="false"></audio>
+	<audio id="doneSound" src="sounds/button7.wav" autostart="false"></audio>
+	<audio id="errorSound" src="sounds/error.wav" autostart="false"></audio>
+</div>
 
 <script type="text/javascript" charset="utf-8" src="js/jquery-1.9.0.min.js?v=<?php echo $FileVer; ?>"></script>
-<? require_once('js/fbswitch_1.js'); ?>
+<?php require_once('js/fbswitch_1.js'); ?>
 <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.3.0.min.js?v=<?php echo $FileVer; ?>"></script>
 <script type="text/javascript" charset="utf-8" src="js/jquery.toast.mobile.js?v=<?php echo $FileVer; ?>"></script>
-<? require_once('js/fbswitch_2.js'); ?>
+<?php require_once('js/fbswitch_2.js'); ?>
 <script type="text/javascript" charset="utf-8" src="js/spectrum.js?v=<?php echo $FileVer; ?>"></script>
 
 <div id="bg"></div>
-<?
+<?php
 // GUI-Komponenten inkludieren
 // ---------------------------
 // Favoriten

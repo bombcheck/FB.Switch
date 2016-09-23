@@ -39,8 +39,10 @@ foreach($xml->devices->device as $device) {
 		else $ResStr .= "0:";
 		if ($device->milight->mode != "") $ResStr .= $device->milight->mode.":";
 		else $ResStr .= "UNDEF:";
-		if ($device->address->tx433version != "") $ResStr .= $device->address->tx433version."|";
-		else $ResStr .= "UNDEF|";
+		if ($device->address->tx433version != "") $ResStr .= $device->address->tx433version.":";
+		else $ResStr .= "UNDEF:";
+
+		$ResStr .= $xml->global->timerGlobalRun ."|";
 	}
 }
 echo substr($ResStr, 0, strlen($ResStr)-1);

@@ -45,8 +45,8 @@ if (isset($_POST['todo'])) {
 if (isset($_GET['timerrun'])) {
     require("send_msg.php");
     require("timer.php");
-	include("coundowntimer.php");
-    timer_check();
+	include("countdowntimer.php");
+    if ($xml->global->timerGlobalRun != "false") timer_check();
 	ping_check();
 	countdowntimer_check();
     fbdect_check();
@@ -63,14 +63,16 @@ if (isset($r_action)) {
             send_message($device, "OFF");
             usleep($multiDeviceSleep);
         }
-        echo str_replace("\n","<br>",$errormessage);
+        //echo str_replace("\n","<br>",$errormessage);
+        echo $errormessage;
 
     } else if (($r_action)=="allon") {
         foreach($xml->devices->device as $device) {
             send_message($device, "ON");
             usleep($multiDeviceSleep);
         }
-        echo str_replace("\n","<br>",$errormessage);
+        //echo str_replace("\n","<br>",$errormessage);
+        echo $errormessage;
 
     } else {
         if (($r_action)=="on") { 
@@ -108,10 +110,14 @@ if (isset($r_action)) {
                         sleep(intval($do['id']));
                         debug("Action: Wieder wach!");
                         break;
-                }                
+                }
             }
+        } else if (($r_type)=="timerglobalrun") {
+            if ($action == "ON") { $xml->global->timerGlobalRun = "true"; $errormessage = "Globaler Timer wurde aktiviert!"; }
+            else if ($action == "OFF") { $xml->global->timerGlobalRun = "false"; $errormessage = "Globaler Timer wurde deaktiviert!"; }
         }
-        echo str_replace("\n","<br>",$errormessage);
+        //echo str_replace("\n","<br>",$errormessage);
+        echo $errormessage;
     }
     config_save(); 
 }

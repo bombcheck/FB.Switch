@@ -147,6 +147,14 @@ function autodetect_milight()
         Timer
         </li>
         <li data-role="fieldcontain">
+            <label for="timerGlobalRun">Timer aktiv:</label>
+            <select name="timerGlobalRun" id="timerGlobalRun" data-role="slider">
+                <option value="false" <?php if($xml->global->timerGlobalRun == "false") { echo "selected"; } ?>>Nein</option>
+                <option value="true" <?php if($xml->global->timerGlobalRun == "true" || $xml->global->timerGlobalRun == "") { echo "selected"; } ?>>Ja</option>
+            </select>
+            <div>Die Präsenz- und FBdect200-Prüfung wird von dieser Einstellung nicht beeinflusst.</div>
+        </li>
+        <li data-role="fieldcontain">
             <label for="timerRunOnce">Timer schaltet nur wenn nötig:</label>
             <select name="timerRunOnce" id="timerRunOnce" data-role="slider">
                 <option value="false" <?php if($xml->global->timerRunOnce == "false") { echo "selected"; } ?>>Nein</option>
@@ -235,6 +243,34 @@ function autodetect_milight()
         </li>
         <li data-role="list-divider">
         Standort
+        </li>
+        <li data-role="fieldcontain">
+            <label for="OutdoorTempSource">Sensor für Aussentemperatur (FBdect200):</label>
+            <select name="OutdoorTempSource" id="OutdoorTempSource">
+                <?php
+                    $ActTempSource = $xml->global->OutdoorTempSource;
+                    $devices = array();
+                    foreach($xml->devices->device as $device) {
+                        if ($device->vendor == "fbdect200") $devices[] = $device;
+                    }
+                    switch ($xml->gui->sortOrderDevices){
+                        case "SORT_BY_NAME":
+                            usort($devices, "compareDevicesByName");
+                            break;
+                        case "SORT_BY_ID":
+                            usort($devices, "compareDevicesByID");
+                            break;
+                        default:
+                            break;
+                    }
+                    echo "<option value=\"99999\">Keine Anzeige</option>";
+                    foreach($devices as $device ) {
+                        ?>
+                        <option value="<?php echo $device->id; ?>" <?php if ((int)$ActTempSource == (int)$device->id) { echo "selected"; } ?>><?php echo $device->id.": ".$device->name." (".$device->room.")"; ?></option>
+                        <?php
+                    }
+                    ?>
+            </select>
         </li>
         <li data-role="fieldcontain">
             <label for="longitude">Longitude:</label>
