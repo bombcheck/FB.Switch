@@ -348,7 +348,7 @@
 					                	$("#milight_"+Device[0]+"_Modus_Farbe").css("background",Device[6]).spectrum("set",Device[6]);
 	                                }
                                     
-                                    if (Device[9] == "Weiß" || Device[9] == "Farbe")
+                                    if (Device[9] == "Weiß" || Device[9] == "Farbe" || Device[9] == "Programm")
                                         {
                                             $("#milight_"+Device[0]+"_brightness_controls").removeClass('hide').addClass('show');
                                             
@@ -359,6 +359,10 @@
                                             if (Device[9] == "Farbe") {
                                             	BRtext = ' @ ' + Device[7] + '%';
                                                 $("#milight_"+Device[0]+"_brightness").attr('value',Device[7] + '%').button().button('refresh');
+                                            }
+                                            if (Device[9] == "Programm") {
+                                                BRtext = ' @ ' + Device[12] + '%';
+                                                $("#milight_"+Device[0]+"_brightness").attr('value',Device[12] + '%').button().button('refresh');
                                             }
 	                                   }
                                     else {

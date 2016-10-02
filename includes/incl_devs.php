@@ -351,6 +351,9 @@
                                 <?php if ($device->milight->mode == "Farbe") { ?>
                                      BRtext = ' @ <?php echo $device->milight->brightnesscolor; ?>%';
                                 <?php } ?>
+                                <?php if ($device->milight->mode == "Programm") { ?>
+                                     BRtext = ' @ <?php echo $device->milight->brightnessdisco; ?>%';
+                                <?php } ?>
 
                                 dev_mode_text.eq(0 % dev_mode_text.length).text('Modus: <?php echo $device->milight->mode; ?>' + BRtext);
                                 fav_mode_text.eq(0 % fav_mode_text.length).text('Modus: <?php echo $device->milight->mode; ?>' + BRtext);
@@ -415,13 +418,14 @@
                                                 <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="send_milight('<?php echo $device->id; ?>','rgbwDiscoFaster','')">S+</button>
 
 												<!-- THIRD LINE: Brightness -->
-                                                <div id="milight_<?php echo $device->id; ?>_brightness_controls" class="<?php echo ( $device->milight->mode == 'Farbe' || $device->milight->mode == 'Weiß' ) ? 'show' : 'hide' ?>">
+                                                <div id="milight_<?php echo $device->id; ?>_brightness_controls" class="<?php echo ( $device->milight->mode == 'Farbe' || $device->milight->mode == 'Weiß' || $device->milight->mode == 'Programm' ) ? 'show' : 'hide' ?>">
                                                     <br><br>
                                                     <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) > 5) { $('#milight_<?php echo $device->id; ?>_brightness').attr('value',(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) - 5) + '%').button().button('refresh'); }">Dunkler</button>&nbsp;&nbsp;
                                                     <?php
                                                         $ThisBrightness = 0;
                                                         if ($device->milight->mode == 'Farbe') $ThisBrightness = $device->milight->brightnesscolor;
                                                         elseif ($device->milight->mode == 'Weiß') $ThisBrightness = $device->milight->brightnesswhite;
+                                                        elseif ($device->milight->mode == 'Programm') $ThisBrightness = $device->milight->brightnessdisco;
                                                         if ($ThisBrightness == "") $ThisBrightness = 0;
                                                     ?>
                                                     <button name="milight_<?php echo $device->id; ?>_brightness" id="milight_<?php echo $device->id; ?>_brightness" data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" value="<?php echo $ThisBrightness; ?>%" onclick="send_milight('<?php echo $device->id; ?>','SetBrightness',parseInt(this.value))"></button>&nbsp;&nbsp;
