@@ -1149,6 +1149,10 @@ function send_message($device, $action, $ViaTimer = FALSE, $TimerMLMode = "", $T
                         $MR = toggle_milight($device->id,"SetToWhite",'');
                         $LogMLMode = "Weiß ● ".$device->milight->brightnesswhite."%";
                     }
+                    elseif ($device->milight->mode == "Programm") {   // Aktueller Modus: PROGRAMM: Auf FARBE schalten und loggen
+                        $MR = toggle_milight($device->id,"SetColor",$device->milight->color);
+                        $LogMLMode = "Farbe <font color=\"".$device->milight->color."\">●</font> ".$device->milight->brightnesscolor."%";
+                    }
 				}
 
                 // Wenn die Lampe derzeit AUS ist und die Action NICHT vom Timer kommt
