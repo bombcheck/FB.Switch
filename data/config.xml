@@ -15,6 +15,7 @@
     <sendRaspi>false</sendRaspi>
     <timerGlobalRun>true</timerGlobalRun>
     <timerCheckFBdect200>true</timerCheckFBdect200>
+    <AlertState>green</AlertState>
   </global>
   <gui>
     <showRoomButtonInDevices>false</showRoomButtonInDevices>

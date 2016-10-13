@@ -113,8 +113,23 @@ if (isset($r_action)) {
                 }
             }
         } else if (($r_type)=="timerglobalrun") {
-            if ($action == "ON") { $xml->global->timerGlobalRun = "true"; $errormessage = "Globaler Timer wurde aktiviert!"; }
-            else if ($action == "OFF") { $xml->global->timerGlobalRun = "false"; $errormessage = "Globaler Timer wurde deaktiviert!"; }
+            if ($action == "ON") {
+                if ($xml->global->timerGlobalRun == "true") $errormessage = "FEHLER: Globaler Timer ist bereits aktiviert!";
+                else { $xml->global->timerGlobalRun = "true"; $errormessage = "Globaler Timer wurde aktiviert!"; }
+            }
+            else if ($action == "OFF") {
+                if ($xml->global->timerGlobalRun == "false") $errormessage = "FEHLER: Globaler Timer ist bereits deaktiviert!";
+                else { $xml->global->timerGlobalRun = "false"; $errormessage = "Globaler Timer wurde deaktiviert!"; }
+            }
+        } else if (($r_type)=="alertstate") {
+            if ($action == "ON") {
+                if ($xml->global->AlertState == "red") $errormessage = "FEHLER: System-Alarm wurde bereits ausgelöst!";
+                else { $xml->global->AlertState = "red"; $errormessage = "System-Alarm wurde ausgelöst!"; async_curl('http://localhost'.str_replace('index.php', 'redalert.php', $_SERVER[PHP_SELF])); }
+            }
+            else if ($action == "OFF") {
+                if ($xml->global->AlertState == "green") $errormessage = "FEHLER: System-Alarm wurde bereits aufgehoben!";
+                else { $xml->global->AlertState = "green"; $errormessage = "System-Alarm wurde aufgehoben!"; }
+            }
         }
         //echo str_replace("\n","<br>",$errormessage);
         echo $errormessage;
