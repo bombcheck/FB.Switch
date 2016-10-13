@@ -10,7 +10,7 @@ $CONFIG_FILENAME = "data/config.xml";
 
 if (isset($_POST['configxml'])) {
     header("Content-Type: text/plain; charset=utf-8");
-    $configxmlbackup="config.xml.backup.".time();
+    $configxmlbackup=$CONFIG_FILENAME.".backup.".time();
     //file_put_contents("outputfile.txt", file_get_contents("php://input"));  //RAW
     if (rename($CONFIG_FILENAME, $configxmlbackup)) {
         if (file_put_contents($CONFIG_FILENAME, str_replace('&','&amp;',$_POST['configxml'])) > 0) {
