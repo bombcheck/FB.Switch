@@ -46,9 +46,9 @@ if (isset($_GET['timerrun'])) {
     require("send_msg.php");
     require("timer.php");
 	include("countdowntimer.php");
-    if ($xml->global->timerGlobalRun != "false") timer_check();
+    if ($xml->global->timerGlobalRun != "false" && $xml->global->AlertState != "red") timer_check();
 	ping_check();
-	countdowntimer_check();
+	if ($xml->global->AlertState != "red") countdowntimer_check();
     fbdect_check();
     exit();
 }

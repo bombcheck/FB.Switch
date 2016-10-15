@@ -324,6 +324,8 @@
                                     $('#notimermsg_rooms').fadeOut('slow');
                                     $('#notimermsg_timer').fadeOut('slow');
                                 }
+
+                                if (Device[13] == 'red') PlaySound('alertSound');
                             }
 
                             if (Device[4] == 'ROW_COLOR') {

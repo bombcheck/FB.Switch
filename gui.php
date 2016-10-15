@@ -66,6 +66,7 @@ header("Content-Type: text/html; charset=utf-8");
 	<audio id="buttonClickSound" src="sounds/button4.wav" autostart="false"></audio>
 	<audio id="doneSound" src="sounds/button7.wav" autostart="false"></audio>
 	<audio id="errorSound" src="sounds/error.wav" autostart="false"></audio>
+	<audio id="alertSound" src="sounds/alert.wav" autostart="false"></audio>
 </div>
 
 <script type="text/javascript" charset="utf-8" src="js/jquery-1.9.0.min.js?v=<?php echo $FileVer; ?>"></script>
