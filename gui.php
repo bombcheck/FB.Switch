@@ -62,6 +62,9 @@ header("Content-Type: text/html; charset=utf-8");
 	<div class="loader-section section-left"></div>
 	<div class="loader-section section-right"></div>
 </div>
+<div id="red-alert" class="red-alert" style="display:none;">
+      <iframe id="redalertframe" scrolling="no" src="" style="z-index:1;"></iframe>
+</div>
 <div id="audioFiles" style="display:none">
 	<audio id="buttonClickSound" src="sounds/button4.wav" autostart="false"></audio>
 	<audio id="doneSound" src="sounds/button7.wav" autostart="false"></audio>

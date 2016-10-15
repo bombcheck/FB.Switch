@@ -1,5 +1,6 @@
 <script type="text/javascript">
     var FBdectTimer = "";
+    var AlertState = "green";
 
     $(document).bind("mobileinit", function(){
         $.support.touchOverflow = true;
@@ -325,7 +326,22 @@
                                     $('#notimermsg_timer').fadeOut('slow');
                                 }
 
-                                if (Device[13] == 'red') PlaySound('alertSound');
+                                if (Device[13] == 'red') {
+                                    if (AlertState == "green") {
+                                        AlertState = "red";
+                                        $('#red-alert').fadeIn('slow', function(){
+                                          $('#redalertframe').attr("src", "alert.html");
+                                        });
+                                    }
+                                    PlaySound('alertSound');  
+                                } else if (Device[13] == 'green') {
+                                    if (AlertState == "red") {
+                                        AlertState = "green";
+                                        $('#red-alert').fadeOut('slow', function() {      
+                                            $('#redalertframe').attr("src", 'about:blank');
+                                        });
+                                    }
+                                } 
                             }
 
                             if (Device[4] == 'ROW_COLOR') {
