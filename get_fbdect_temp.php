@@ -25,10 +25,12 @@ if (!$xml) {
 }
 
 $ResStr="";
-$XMLdata = Fritzbox_GetHAactorsInfoXML();
-foreach($xml->devices->device as $device) {
-	if ($device->vendor == "fbdect200") {
-	   $ResStr .= trim($device->id).":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'temperature')."|";
+if ($xml->backend->sidsource != "" || ($xml->fritzbox->username != "" || $xml->fritzbox->password != "") && $xml->fritzbox->address != "") {
+    $XMLdata = Fritzbox_GetHAactorsInfoXML();
+    foreach($xml->devices->device as $device) {
+    	if ($device->vendor == "fbdect200") {
+    	   $ResStr .= trim($device->id).":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'temperature')."|";
+        }
     }
 }
 echo substr($ResStr, 0, strlen($ResStr)-1);
