@@ -25,18 +25,20 @@ if (!$xml) {
 }
 
 $ResStr="";
-$XMLdata = Fritzbox_GetHAactorsInfoXML();
-if ($XMLdata != -1) {
-    foreach($xml->devices->device as $device) {
-        if ($device->vendor == "fbdect200") {
-           $ResStr .= trim($device->id).":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'power').":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'energy')."|";
+if ($xml->backend->sidsource != "" || ($xml->fritzbox->username != "" || $xml->fritzbox->password != "") && $xml->fritzbox->address != "") {
+    $XMLdata = Fritzbox_GetHAactorsInfoXML();
+    if ($XMLdata != -1) {
+        foreach($xml->devices->device as $device) {
+            if ($device->vendor == "fbdect200") {
+               $ResStr .= trim($device->id).":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'power').":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'energy')."|";
+            }
         }
     }
-}
-else {
-    foreach($xml->devices->device as $device) {
-    	if ($device->vendor == "fbdect200") {
-    	   $ResStr .= trim($device->id).":".Fritzbox_DECT200_Power($device->address->masterdip).":".Fritzbox_DECT200_Energie($device->address->masterdip)."|";
+    else {
+        foreach($xml->devices->device as $device) {
+        	if ($device->vendor == "fbdect200") {
+        	   $ResStr .= trim($device->id).":".Fritzbox_DECT200_Power($device->address->masterdip).":".Fritzbox_DECT200_Energie($device->address->masterdip)."|";
+            }
         }
     }
 }
