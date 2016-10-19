@@ -114,6 +114,11 @@ $(document).ready(function() {
                         <option value="desktop_bg_shelter" <?php if($parent[0]->theme_bg == "desktop_bg_shelter") { echo "selected"; } ?>>Shelter</option>
                         <option value="desktop_bg_stalker_kitten" <?php if($parent[0]->theme_bg == "desktop_bg_stalker_kitten") { echo "selected"; } ?>>Stalker Kitten</option>
                         <option value="desktop_bg_stalker_kitten_green" <?php if($parent[0]->theme_bg == "desktop_bg_stalker_kitten_green") { echo "selected"; } ?>>Stalker Kitten Camouflage</option>
+                        <option value="desktop_bg_fairytale" <?php if($parent[0]->theme_bg == "desktop_bg_fairytale") { echo "selected"; } ?>>Fairytale</option>
+                        <option value="desktop_bg_hilltop" <?php if($parent[0]->theme_bg == "desktop_bg_hilltop") { echo "selected"; } ?>>Hilltop</option>
+                        <option value="desktop_bg_interstellar" <?php if($parent[0]->theme_bg == "desktop_bg_interstellar") { echo "selected"; } ?>>Interstellar</option>
+                        <option value="desktop_bg_sailor" <?php if($parent[0]->theme_bg == "desktop_bg_sailor") { echo "selected"; } ?>>Sailor</option>
+                        <option value="desktop_bg_swamp" <?php if($parent[0]->theme_bg == "desktop_bg_swamp") { echo "selected"; } ?>>Swamp</option>
                         </optgroup>
                         <optgroup label="Strukturen">
                         <option value="desktop_bg_02" <?php if($parent[0]->theme_bg == "desktop_bg_02") { echo "selected"; } ?>>Helles Holz</option>
