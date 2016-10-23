@@ -1,6 +1,7 @@
 <script type="text/javascript">
     var FBdectTimer = "";
     var AlertState = "green";
+    var AlertSoundTimer = "";
 
     $(document).bind("mobileinit", function(){
         $.support.touchOverflow = true;
@@ -329,14 +330,16 @@
                                 if (Device[13] == 'red') {
                                     if (AlertState == "green") {
                                         AlertState = "red";
+                                        PlaySound('alertSound');
+                                        AlertSoundTimer = setInterval(function () { PlaySound('alertSound'); }, 2100);
                                         $('#red-alert').fadeIn('slow', function(){
                                           $('#redalertframe').attr("src", "alert.html");
                                         });
                                     }
-                                    PlaySound('alertSound');  
                                 } else if (Device[13] == 'green') {
                                     if (AlertState == "red") {
                                         AlertState = "green";
+                                        if (AlertSoundTimer != "") window.clearInterval(AlertSoundTimer);
                                         $('#red-alert').fadeOut('slow', function() {      
                                             $('#redalertframe').attr("src", 'about:blank');
                                         });
