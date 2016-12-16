@@ -143,6 +143,13 @@ function autodetect_milight()
             <label for="multiDeviceSleep">Wartezeit beim Senden (ms):</label>
             <input type="range" name="multiDeviceSleep" id="multiDeviceSleep" value="<?php echo $xml->global->multiDeviceSleep; ?>" min="200" max="5000" step="50" />
         </li>
+        <li data-role="fieldcontain">
+            <label for="playSounds">Soundeffekte aktiv:</label>
+            <select name="playSounds" id="playSounds" data-role="slider">
+                <option value="false" <?php if($xml->global->playSounds == "false") { echo "selected"; } ?>>Nein</option>
+                <option value="true" <?php if($xml->global->playSounds == "true" || $xml->global->playSounds == "") { echo "selected"; } ?>>Ja</option>
+            </select>
+        </li>
         <li data-role="list-divider">
         Timer
         </li>

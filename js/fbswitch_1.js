@@ -512,8 +512,10 @@
 		}
 
         function PlaySound(file) {
-            var sound = document.getElementById(file);
-            sound.play();
+            <?php if ($xml->global->playSounds=="true" || $xml->global->playSounds=="") { ?>
+                var sound = document.getElementById(file);
+                sound.play();
+            <?php } ?>
         }
 		
 </script>
