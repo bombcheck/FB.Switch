@@ -46,8 +46,13 @@ header("Content-Type: text/html; charset=utf-8");
 <link href="images/apple-touch-icon-180x180-precomposed.png?v=<?php echo $FileVer; ?>" sizes="180x180" rel="apple-touch-icon">
 </head>
 
-<body class="contentHolder" id="main-body" style="background-image: url(images/splash_body.jpg); background-repeat: no-repeat; background-color: #000000; background-attachment: absolut; background-position: center center">
-<div id="loader-wrapper">
+<?php if ($xml->gui->showSplashAnimation=="true" || $xml->gui->showSplashAnimation=="") { ?>
+	<body class="contentHolder" id="main-body" style="background-image: url(images/splash_body.jpg); background-repeat: no-repeat; background-color: #000000; background-attachment: absolut; background-position: center center;">
+	<div id="loader-wrapper">
+<? } else { ?>
+	<body class="contentHolder" id="main-body" style="background-image: url(images/apple-touch-icon-192x192-precomposed.png); background-repeat: no-repeat; background-color: #000000; background-attachment: absolut; background-position: center center;">
+	<div id="loader-wrapper" style="display:none!important;">
+<? } ?>
 	<div id="loader">
 		<div class="loading-splash-div" id="loader">
 			<div class="loading-splash-container">

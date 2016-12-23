@@ -75,6 +75,20 @@
             </select>
         </li>
         <li data-role="fieldcontain">
+            <label for="playSounds">Soundeffekte aktiv:</label>
+            <select name="playSounds" id="playSounds" data-role="slider">
+                <option value="false" <?php if($xml->gui->playSounds == "false") { echo "selected"; } ?>>Nein</option>
+                <option value="true" <?php if($xml->gui->playSounds == "true" || $xml->gui->playSounds == "") { echo "selected"; } ?>>Ja</option>
+            </select>
+        </li>
+        <li data-role="fieldcontain">
+            <label for="showSplashAnimation">Splash-Animation anzeigen:</label>
+            <select name="showSplashAnimation" id="showSplashAnimation" data-role="slider">
+                <option value="false" <?php if($xml->gui->showSplashAnimation == "false") { echo "selected"; } ?>>Nein</option>
+                <option value="true" <?php if($xml->gui->showSplashAnimation == "true" || $xml->gui->showSplashAnimation == "") { echo "selected"; } ?>>Ja</option>
+            </select>
+        </li>
+        <li data-role="fieldcontain">
             <label for="sortOrderDevices" class="select">Sortierung der Geräte:</label>
             <select name="sortOrderDevices" id="sortOrderDevices">
                 <option value="SORT_BY_NAME" <?php if($xml->gui->sortOrderDevices == "SORT_BY_NAME") { echo "selected"; } ?>>SORT_BY_NAME</option>
