@@ -293,9 +293,9 @@ function timer_check() {
 	}
 }
 
-function send_timer($debug_timer,$timerday,$timer,$OffTimer,$OnTimer,$sunrise,$sunset,$timerday,$nowday,$timeWindowStop,$timeWindowStart){
+/* function send_timer($debug_timer,$timerday,$timer,$OffTimer,$OnTimer,$sunrise,$sunset,$timerday,$nowday,$timeWindowStop,$timeWindowStart){
 	timer_switch($timer, "OFF");
-}
+} */
 
 function timer_switch($timer, $action) {
     global $xml;
