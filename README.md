@@ -1,4 +1,4 @@
-FB.Switch v1.0.7-DEV
+﻿FB.Switch v1.0.7-DEV
 ---------------------
 Webapp zur Steuerung und Verwaltung von 433-MHz-Funksteckdosen, FritzDect 200-Steckdosen und MiLight-Lampen.
 
@@ -19,6 +19,13 @@ Features:
 Voraussetzungen:
 - Webserver mit Apache/PHP5 (z.B. einen Raspberry Pi)
 - Benötigt keine Datenbank!
+
+Kompatible Hardware:
+- 433 MHz LAN-Gateway: Brematic Home Automation Gateway GWY 433 / Conn-Air
+- 433 MHz Funksteckdose: Brennenstuhl RCS 1000 N und viele andere von Elro, Intertechno, Brennenstuhl
+- FritzBox-Router mit FritzDect200-Steckdosen
+- MiLight RGBW-Lampen / RGBW-LED-Strip-Controller
+- MiLight LAN-Gateway bis einschließlich v5
 
 Installation:
 - Einfach in einen Ordner auf dem Webserver kopieren.
