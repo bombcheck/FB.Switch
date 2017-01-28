@@ -38,7 +38,6 @@
 
         ShowIndoorOutdoorTemp();
         var FBDTEMP = setInterval(function () { ShowIndoorOutdoorTemp()}, 300000);
-        CheckDeviceStatus();
 
         <?php if ($ShowFBdect200EnergyData == "true") { ?>
             GetFBdectEnergy();
@@ -49,8 +48,10 @@
             <?php if ($ShowFBdect200EnergyData == "true") { ?>
                 var GFEvar = setInterval(function () { GetFBdectEnergy()}, 60000);
             <?php } ?>
+        <?php } else { ?>
+            CheckDeviceStatus();
         <?php } ?>
-
+        
 		<?php if ($FBnetSysStateAlert == "true") { ?>
             CheckFBnetSysAlert();
             var FBNST = setInterval(function () { CheckFBnetSysAlert()}, 60000);
