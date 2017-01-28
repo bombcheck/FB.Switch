@@ -38,6 +38,7 @@
 
         ShowIndoorOutdoorTemp();
         var FBDTEMP = setInterval(function () { ShowIndoorOutdoorTemp()}, 300000);
+        CheckDeviceStatus();
 
         <?php if ($ShowFBdect200EnergyData == "true") { ?>
             GetFBdectEnergy();
@@ -331,7 +332,7 @@
                                     if (AlertState == "green") {
                                         AlertState = "red";
                                         PlaySound('alertSound');
-                                        AlertSoundTimer = setInterval(function () { PlaySound('alertSound'); }, 2100);
+                                        AlertSoundTimer = setInterval(function () { PlaySound('alertSound'); }, 3000);
                                         $('#red-alert').fadeIn('slow', function(){
                                           $('#redalertframe').attr("src", "alert.html");
                                         });
@@ -512,9 +513,9 @@
 		}
 
         function PlaySound(file) {
-            <?php if ($xml->gui->playSounds=="true" || $xml->gui->playSounds=="") { ?>
-                var sound = document.getElementById(file);
-                sound.play();
+        	<?php if ($xml->gui->playSounds=="true" || $xml->gui->playSounds=="") { ?>
+            	var sound = document.getElementById(file);
+            	sound.play();
             <?php } ?>
         }
 		
