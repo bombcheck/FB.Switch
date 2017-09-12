@@ -29,7 +29,11 @@ if ($xml->backend->sidsource != "" || ($xml->fritzbox->username != "" || $xml->f
     $XMLdata = Fritzbox_GetHAactorsInfoXML();
     foreach($xml->devices->device as $device) {
     	if ($device->vendor == "fbdect200") {
-    	   $ResStr .= trim($device->id).":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'temperature')."|";
+    		if (Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'present') == 1) {
+    	   		$ResStr .= trim($device->id).":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'temperature')."|";
+    	   	} else {
+    	   		$ResStr .= trim($device->id).":-1000|";
+    	   	}
         }
     }
 }
