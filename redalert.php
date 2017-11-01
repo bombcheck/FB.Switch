@@ -30,15 +30,27 @@ if (!$xml) {
 if ($xml->global->AlertState != "red") exit();
 
 foreach($xml->milightwifis->milightwifi as $milightwifi) {
-	$MLbridges[] = $milightwifi->address;
-	$MLports[] = $milightwifi->port;
+	if ($milightwifi->UseForAlertMode == "true") {
+		$MLbridges[] = $milightwifi->address;
+		$MLports[] = $milightwifi->port;
+	}
 }
 
 for ($y=0; $y < count($MLbridges); $y++) {
     $milight = new Milight($MLbridges[$y],(integer)$MLports[$y]);
-    $milight->setRgbwActiveGroup(0);
+    $milight->setRgbwActiveGroup(1);
     $milight->rgbwSetColorHexString("#FF0000");
-    $milight->rgbwBrightnessPercent(90,0);
+    $milight->rgbwBrightnessPercent(90,1);
+    $milight->setRgbwActiveGroup(2);
+    $milight->rgbwSetColorHexString("#FF0000");
+    $milight->rgbwBrightnessPercent(90,2);
+    $milight->setRgbwActiveGroup(3);
+    $milight->rgbwSetColorHexString("#FF0000");
+    $milight->rgbwBrightnessPercent(90,3);
+    $milight->setRgbwActiveGroup(4);
+    $milight->rgbwSetColorHexString("#FF0000");
+    $milight->rgbwBrightnessPercent(90,4);
+
     unset($milight);
 }
 sleep(0.075);
@@ -60,13 +72,19 @@ do {
 
 	for ($y=0; $y < count($MLbridges); $y++) {
 		$milight = new Milight($MLbridges[$y],(integer)$MLports[$y]);
-        $milight->rgbwBrightnessPercent(30,0);
+        $milight->rgbwBrightnessPercent(30,1);
+        $milight->rgbwBrightnessPercent(30,2);
+        $milight->rgbwBrightnessPercent(30,3);
+        $milight->rgbwBrightnessPercent(30,4);
         unset($milight);
 	}
 	sleep(0.2);
 	for ($y=0; $y < count($MLbridges); $y++) {
 		$milight = new Milight($MLbridges[$y],(integer)$MLports[$y]);
-        $milight->rgbwBrightnessPercent(90,0);
+        $milight->rgbwBrightnessPercent(90,1);
+        $milight->rgbwBrightnessPercent(90,2);
+        $milight->rgbwBrightnessPercent(90,3);
+        $milight->rgbwBrightnessPercent(90,4);
         unset($milight);
 	}
 	sleep(0.075);
@@ -246,7 +264,7 @@ function toggle_milight($id, $cmd, $value) {
 
 sleep(0.2);
 foreach($xml->devices->device as $device) {
-	if ($device->vendor == "milight") {
+	if ($device->vendor == "milight" && $device->room != "Garten") {
 		if ($device->status == "OFF") switch_milight($device,"OFF");
 		elseif ($device->status == "ON") {
 			switch_milight($device,"ON");
