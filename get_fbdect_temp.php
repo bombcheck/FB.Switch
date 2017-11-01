@@ -24,13 +24,36 @@ if (!$xml) {
     exit(4);
 }
 
+$FBnet_SIDsource = $xml->backend->sidsource;
+$NewOutdoorTemp = false;
+
+// Alternative Outoor-Temp-Quelle (Backend) fuer bestimmten Actor nehmen?
+$UseAltOutdoorTempSource = $xml->global->UseAlternateOutdoorTempSource;
+
+if($UseAltOutdoorTempSource != "" && $UseAltOutdoorTempSource != "false") {
+    $AltDat = file_get_contents($UseAltOutdoorTempSource);
+    if ($AltDat !== false) {
+        $OutdoorTempSource = $xml->global->OutdoorTempSource;
+        $NewOutdoorTemp = explode("|",$AltDat);
+        $NewOutdoorDate = $NewOutdoorTemp[2];
+        $NewOutdoorDateDiff = time() - strtotime($NewOutdoorDate);
+        if ($NewOutdoorDateDiff > 1800) {
+            $NewOutdoorTemp = -1000;
+        } else $NewOutdoorTemp = $NewOutdoorTemp[0];
+    }
+}
+
 $ResStr="";
-if ($xml->backend->sidsource != "" || ($xml->fritzbox->username != "" || $xml->fritzbox->password != "") && $xml->fritzbox->address != "") {
+if ($FBnet_SIDsource != "" || ($xml->fritzbox->username != "" || $xml->fritzbox->password != "") && $xml->fritzbox->address != "") {
     $XMLdata = Fritzbox_GetHAactorsInfoXML();
     foreach($xml->devices->device as $device) {
     	if ($device->vendor == "fbdect200") {
     		if (Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'present') == 1) {
-    	   		$ResStr .= trim($device->id).":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'temperature')."|";
+                if($NewOutdoorTemp != false && trim($device->id) == $OutdoorTempSource) {
+                    $ResStr .= trim($device->id).":".trim($NewOutdoorTemp)."|";
+                } else {
+                    $ResStr .= trim($device->id).":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'temperature')."|";
+                }
     	   	} else {
     	   		$ResStr .= trim($device->id).":-1000|";
     	   	}
