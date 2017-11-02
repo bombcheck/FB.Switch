@@ -40,6 +40,7 @@ if($UseAltOutdoorTempSource != "" && $UseAltOutdoorTempSource != "false") {
         if ($NewOutdoorDateDiff > 1800) {
             $NewOutdoorTemp = -1000;
         } else $NewOutdoorTemp = $NewOutdoorTemp[0];
+        if ($NewOutdoorTemp == false || $NewOutdoorTemp == "") $NewOutdoorTemp = -1000;
     }
 }
 
