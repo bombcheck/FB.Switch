@@ -38,15 +38,19 @@ foreach($xml->milightwifis->milightwifi as $milightwifi) {
 
 for ($y=0; $y < count($MLbridges); $y++) {
     $milight = new Milight($MLbridges[$y],(integer)$MLports[$y]);
+    $milight->rgbwSendOnToGroup(1);
     $milight->setRgbwActiveGroup(1);
     $milight->rgbwSetColorHexString("#FF0000");
     $milight->rgbwBrightnessPercent(90,1);
+    $milight->rgbwSendOnToGroup(2);
     $milight->setRgbwActiveGroup(2);
     $milight->rgbwSetColorHexString("#FF0000");
     $milight->rgbwBrightnessPercent(90,2);
+    $milight->rgbwSendOnToGroup(3);
     $milight->setRgbwActiveGroup(3);
     $milight->rgbwSetColorHexString("#FF0000");
     $milight->rgbwBrightnessPercent(90,3);
+    $milight->rgbwSendOnToGroup(4);
     $milight->setRgbwActiveGroup(4);
     $milight->rgbwSetColorHexString("#FF0000");
     $milight->rgbwBrightnessPercent(90,4);
