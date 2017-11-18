@@ -54,7 +54,7 @@
 					<?php } ?>
                     PlaySound('doneSound');
 					BusyAni('hide');
-					toast(response);
+					//toast(response);
                 },
                 error: function(response) {
                     PlaySound('errorSound');
@@ -412,13 +412,13 @@
                 data: "action=off&id="+id,
                     async: true,
                 success: function(response) {
-                if(response.trim()=="ok") {
+                    if(response.trim()=="ok") {
                         setTimeout(function(){refreshPage();}, 1500);
                         location.href = 'index.php#timers';
                         toast('Timer deaktiviert');
-                        } else {
-                            toast('response:'+response);
-                        }
+                    } else {
+                        toast('response:'+response);
+                    }
                 }
                 });
             }
