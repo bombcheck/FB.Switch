@@ -4,17 +4,18 @@
     <timezone>Europe/Berlin</timezone>
     <longitude>6.547151</longitude>
     <latitude>51.264168</latitude>
-    <multiDeviceSleep>500</multiDeviceSleep>
+    <multiDeviceSleep>250</multiDeviceSleep>
     <country>Deutschland</country>
     <plz>47877</plz>
     <city>Willich</city>
     <timerRunOnce>false</timerRunOnce>
-    <installpath>/volume1/web/fb-switch_1.0-STABLE</installpath>
+    <installpath>/volume1/web/fb-switch-dev</installpath>
     <timerPingUser>false</timerPingUser>
     <EnergyCosts>0.25</EnergyCosts>
     <sendRaspi>false</sendRaspi>
     <timerGlobalRun>true</timerGlobalRun>
     <timerCheckFBdect200>true</timerCheckFBdect200>
+    <UseAlternateOutdoorTempSource>false</UseAlternateOutdoorTempSource>
     <AlertState>green</AlertState>
   </global>
   <gui>
@@ -29,6 +30,8 @@
     <showRoomsBtnInMenu>false</showRoomsBtnInMenu>
     <showGroupsBtnInMenu>true</showGroupsBtnInMenu>
     <showActionBtnInMenu>true</showActionBtnInMenu>
+    <playSounds>true</playSounds>
+    <showSplashAnimation>true</showSplashAnimation>
   </gui>
   <connairs>
     <connair>
@@ -44,24 +47,28 @@
       <address>192.168.1.121</address>
       <port>8899</port>
       <mac></mac>
+      <UseForAlertMode>true</UseForAlertMode>
     </milightwifi>
     <milightwifi>
       <id>11</id>
       <address>192.168.1.122</address>
       <port>8899</port>
       <mac></mac>
+      <UseForAlertMode>true</UseForAlertMode>
     </milightwifi>
     <milightwifi>
       <id>12</id>
       <address>192.168.1.111</address>
       <port>8899</port>
       <mac></mac>
+      <UseForAlertMode>true</UseForAlertMode>
     </milightwifi>
     <milightwifi>
       <id>13</id>
       <address>192.168.1.113</address>
       <port>8899</port>
       <mac></mac>
+      <UseForAlertMode>true</UseForAlertMode>
     </milightwifi>
   </milightwifis>
   <devices>
@@ -117,6 +124,7 @@
         <mode>Farbe</mode>
         <brightnesscolor>100</brightnesscolor>
         <brightnesswhite>100</brightnesswhite>
+        <brightnessdisco>80</brightnessdisco>
       </milight>
     </device>
     <device>
@@ -139,6 +147,7 @@
         <color>#ffc300</color>
         <brightnesscolor>50</brightnesscolor>
         <brightnesswhite>60</brightnesswhite>
+        <brightnessdisco>80</brightnessdisco>
       </milight>
     </device>
     <device>
@@ -177,6 +186,7 @@
         <mode>Weiß</mode>
         <brightnesscolor>80</brightnesscolor>
         <brightnesswhite>100</brightnesswhite>
+        <brightnessdisco>80</brightnessdisco>
       </milight>
     </device>
     <device>
@@ -215,6 +225,7 @@
         <mode>Weiß</mode>
         <brightnesscolor>40</brightnesscolor>
         <brightnesswhite>60</brightnesswhite>
+        <brightnessdisco>80</brightnessdisco>
       </milight>
     </device>
     <device>
@@ -237,6 +248,7 @@
         <mode>Weiß</mode>
         <brightnesscolor>50</brightnesscolor>
         <brightnesswhite>80</brightnesswhite>
+        <brightnessdisco>80</brightnessdisco>
       </milight>
     </device>
     <device>
@@ -259,6 +271,7 @@
         <mode>Farbe</mode>
         <brightnesscolor>50</brightnesscolor>
         <brightnesswhite>50</brightnesswhite>
+        <brightnessdisco>80</brightnessdisco>
       </milight>
     </device>
     <device>
@@ -281,6 +294,7 @@
         <mode>Farbe</mode>
         <brightnesscolor>30</brightnesscolor>
         <brightnesswhite>50</brightnesswhite>
+        <brightnessdisco>80</brightnessdisco>
       </milight>
     </device>
     <device>
@@ -303,6 +317,7 @@
         <mode>Farbe</mode>
         <brightnesscolor>30</brightnesscolor>
         <brightnesswhite>50</brightnesswhite>
+        <brightnessdisco>80</brightnessdisco>
       </milight>
     </device>
     <device>
@@ -373,6 +388,7 @@
         <color>#ff00ea</color>
         <brightnesscolor>20</brightnesscolor>
         <brightnesswhite>30</brightnesswhite>
+        <brightnessdisco>80</brightnessdisco>
       </milight>
     </device>
     <device>
@@ -395,6 +411,7 @@
         <color>#ff00ea</color>
         <brightnesscolor>20</brightnesscolor>
         <brightnesswhite>30</brightnesswhite>
+        <brightnessdisco>80</brightnessdisco>
       </milight>
     </device>
     <device>
@@ -417,6 +434,7 @@
         <color>#9d00ff</color>
         <brightnesscolor>50</brightnesscolor>
         <brightnesswhite>80</brightnesswhite>
+        <brightnessdisco>80</brightnessdisco>
       </milight>
     </device>
     <device>
@@ -455,6 +473,7 @@
         <color>#ff9100</color>
         <brightnesscolor>100</brightnesscolor>
         <brightnesswhite>100</brightnesswhite>
+        <brightnessdisco>80</brightnessdisco>
       </milight>
     </device>
     <device>
@@ -477,6 +496,7 @@
         <brightnesswhite>80</brightnesswhite>
         <color>#ff0000</color>
         <brightnesscolor>100</brightnesscolor>
+        <brightnessdisco>80</brightnessdisco>
       </milight>
     </device>
     <device>
