@@ -3,7 +3,7 @@ $directaccess = true;
 require_once('fritzbox.inc.php');
 
  $CONFIG_FILENAME = 'data/config.xml';
-//config.xml dateisystem rechte überprüfen
+//config.xml dateisystem rechte ï¿½berprï¿½fen
 if(!file_exists($CONFIG_FILENAME)) {
     echo "Kann die Konfiguration (".$CONFIG_FILENAME.") nicht finden!\n";
     exit(1);
@@ -30,7 +30,11 @@ if ($xml->backend->sidsource != "" || ($xml->fritzbox->username != "" || $xml->f
     if ($XMLdata != -1) {
         foreach($xml->devices->device as $device) {
             if ($device->vendor == "fbdect200") {
-               $ResStr .= trim($device->id).":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'power').":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'energy')."|";
+                if (Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'present') == 1) {
+                   $ResStr .= trim($device->id).":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'power').":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'energy')."|";
+                } else {
+                   $ResStr .= trim($device->id).":-1:-1|";
+                }
             }
         }
     }

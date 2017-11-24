@@ -5,7 +5,7 @@ $result = "ERR";
 
 $milight = new Milight($_GET['mlip'], (integer)$_GET['mlport']);
 $milight->setDelay(0);
-$milight->setRepeats(1);
+$milight->setRepeats(3);
 $milight->setRgbwActiveGroup((integer)$_GET['mlgroup']);
 
 if (isset($_GET['off'])) {

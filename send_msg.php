@@ -920,6 +920,7 @@ function toggle_milight($id, $cmd, $value) {
                     $milight->rgbwBrightnessPercent((integer)$value,(integer)$device->address->slavedip);
                     if ($device->milight->mode == "Farbe") $device->milight->brightnesscolor = trim($value);
                     elseif ($device->milight->mode == "Weiß") $device->milight->brightnesswhite = trim($value);
+                    elseif ($device->milight->mode == "Programm") $device->milight->brightnessdisco = trim($value);
                 }
                 elseif ($cmd == "SetToWhite") {
                     $milight->rgbwSetGroupToWhite((integer)$device->address->slavedip);
@@ -935,7 +936,13 @@ function toggle_milight($id, $cmd, $value) {
                     if ($cmd == "rgbwDiscoMode" || $device->milight->mode == "Programm") { 
 	                    $milight->rgbwSendOnToActiveGroup();
 	                    $milight->command(trim($cmd));
-	                    $device->milight->mode = "Programm";
+                        $device->milight->mode = "Programm";
+                        
+                        if ($cmd == "rgbwDiscoMode") {
+                            sleep(1);
+                            $milight->setRgbwActiveGroup((integer)$device->address->slavedip);
+                            $milight->rgbwBrightnessPercent((integer)$device->milight->brightnessdisco,(integer)$device->address->slavedip);
+	                    }
 	                }
                 }
             }
@@ -1149,6 +1156,10 @@ function send_message($device, $action, $ViaTimer = FALSE, $TimerMLMode = "", $T
                         $MR = toggle_milight($device->id,"SetToWhite",'');
                         $LogMLMode = "Weiß ● ".$device->milight->brightnesswhite."%";
                     }
+                    elseif ($device->milight->mode == "Programm") {   // Aktueller Modus: PROGRAMM: Auf FARBE schalten und loggen
+                        $MR = toggle_milight($device->id,"SetColor",$device->milight->color);
+                        $LogMLMode = "Farbe <font color=\"".$device->milight->color."\">●</font> ".$device->milight->brightnesscolor."%";
+                    }
 				}
 
                 // Wenn die Lampe derzeit AUS ist und die Action NICHT vom Timer kommt
@@ -1167,6 +1178,11 @@ function send_message($device, $action, $ViaTimer = FALSE, $TimerMLMode = "", $T
                     elseif ($device->milight->mode == "Nacht") {
                         $MR = toggle_milight($device->id,"SetToNightMode",'');
                         $LogMLMode = "Nacht";
+                    }
+                    elseif ($device->milight->mode == "Programm") {
+                        sleep(1);
+                        $MR = toggle_milight($device->id,"SetBrightness",$device->milight->brightnessdisco);
+                        $LogMLMode = "Programm ● ".$device->milight->brightnessdisco."%";
                     }
                 }
 

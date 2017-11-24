@@ -156,4 +156,19 @@ function LogToBackend($type,$logtext,$WAnotify,$ViaTimer,$ViaAction) {
     }
     else return('Disabled');
 }
+
+function async_curl($background_process=''){
+    $ch = curl_init($background_process);
+    curl_setopt_array($ch, array(
+        CURLOPT_HEADER => 0,
+        CURLOPT_RETURNTRANSFER =>true,
+        CURLOPT_NOSIGNAL => 1, //to timeout immediately if the value is < 1000 ms
+        CURLOPT_TIMEOUT_MS => 50, //The maximum number of mseconds to allow cURL functions to execute
+        CURLOPT_VERBOSE => 1,
+        CURLOPT_HEADER => 1
+    ));
+    $out = curl_exec($ch);
+    curl_close($ch);
+    return true;
+}
 ?>

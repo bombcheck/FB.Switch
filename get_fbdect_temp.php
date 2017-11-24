@@ -3,7 +3,7 @@ $directaccess = true;
 require_once('fritzbox.inc.php');
 
  $CONFIG_FILENAME = 'data/config.xml';
-//config.xml dateisystem rechte überprüfen
+//config.xml dateisystem rechte ï¿½berprï¿½fen
 if(!file_exists($CONFIG_FILENAME)) {
     echo "Kann die Konfiguration (".$CONFIG_FILENAME.") nicht finden!\n";
     exit(1);
@@ -24,12 +24,40 @@ if (!$xml) {
     exit(4);
 }
 
+$FBnet_SIDsource = $xml->backend->sidsource;
+$NewOutdoorTemp = false;
+
+// Alternative Outoor-Temp-Quelle (Backend) fuer bestimmten Actor nehmen?
+$UseAltOutdoorTempSource = $xml->global->UseAlternateOutdoorTempSource;
+
+if($UseAltOutdoorTempSource != "" && $UseAltOutdoorTempSource != "false") {
+    $AltDat = file_get_contents($UseAltOutdoorTempSource);
+    if ($AltDat !== false) {
+        $OutdoorTempSource = $xml->global->OutdoorTempSource;
+        $NewOutdoorTemp = explode("|",$AltDat);
+        $NewOutdoorDate = $NewOutdoorTemp[2];
+        $NewOutdoorDateDiff = time() - strtotime($NewOutdoorDate);
+        if ($NewOutdoorDateDiff > 1800) {
+            $NewOutdoorTemp = -1000;
+        } else $NewOutdoorTemp = $NewOutdoorTemp[0];
+        if ($NewOutdoorTemp == false || $NewOutdoorTemp == "") $NewOutdoorTemp = -1000;
+    }
+}
+
 $ResStr="";
-if ($xml->backend->sidsource != "" || ($xml->fritzbox->username != "" || $xml->fritzbox->password != "") && $xml->fritzbox->address != "") {
+if ($FBnet_SIDsource != "" || ($xml->fritzbox->username != "" || $xml->fritzbox->password != "") && $xml->fritzbox->address != "") {
     $XMLdata = Fritzbox_GetHAactorsInfoXML();
     foreach($xml->devices->device as $device) {
     	if ($device->vendor == "fbdect200") {
-    	   $ResStr .= trim($device->id).":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'temperature')."|";
+    		if (Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'present') == 1) {
+                if($NewOutdoorTemp != false && trim($device->id) == $OutdoorTempSource) {
+                    $ResStr .= trim($device->id).":".trim($NewOutdoorTemp)."|";
+                } else {
+                    $ResStr .= trim($device->id).":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'temperature')."|";
+                }
+    	   	} else {
+    	   		$ResStr .= trim($device->id).":-1000|";
+    	   	}
         }
     }
 }

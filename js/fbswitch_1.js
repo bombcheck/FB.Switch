@@ -1,5 +1,7 @@
 <script type="text/javascript">
     var FBdectTimer = "";
+    var AlertState = "green";
+    var AlertSoundTimer = "";
 
     $(document).bind("mobileinit", function(){
         $.support.touchOverflow = true;
@@ -46,8 +48,10 @@
             <?php if ($ShowFBdect200EnergyData == "true") { ?>
                 var GFEvar = setInterval(function () { GetFBdectEnergy()}, 60000);
             <?php } ?>
+        <?php } else { ?>
+            CheckDeviceStatus();
         <?php } ?>
-
+        
 		<?php if ($FBnetSysStateAlert == "true") { ?>
             CheckFBnetSysAlert();
             var FBNST = setInterval(function () { CheckFBnetSysAlert()}, 60000);
@@ -215,13 +219,13 @@
                             if (tempvar[0] == <?php echo $IndoorTempSource; ?>) {
                                 IndoorTemp = parseInt(tempvar[1]) / 10;
                                 if (IndoorTemp == -100) IndoorTemp = '---';
-                                else IndoorTemp = IndoorTemp.toFixed(1);
+                                else IndoorTemp = IndoorTemp.toFixed(1) + ' °C';
                             }
 
                             if (tempvar[0] == <?php echo $OutdoorTempSource; ?>) {
                                 OutdoorTemp = parseInt(tempvar[1]) / 10;
                                 if (OutdoorTemp == -100) OutdoorTemp = '---';
-                                else OutdoorTemp = OutdoorTemp.toFixed(1);
+                                else OutdoorTemp = OutdoorTemp.toFixed(1) + ' °C';
                             }
                         } 
                         if (IndoorTemp == "") IndoorTemp = '---';
@@ -261,34 +265,34 @@
 	                        $('#tempmsg_actions').fadeIn('fast');
 
 	                        var tempmsg_favs_indoor = $('.tempmsg_favs_indoor');
-	                        tempmsg_favs_indoor.eq(0 % tempmsg_favs_indoor.length).text('Innen: ' + IndoorTemp + ' °C');
+	                        tempmsg_favs_indoor.eq(0 % tempmsg_favs_indoor.length).text('Innen: ' + IndoorTemp);
 	                        var tempmsg_favs_outdoor = $('.tempmsg_favs_outdoor');
-	                        tempmsg_favs_outdoor.eq(0 % tempmsg_favs_outdoor.length).text('Aussen: ' + OutdoorTemp + ' °C');
+	                        tempmsg_favs_outdoor.eq(0 % tempmsg_favs_outdoor.length).text('Aussen: ' + OutdoorTemp);
 
 	                        var tempmsg_devs_indoor = $('.tempmsg_devs_indoor');
-	                        tempmsg_devs_indoor.eq(0 % tempmsg_devs_indoor.length).text('Innen: ' + IndoorTemp + ' °C');
+	                        tempmsg_devs_indoor.eq(0 % tempmsg_devs_indoor.length).text('Innen: ' + IndoorTemp);
 	                        var tempmsg_devs_outdoor = $('.tempmsg_devs_outdoor');
-	                        tempmsg_devs_outdoor.eq(0 % tempmsg_devs_outdoor.length).text('Aussen: ' + OutdoorTemp + ' °C');
+	                        tempmsg_devs_outdoor.eq(0 % tempmsg_devs_outdoor.length).text('Aussen: ' + OutdoorTemp);
 
 	                        var tempmsg_groups_indoor = $('.tempmsg_groups_indoor');
-	                        tempmsg_groups_indoor.eq(0 % tempmsg_groups_indoor.length).text('Innen: ' + IndoorTemp + ' °C');
+	                        tempmsg_groups_indoor.eq(0 % tempmsg_groups_indoor.length).text('Innen: ' + IndoorTemp);
 	                        var tempmsg_groups_outdoor = $('.tempmsg_groups_outdoor');
-	                        tempmsg_groups_outdoor.eq(0 % tempmsg_groups_outdoor.length).text('Aussen: ' + OutdoorTemp + ' °C');
+	                        tempmsg_groups_outdoor.eq(0 % tempmsg_groups_outdoor.length).text('Aussen: ' + OutdoorTemp);
 
 	                        var tempmsg_rooms_indoor = $('.tempmsg_rooms_indoor');
-	                        tempmsg_rooms_indoor.eq(0 % tempmsg_rooms_indoor.length).text('Innen: ' + IndoorTemp + ' °C');
+	                        tempmsg_rooms_indoor.eq(0 % tempmsg_rooms_indoor.length).text('Innen: ' + IndoorTemp);
 	                        var tempmsg_rooms_outdoor = $('.tempmsg_rooms_outdoor');
-	                        tempmsg_rooms_outdoor.eq(0 % tempmsg_rooms_outdoor.length).text('Aussen: ' + OutdoorTemp + ' °C');
+	                        tempmsg_rooms_outdoor.eq(0 % tempmsg_rooms_outdoor.length).text('Aussen: ' + OutdoorTemp);
 
 	                        var tempmsg_timer_indoor = $('.tempmsg_timer_indoor');
-	                        tempmsg_timer_indoor.eq(0 % tempmsg_timer_indoor.length).text('Innen: ' + IndoorTemp + ' °C');
+	                        tempmsg_timer_indoor.eq(0 % tempmsg_timer_indoor.length).text('Innen: ' + IndoorTemp);
 	                        var tempmsg_timer_outdoor = $('.tempmsg_timer_outdoor');
-	                        tempmsg_timer_outdoor.eq(0 % tempmsg_timer_outdoor.length).text('Aussen: ' + OutdoorTemp + ' °C');
+	                        tempmsg_timer_outdoor.eq(0 % tempmsg_timer_outdoor.length).text('Aussen: ' + OutdoorTemp);
 
 	                        var tempmsg_actions_indoor = $('.tempmsg_actions_indoor');
-	                        tempmsg_actions_indoor.eq(0 % tempmsg_actions_indoor.length).text('Innen: ' + IndoorTemp + ' °C');
+	                        tempmsg_actions_indoor.eq(0 % tempmsg_actions_indoor.length).text('Innen: ' + IndoorTemp);
 	                        var tempmsg_actions_outdoor = $('.tempmsg_actions_outdoor');
-	                        tempmsg_actions_outdoor.eq(0 % tempmsg_actions_outdoor.length).text('Aussen: ' + OutdoorTemp + ' °C');
+	                        tempmsg_actions_outdoor.eq(0 % tempmsg_actions_outdoor.length).text('Aussen: ' + OutdoorTemp);
 	                    }
 	                }
                 },
@@ -324,6 +328,25 @@
                                     $('#notimermsg_rooms').fadeOut('slow');
                                     $('#notimermsg_timer').fadeOut('slow');
                                 }
+
+                                if (Device[13] == 'red') {
+                                    if (AlertState == "green") {
+                                        AlertState = "red";
+                                        PlaySound('alertSound');
+                                        AlertSoundTimer = setInterval(function () { PlaySound('alertSound'); }, 3000);
+                                        $('#red-alert').fadeIn('slow', function(){
+                                          $('#redalertframe').attr("src", "alert.html");
+                                        });
+                                    }
+                                } else if (Device[13] == 'green') {
+                                    if (AlertState == "red") {
+                                        AlertState = "green";
+                                        if (AlertSoundTimer != "") window.clearInterval(AlertSoundTimer);
+                                        $('#red-alert').fadeOut('slow', function() {      
+                                            $('#redalertframe').attr("src", 'about:blank');
+                                        });
+                                    }
+                                } 
                             }
 
                             if (Device[4] == 'ROW_COLOR') {
@@ -348,7 +371,7 @@
 					                	$("#milight_"+Device[0]+"_Modus_Farbe").css("background",Device[6]).spectrum("set",Device[6]);
 	                                }
                                     
-                                    if (Device[9] == "Weiß" || Device[9] == "Farbe")
+                                    if (Device[9] == "Weiß" || Device[9] == "Farbe" || Device[9] == "Programm")
                                         {
                                             $("#milight_"+Device[0]+"_brightness_controls").removeClass('hide').addClass('show');
                                             
@@ -359,6 +382,10 @@
                                             if (Device[9] == "Farbe") {
                                             	BRtext = ' @ ' + Device[7] + '%';
                                                 $("#milight_"+Device[0]+"_brightness").attr('value',Device[7] + '%').button().button('refresh');
+                                            }
+                                            if (Device[9] == "Programm") {
+                                                BRtext = ' @ ' + Device[12] + '%';
+                                                $("#milight_"+Device[0]+"_brightness").attr('value',Device[12] + '%').button().button('refresh');
                                             }
 	                                   }
                                     else {
@@ -487,8 +514,10 @@
 		}
 
         function PlaySound(file) {
-            var sound = document.getElementById(file);
-            sound.play();
+        	<?php if ($xml->gui->playSounds=="true" || $xml->gui->playSounds=="") { ?>
+            	var sound = document.getElementById(file);
+            	sound.play();
+            <?php } ?>
         }
 		
 </script>

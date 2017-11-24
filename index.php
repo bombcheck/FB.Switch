@@ -22,6 +22,12 @@ if (isset($_GET['action'])) {
     $r_action = (string)$_GET['action'];	
     $r_type = (string)$_GET['type'];
     $r_id = (string)$_GET['id'];
+    if (isset($_GET['async'])) {
+        async_curl('http://localhost'.$_SERVER[PHP_SELF]."?action=".$r_action."&type=".$r_type."&id=".$r_id);
+        echo "Async-Aufruf registriert: ". $_SERVER[PHP_SELF]."?action=".$r_action."&type=".$r_type."&id=".$r_id;
+        exit();
+    }
+
 	if($r_action == "toggle" and $r_type == "device"){
 		$xpath='//device/id[.="'.$r_id.'"]/parent::*';
         $res = $xml->xpath($xpath); 
@@ -46,9 +52,9 @@ if (isset($_GET['timerrun'])) {
     require("send_msg.php");
     require("timer.php");
 	include("countdowntimer.php");
-    if ($xml->global->timerGlobalRun != "false") timer_check();
+    if ($xml->global->timerGlobalRun != "false" && $xml->global->AlertState != "red") timer_check();
 	ping_check();
-	countdowntimer_check();
+	if ($xml->global->AlertState != "red") countdowntimer_check();
     fbdect_check();
     exit();
 }
@@ -113,8 +119,23 @@ if (isset($r_action)) {
                 }
             }
         } else if (($r_type)=="timerglobalrun") {
-            if ($action == "ON") { $xml->global->timerGlobalRun = "true"; $errormessage = "Globaler Timer wurde aktiviert!"; }
-            else if ($action == "OFF") { $xml->global->timerGlobalRun = "false"; $errormessage = "Globaler Timer wurde deaktiviert!"; }
+            if ($action == "ON") {
+                if ($xml->global->timerGlobalRun == "true") $errormessage = "FEHLER: Globaler Timer ist bereits aktiviert!";
+                else { $xml->global->timerGlobalRun = "true"; $errormessage = "Globaler Timer wurde aktiviert!"; LogToBackend('info','Global Timer ENABLED','false',false,false); }
+            }
+            else if ($action == "OFF") {
+                if ($xml->global->timerGlobalRun == "false") $errormessage = "FEHLER: Globaler Timer ist bereits deaktiviert!";
+                else { $xml->global->timerGlobalRun = "false"; $errormessage = "Globaler Timer wurde deaktiviert!"; LogToBackend('info','Global Timer DISABLED','false',false,false); }
+            }
+        } else if (($r_type)=="alertstate") {
+            if ($action == "ON") {
+                if ($xml->global->AlertState == "red") $errormessage = "FEHLER: System-Alarm wurde bereits ausgelöst!";
+                else { $xml->global->AlertState = "red"; $errormessage = "System-Alarm wurde ausgelöst!"; async_curl('http://localhost'.str_replace('index.php', 'redalert.php', $_SERVER[PHP_SELF])); LogToBackend('info','System-Alert TRIGGERED','false',false,false); }
+            }
+            else if ($action == "OFF") {
+                if ($xml->global->AlertState == "green") $errormessage = "FEHLER: System-Alarm wurde bereits aufgehoben!";
+                else { $xml->global->AlertState = "green"; $errormessage = "System-Alarm wurde aufgehoben!"; LogToBackend('info','System-Alert DISABLED','false',false,false); }
+            }
         }
         //echo str_replace("\n","<br>",$errormessage);
         echo $errormessage;

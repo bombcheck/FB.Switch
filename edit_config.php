@@ -30,6 +30,8 @@ $r_fritzboxAddress = (string)$_POST['fritzboxAddress'];
 $r_fritzboxUsername = (string)$_POST['fritzboxUsername'];
 $r_fritzboxPassword = (string)$_POST['fritzboxPassword'];
 $r_multiDeviceSleep = intval($_POST['multiDeviceSleep']);
+$r_playSounds = (string)$_POST['playSounds'];
+$r_showSplashAnimation = (string)$_POST['showSplashAnimation'];
 $r_OutdoorTempSource = (string)$_POST['OutdoorTempSource'];
 //$r_showDeviceStatus = (string)$_POST['showDeviceStatus'];
 $r_showRoomButtonInDevices = (string)$_POST['showRoomButtonInDevices'];
@@ -93,6 +95,8 @@ switch ($r_action) {
 		$xml->gui->showRoomsBtnInMenu = $r_showRoomsBtnInMenu;
 		$xml->gui->showGroupsBtnInMenu = $r_showGroupsBtnInMenu;
         $xml->gui->showAllOnOffBtnInMenu = $r_showAllOnOffBtnInMenu;
+        $xml->gui->playSounds = $r_playSounds;
+        $xml->gui->showSplashAnimation = $r_showSplashAnimation;
         $xml->gui->sortOrderDevices = $r_sortOrderDevices;
         $xml->gui->sortOrderGroups = $r_sortOrderGroups;
         $xml->gui->sortOrderRooms = $r_sortOrderRooms;
