@@ -49,10 +49,10 @@ header("Content-Type: text/html; charset=utf-8");
 <?php if ($xml->gui->showSplashAnimation=="true" || $xml->gui->showSplashAnimation=="") { ?>
 	<body class="contentHolder" id="main-body" style="background-image: url(images/splash_body.jpg); background-repeat: no-repeat; background-color: #000000; background-attachment: absolut; background-position: center center;">
 	<div id="loader-wrapper">
-<? } else { ?>
+<?php } else { ?>
 	<body class="contentHolder" id="main-body" style="background-image: url(images/apple-touch-icon-192x192-precomposed.png); background-repeat: no-repeat; background-color: #000000; background-attachment: absolut; background-position: center center;">
 	<div id="loader-wrapper" style="display:none!important;">
-<? } ?>
+<?php } ?>
 	<div id="loader">
 		<div class="loading-splash-div" id="loader">
 			<div class="loading-splash-container">
