@@ -19,7 +19,7 @@ if (isset($_POST['action'])) {
 }
 // Über Linkfunktion -> GET
 if (isset($_GET['action'])) {
-    $r_action = (string)$_GET['action'];	
+    $r_action = (string)$_GET['action'];    
     $r_type = (string)$_GET['type'];
     $r_id = (string)$_GET['id'];
     if (isset($_GET['async'])) {
@@ -28,16 +28,28 @@ if (isset($_GET['action'])) {
         exit();
     }
 
-	if($r_action == "toggle" and $r_type == "device"){
-		$xpath='//device/id[.="'.$r_id.'"]/parent::*';
+    if($r_action == "toggle" and $r_type == "device"){
+        $xpath='//device/id[.="'.$r_id.'"]/parent::*';
         $res = $xml->xpath($xpath); 
         $parent = $res[0];
-		if($parent[0]->status == "OFF"){
-			$r_action = "on";
-		}elseif($parent[0]->status == "ON"){
-			$r_action = "off";
-		}
-	}
+        if($parent[0]->status == "OFF"){
+            $r_action = "on";
+        }elseif($parent[0]->status == "ON"){
+            $r_action = "off";
+        }
+    }
+
+    if($r_action == "status" and $r_type == "device"){
+        $xpath='//device/id[.="'.$r_id.'"]/parent::*';
+        $res = $xml->xpath($xpath); 
+        $parent = $res[0];
+        if($parent[0]->status == "OFF"){
+            echo "0";
+        }elseif($parent[0]->status == "ON"){
+            echo "1";
+        }
+		exit();
+    }
 }
 if (isset($_POST['todo'])) {
     if ($_POST['todo'] == "sendmilight") {
@@ -51,10 +63,10 @@ if (isset($_POST['todo'])) {
 if (isset($_GET['timerrun'])) {
     require("send_msg.php");
     require("timer.php");
-	include("countdowntimer.php");
+    include("countdowntimer.php");
     if ($xml->global->timerGlobalRun != "false" && $xml->global->AlertState != "red") timer_check();
-	ping_check();
-	if ($xml->global->AlertState != "red") countdowntimer_check();
+    ping_check();
+    if ($xml->global->AlertState != "red") countdowntimer_check();
     fbdect_check();
     exit();
 }
