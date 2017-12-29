@@ -40,7 +40,7 @@ if($UseAltOutdoorTempSource != "" && $UseAltOutdoorTempSource != "false") {
         if ($NewOutdoorDateDiff > 1800) {
             $NewOutdoorTemp = -1000;
         } else $NewOutdoorTemp = $NewOutdoorTemp[0];
-        if ($NewOutdoorTemp == false || $NewOutdoorTemp == "") $NewOutdoorTemp = -1000;
+        if ($NewOutdoorTemp === false || $NewOutdoorTemp == "") $NewOutdoorTemp = -1000;
     }
 }
 
@@ -50,7 +50,7 @@ if ($FBnet_SIDsource != "" || ($xml->fritzbox->username != "" || $xml->fritzbox-
     foreach($xml->devices->device as $device) {
     	if ($device->vendor == "fbdect200") {
     		if (Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'present') == 1) {
-                if($NewOutdoorTemp != false && trim($device->id) == $OutdoorTempSource) {
+                if($NewOutdoorTemp !== false && trim($device->id) == $OutdoorTempSource) {
                     $ResStr .= trim($device->id).":".trim($NewOutdoorTemp)."|";
                 } else {
                     $ResStr .= trim($device->id).":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'temperature')."|";
