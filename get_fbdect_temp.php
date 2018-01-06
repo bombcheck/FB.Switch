@@ -49,16 +49,16 @@ if ($FBnet_SIDsource != "" || ($xml->fritzbox->username != "" || $xml->fritzbox-
     $XMLdata = Fritzbox_GetHAactorsInfoXML();
     foreach($xml->devices->device as $device) {
     	if ($device->vendor == "fbdect200") {
-    		if (Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'present') == 1) {
-                if($NewOutdoorTemp !== false && trim($device->id) == $OutdoorTempSource) {
-                    $ResStr .= trim($device->id).":".trim($NewOutdoorTemp)."|";
+    		if($NewOutdoorTemp !== false && trim($device->id) == $OutdoorTempSource) {
+            	$ResStr .= trim($device->id).":".trim($NewOutdoorTemp)."|";
+            } else {   
+    			if (Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'present') == 1) {
+                	$ResStr .= trim($device->id).":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'temperature')."|";
                 } else {
-                    $ResStr .= trim($device->id).":".Fritzbox_GetHAactorDataFromXML($XMLdata,trim($device->address->masterdip),'temperature')."|";
-                }
-    	   	} else {
-    	   		$ResStr .= trim($device->id).":-1000|";
-    	   	}
-        }
+    	   			$ResStr .= trim($device->id).":-1000|";
+    	   		}
+        	}
+    	}
     }
 }
 echo substr($ResStr, 0, strlen($ResStr)-1);
