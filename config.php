@@ -183,18 +183,15 @@ switch ($localtheme) {
 
 }
 
-function config_save($CONFIG_FILENAME, $xml) {
-	if(!isset($CONFIG_FILENAME)){
-		global $CONFIG_FILENAME;
-	}
-	if(!isset($xml)){
-		global $xml;
-	}
+function config_save($CONFIGFILE = null, $xmldata = null) {
+	if($CONFIGFILE === null) { global $CONFIG_FILENAME; $CONFIGFILE = $CONFIG_FILENAME; }
+	if($xmldata === null) { global $xml; $xmldata = $xml; }
+
     $dom = new DOMDocument('1.0');
     $dom->preserveWhiteSpace = false;
     $dom->formatOutput = true;
-    $dom->loadXML($xml->asXML());
-    $dom->save($CONFIG_FILENAME);
+    $dom->loadXML($xmldata->asXML());
+    $dom->save($CONFIGFILE);
 }
 
 function check_config_global() {
