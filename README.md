@@ -16,8 +16,8 @@
 * Audio-Feedback beim Betätigen bestimmter Buttons und dem Abschluss bestimmter Operationen
 
 ## Voraussetzungen:
-* Webserver mit Apache/PHP5 (z.B. einen Raspberry Pi)
-* PHP-Curl-Modul wird benötigt
+* Webserver mit Apache, PHP5 oder PHP7 (z.B. einen Raspberry Pi)
+* PHP-Curl- und PHP-MB-String-Modul werden benötigt
 * Benötigt keine Datenbank!
 
 ## Kompatible Hardware:
