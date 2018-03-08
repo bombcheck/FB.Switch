@@ -1,4 +1,4 @@
-# FB.Switch v1.0.8.1-STABLE
+# FB.Switch [![GitHub release](https://img.shields.io/github/release/bombcheck/FB.Switch.svg)](https://github.com/bombcheck/FB.Switch/releases/latest)
 
 *Webapp zur Steuerung und Verwaltung von 433-MHz-Funksteckdosen, FritzDect 200-Steckdosen und MiLight-Lampen.*
 
@@ -16,8 +16,8 @@
 * Audio-Feedback beim Betätigen bestimmter Buttons und dem Abschluss bestimmter Operationen
 
 ## Voraussetzungen:
-* Webserver mit Apache/PHP5 (z.B. einen Raspberry Pi)
-* PHP-Curl-Modul wird benötigt
+* Webserver mit Apache, PHP5 oder PHP7 (z.B. einen Raspberry Pi)
+* PHP-Curl- und PHP-MB-String-Modul werden benötigt
 * Benötigt keine Datenbank!
 
 ## Kompatible Hardware:

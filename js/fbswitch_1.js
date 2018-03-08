@@ -211,6 +211,7 @@
                     var DevicesTemp = response.split('|');
                     var IndoorTemp = "";
 					var OutdoorTemp = "";
+                    var ShowTemp = false;
 
                     if (DevicesTemp.length > 0) {
                         for (tIndex = 0; tIndex < DevicesTemp.length; ++tIndex) {
@@ -220,12 +221,14 @@
                                 IndoorTemp = parseInt(tempvar[1]) / 10;
                                 if (IndoorTemp == -100) IndoorTemp = '---';
                                 else IndoorTemp = IndoorTemp.toFixed(1) + ' °C';
+                                ShowTemp = true;
                             }
 
                             if (tempvar[0] == <?php echo $OutdoorTempSource; ?>) {
                                 OutdoorTemp = parseInt(tempvar[1]) / 10;
                                 if (OutdoorTemp == -100) OutdoorTemp = '---';
                                 else OutdoorTemp = OutdoorTemp.toFixed(1) + ' °C';
+                                ShowTemp = true;
                             }
                         } 
                         if (IndoorTemp == "") IndoorTemp = '---';
@@ -256,7 +259,8 @@
                         //        var OutdoorTemp = '---';
                         //    }
 
-	                    if (IndoorTemp != '---' || OutdoorTemp != '---') {
+	                    //if (IndoorTemp != '---' || OutdoorTemp != '---') {
+                        if (ShowTemp == true) {
 	                        $('#tempmsg_favs').fadeIn('fast');
 	                        $('#tempmsg_devs').fadeIn('fast');
 	                        $('#tempmsg_groups').fadeIn('fast');
