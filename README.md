@@ -2,6 +2,8 @@
 
 *Webapp zur Steuerung und Verwaltung von 433-MHz-Funksteckdosen, FritzDect 200-Steckdosen und MiLight-Lampen.*
 
+![FB.Switch](https://breakout.bernis-hideout.de/git/FB.Switch/fb-switch.jpg)
+
 ## Features:
 * Aufgebaut mit jQuery UI: Passt sich automatisch an verschiedene Browser und Mobilgeräte an
 * Kann unter iOS und Android ähnlich einer nativen App direkt vom Springboard/Launcher gestartet werden
