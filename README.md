@@ -19,7 +19,7 @@
 
 ## Voraussetzungen:
 * Webserver mit Apache, PHP5 oder PHP7 (z.B. einen Raspberry Pi)
-* PHP-Curl-, PHP-MB-String, und PHP-Sockets-Modul werden benötigt
+* PHP-Curl-, PHP-MB-String, PHP-Sockets-, PHP-XML- und (optional) PHP-SSH-Modul werden benötigt
 * Benötigt keine Datenbank!
 
 ## Kompatible Hardware:
