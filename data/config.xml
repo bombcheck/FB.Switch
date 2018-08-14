@@ -71,6 +71,14 @@
       <UseForAlertMode>true</UseForAlertMode>
     </milightwifi>
   </milightwifis>
+  <milighthubs>
+    <milighthub>
+      <id>20</id>
+      <address>192.168.1.130</address>
+      <username></username>
+      <password></password>
+    </milighthub>
+  </milighthubs>
   <devices>
     <device>
       <id>1</id>

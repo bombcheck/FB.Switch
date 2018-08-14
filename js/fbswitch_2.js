@@ -89,6 +89,32 @@
                 }
             });
         }
+
+        function send_milight_rgbcct(id, command, value) {
+            PlaySound('buttonClickSound');
+            BusyAni('show');
+            
+            var ToDo = "sendmilightrgbcct";
+            var data={ 'todo': ToDo, 'id': id, 'command': command, 'value': value };
+            //toast( 'todo:' + ToDo + ',id:' + id + ',command:' + command + ',value:' + value);
+            $.ajax({
+                type:'POST', 
+                url: '<?php echo $_SERVER['PHP_SELF']; ?>', 
+                data: data,
+                async: true,
+                success: function(response) {
+                    CheckDeviceStatus();
+                    PlaySound('doneSound');
+                    BusyAni('hide');
+                    if (response.indexOf('#OK#') < 0) toast(response);
+                },
+                error: function(response) {
+                    PlaySound('errorSound');
+                    BusyAni('hide');
+                    toast('Konnte MiLight-Kommando nicht senden!');
+                }
+            });
+        }
         
         function reboot_connair() {
             $.ajax({

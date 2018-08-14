@@ -1,4 +1,8 @@
 <?php
+function colorHEXtoRGB($hex) {
+    list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
+    return array("R"=>$r, "G"=>$g, "B"=>$b);
+}
 function compareDevicesByName($a, $b) {
    return strcmp($a->name,$b->name);
 }

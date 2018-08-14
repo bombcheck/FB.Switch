@@ -6,13 +6,21 @@ $(document).ready(function() {
         } else {
             $("#dip_switch_box").removeClass('show').addClass('hide');
         }
+
 		if ($(this).val() == "milight") {
 			$("#milight_help").removeClass('hide').addClass('show');
+            $("#fbmilight_help").removeClass('show').addClass('hide');
 			$("#help").removeClass('show').addClass('hide');
+        } else if ($(this).val() == "milight_rgbcct") {
+            $("#milight_help").removeClass('show').addClass('hide');
+            $("#fbmilight_help").removeClass('hide').addClass('show');
+            $("#help").removeClass('show').addClass('hide');
         } else {
             $("#milight_help").removeClass('show').addClass('hide');
+            $("#fbmilight_help").removeClass('show').addClass('hide');
 			$("#help").removeClass('hide').addClass('show');
         }
+
     });
 });
 
@@ -20,6 +28,7 @@ function resetNewDeviceForm() {
     $('#newdeviceform')[0].reset();
     //$("#vendor").trigger('change');
     $("#milight_help").removeClass('show').addClass('hide');
+    $("#fbmilight_help").removeClass('show').addClass('hide');
 	$("#help").removeClass('hide').addClass('show');
     $("#dip_switch_box").removeClass('hide').addClass('show');
     $("#dip_switch0").removeClass().addClass('on');
@@ -117,6 +126,7 @@ function resetNewDeviceForm() {
                         <option <?php echo ($data['vendor'] == "fbdect200") ? 'selected="selected"' : '' ?>  value="fbdect200">FritzBox DECT200</option>
                         <option <?php echo ($data['vendor'] == "ssh") ? 'selected="selected"' : '' ?>  value="ssh">SSH-Befehl absetzen</option>
                         <option <?php echo ($data['vendor'] == "milight") ? 'selected="selected"' : '' ?>  value="milight">MiLight</option>
+                        <option <?php echo ($data['vendor'] == "milight_rgbcct") ? 'selected="selected"' : '' ?>  value="milight_rgbcct">FB.MiLight-Hub (RGBCCT)</option>
                     </select>
         </li>
        <?php
@@ -334,7 +344,17 @@ $(document).ready(function() {
 					echo "<ul>ID: ".$milightwifi->id." (IP: ".$milightwifi->address.")</ul>";
 				} ?>
 			</div>
-			<div id="help" <?php echo ( $data['vendor'] != 'milight' ) ? 'class="show"' : 'class="hide"' ?> >
+            <div id="fbmilight_help" <?php echo ( $data['vendor'] == 'milight_rgbcct' ) ? 'class="show"' : 'class="hide"' ?> >
+                Masterdip: FB.MiLight-Hub-ID
+                <br>Slavedip: System-Device-ID auf dem FB.MiLight-Hub (z.B. 0x1A2B)
+                <br>TX433-Version: Zu schaltende Gruppe (1-4 oder 0 für alle)
+                <br>Es darf immer nur ein Lampentyp je Gruppe auf dem Hub registriert sein.
+                <br><br>Vorhandene FB.MiLight-Hubs:<br>
+                <?php foreach($xml->milighthubs->milighthub as $milighthub) {
+                    echo "<ul>ID: ".$milighthub->id." (IP: ".$milighthub->address.")</ul>";
+                } ?>
+            </div>
+			<div id="help" <?php echo ( $data['vendor'] != 'milight' && $data['vendor'] != 'milight_rgbcct' ) ? 'class="show"' : 'class="hide"' ?> >
 				TX433-Version sollte in der Regel "2" sein. Ansonsten mit "1" versuchen.
 			</div>
 		</li>

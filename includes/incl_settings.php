@@ -216,6 +216,22 @@ function autodetect_milight()
         <li data-role="fieldcontain">
             <input name="AutoDetectML" id="AutoDetectML" value="Auto-Detect Bridge" data-mini="true" type="button" onclick="autodetect_milight();">
         </li>
+        <li data-role="list-divider">
+        FB.MiLight-Hub
+        </li>
+        <input type="hidden" name="FBmilightID" id="FBmilightID" value="20" />
+        <li data-role="fieldcontain">
+            <label for="FBmilightIP">IP-Adresse:</label>
+            <input name="FBmilightIP" id="FBmilightIP" value="<?php echo $xml->milighthubs->milighthub->address; ?>" data-clear-btn="true" type="text">
+        </li>
+        <li data-role="fieldcontain">
+            <label for="FBmilightUsername">Benutzername:</label>
+            <input name="FBmilightUsername" id="FBmilightUsername" value="<?php echo $xml->milighthubs->milighthub->username; ?>" data-clear-btn="true" type="text">
+        </li>
+        <li data-role="fieldcontain">
+            <label for="FBmilightPassword">Passwort:</label>
+            <input name="FBmilightPassword" id="FBmilightPassword" value="<?php echo $xml->milighthubs->milighthub->password; ?>" data-clear-btn="true" type="text">
+        </li>
 		<li data-role="list-divider">
         Raspberry Pi
         </li>

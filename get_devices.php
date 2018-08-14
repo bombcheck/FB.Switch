@@ -44,7 +44,12 @@ foreach($xml->devices->device as $device) {
 		$ResStr .= $xml->global->timerGlobalRun .":";
 		if ($device->milight->brightnessdisco != "") $ResStr .= $device->milight->brightnessdisco.":";
 		else $ResStr .= "0:";
-		$ResStr .= $xml->global->AlertState ."|";
+		$ResStr .= $xml->global->AlertState .":";
+		if ($device->milight->temperature != "") $ResStr .= $device->milight->temperature.":";
+		else $ResStr .= "0:";
+		if ($device->milight->saturation != "") $ResStr .= $device->milight->saturation.":";
+		else $ResStr .= "100|";
+
 	}
 }
 echo substr($ResStr, 0, strlen($ResStr)-1);

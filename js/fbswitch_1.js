@@ -413,6 +413,67 @@
                                     fav_mode_text.eq(0 % fav_mode_text.length).text('');
                                 }
                             }
+
+                            if (Device[5] == 'milight_rgbcct') {
+                                var dev_mode_text = $('.device_devs_' + Device[0] + '_energy');
+                                var fav_mode_text = $('.device_favs_' + Device[0] + '_energy');
+                                var BRtext = '';
+
+                                toggle_milight_buttons(Device[3].toLowerCase(),Device[0]);
+
+                                if (Device[3] == 'ON') {
+                                    if (Device[6] != 'UNDEF') {
+                                        $("#milight_"+Device[0]+"_Modus_Farbe").css("background",Device[6]).spectrum("set",Device[6]);
+                                    }
+                                    
+                                    if (Device[9] == "Weiß" || Device[9] == "Farbe" || Device[9] == "Programm")
+                                        {
+                                            $("#milight_"+Device[0]+"_brightness_controls").removeClass('hide').addClass('show');
+                                            $("#milight_"+Device[0]+"_temperature").attr('value',Device[14] + '%').button().button('refresh');
+                                            $("#milight_"+Device[0]+"_saturation").attr('value',Device[15] + '%').button().button('refresh');
+                                            
+                                            if (Device[9] == "Weiß") {
+                                                BRtext = ' @ ' + Device[8] + '%';
+                                                $("#milight_"+Device[0]+"_brightness").attr('value',Device[8] + '%').button().button('refresh');
+                                                $("#milight_"+Device[0]+"_temperature_controls").removeClass('hide').addClass('show');
+                                                $("#milight_"+Device[0]+"_saturation_controls").removeClass('show').addClass('hide');
+                                            }
+                                            if (Device[9] == "Farbe") {
+                                                BRtext = ' @ ' + Device[7] + '%';
+                                                $("#milight_"+Device[0]+"_brightness").attr('value',Device[7] + '%').button().button('refresh');
+                                                $("#milight_"+Device[0]+"_saturation_controls").removeClass('hide').addClass('show');
+                                                $("#milight_"+Device[0]+"_temperature_controls").removeClass('show').addClass('hide');
+                                            }
+                                            if (Device[9] == "Programm") {
+                                                BRtext = ' @ ' + Device[12] + '%';
+                                                $("#milight_"+Device[0]+"_brightness").attr('value',Device[12] + '%').button().button('refresh');
+                                                $("#milight_"+Device[0]+"_saturation_controls").removeClass('show').addClass('hide');
+                                                $("#milight_"+Device[0]+"_temperature_controls").removeClass('show').addClass('hide');
+                                            }
+                                       }
+                                    else {
+                                        BRtext = '';
+                                        $("#milight_"+Device[0]+"_brightness_controls").removeClass('show').addClass('hide');
+                                        $("#milight_"+Device[0]+"_saturation_controls").removeClass('show').addClass('hide');
+                                        $("#milight_"+Device[0]+"_temperature_controls").removeClass('show').addClass('hide');
+                                    }
+
+                                    if (Device[9] != 'UNDEF') {
+                                        dev_mode_text.eq(0 % dev_mode_text.length).text('Modus: '+ Device[9] + BRtext);
+                                        fav_mode_text.eq(0 % fav_mode_text.length).text('Modus: '+ Device[9] + BRtext);
+                                        switchMilightControlModeIcon(Device[9],Device[0],'check','off');
+                                    }
+                                    else {
+                                        dev_mode_text.eq(0 % dev_mode_text.length).text('');
+                                        fav_mode_text.eq(0 % fav_mode_text.length).text('');
+                                        switchMilightControlModeIcon('',Device[0],'check','off');
+                                    }
+                                }
+                                else {
+                                    dev_mode_text.eq(0 % dev_mode_text.length).text('');
+                                    fav_mode_text.eq(0 % fav_mode_text.length).text('');
+                                }
+                            }
                         }
                 },
                 error: function () {

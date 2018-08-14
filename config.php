@@ -287,6 +287,32 @@ function check_device($device) {
                 return false;
             }
             break;
+        case "milight_rgbcct":
+            if($masterdip == "") {
+                echo "Device-masterdip (FB.MiLight-Hub-ID) darf nicht leer sein!";
+                return false;
+            }        
+            if($slavedip == "") {
+                echo "Device-slavedip (Master-ID auf FB.MiLight-Hub) darf nicht leer sein!";
+                return false;
+            }        
+            if($tx433version == "") {
+                echo "Device-tx433version (Gruppe auf FB.MiLight-Hub) darf nicht leer sein!";
+                return false;
+            }        
+            if(!preg_match('/^[0-9]+$/',$masterdip)) {
+                echo "Device-masterdip (FB.MiLight-Hub-ID) muss eine Zahl sein!";
+                return false;
+            }        
+            if(!preg_match('/^[0-9]+$/',$tx433version)) {
+                echo "Device-tx433version (Gruppe auf FB.MiLight-Hub) muss eine Zahl sein!";
+                return false;
+            }        
+            if($tx433version < 0 || $tx433version > 4) {
+                echo "Device-slavedip (Gruppe auf FB.MiLight-Hub) muss eine Zahl zwischen 0-4 sein!";
+                return false;
+            }
+            break;
 		case "quigg":
 			if(empty($masterdip)) {
                 echo "Device-masterdip darf nicht leer sein!";

@@ -231,7 +231,7 @@
         echo "</p>";
     }
 
-    if ($timer->type == "device" && $tmp_vendor == "milight") {
+    if ($timer->type == "device" && ($tmp_vendor == "milight" || $tmp_vendor == "milight_rgbcct")) {
     	if ($timer->milight->mode != "") {
             echo "<p><b>Modus (vT): </b>";
 	        echo $timer->milight->mode;

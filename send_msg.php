@@ -956,6 +956,203 @@ function toggle_milight($id, $cmd, $value) {
     else return("#".$id."#".$cmd."#".$value."#");
 }
 
+function sendCurl($URL,$PayLoad,$user = "",$pass = "") {
+    $ch=curl_init();
+    $timeout=10;
+
+    curl_setopt($ch, CURLOPT_URL, $URL);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Content-Length: ' . strlen($PayLoad)));
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+    curl_setopt($ch, CURLOPT_POSTFIELDS,$PayLoad);
+    if ($user != "" && $pass != "") {
+        curl_setopt($ch, CURLOPT_USERPWD, $user.":".$pass);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    }
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+    curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+
+    $result=curl_exec($ch);
+    curl_close($ch);
+
+    return $result;
+}
+
+function switch_fbmilighthub($device, $action,$HubDeviceType) {
+    global $xml;
+
+    if($device->address->masterdip == "") {
+        echo "ERROR: masterdip (FB.MiLight-Hub-ID) ist ungültig für device id ".$device->id."\n";
+        return;
+    }
+    if($device->address->slavedip == "") {
+        echo "ERROR: slavedip (Master-ID auf FB.MiLight-Hub) ist ungültig für device id ".$device->id."\n";
+        return;
+    }
+    if($device->address->tx433version == "") {
+        echo "ERROR: tx433version (Gruppe auf FB.MiLight-Hub) ist ungültig für device id ".$device->id."\n";
+        return;
+    }
+    if($device->address->tx433version < 0 || $device->address->tx433version > 4) {
+        echo "ERROR: slavedip (Gruppe auf FB.MiLight-Hub) muss zwischen 0-4 liegen für device id ".$device->id."\n";
+        return;
+    }
+
+    $MiLightHub = $xml->xpath("//milighthubs/milighthub/id[text()='".$device->address->masterdip."']/parent::*");
+    $MiLightHub = $MiLightHub[0];
+
+    $milightHubIP = trim((string)$MiLightHub->address);
+    if(!filter_var($milightHubIP, FILTER_VALIDATE_IP)) {
+        $milightIPHubCheck = @gethostbyname(trim((string)$MiLightHub->address));
+        if($milightHubIP == $milightIPHubCheck) {
+            $msg="FB.MiLight-Hub ".$milightHubIP." is not availible. Check IP or Hostname. \n";
+            debug($msg);
+            echo $msg;
+            return;
+        } else {
+            debug("Found this IP ".$milightIPHubCheck." for Gateway ".$milightHubIP);
+            $milightHubIP = $milightIPHubCheck;
+        }
+    }
+
+    $HubDeviceID="";$HubGroupID="";$HubCurlTarget="";$HubCurlPayload="";
+    $HubDeviceID = $device->address->slavedip;
+    $HubGroupID = $device->address->tx433version;
+
+    debug("Using FB.MiLight-Hub ID: ".$device->address->masterdip." / IP: ".$milightHubIP);
+    $HubCurlTarget = "http://".$milightHubIP."/gateways/".(string)$HubDeviceID."/".(string)$HubDeviceType."/".$HubGroupID;
+            
+    if($action == "ON") {
+        $HubCurlPayload = '{"status":"on"}';
+    }
+    elseif($action == "OFF") {
+        $HubCurlPayload = '{"status":"off"}';
+
+    }
+    
+    $result = sendCurl($HubCurlTarget,$HubCurlPayload,$MiLightHub->username,$MiLightHub->password);
+
+    debug("Switch MiLight for device='".(string)$device->id."' action='".(string)$action."' HubDeviceID='".$HubDeviceID."' HubGroupID='".$HubGroupID);
+    echo $device->name . " wurde geschaltet: ".$action."\n";
+    return($action);
+}
+
+function toggle_fbmilighthub($id, $cmd, $value,$HubDeviceType) {
+    global $xml;
+    $DryMode = false;
+
+    $device = $xml->xpath("//devices/device/id[text()='".$id."']/parent::*");
+    $device = $device[0];
+
+    if($device->address->masterdip == "") {
+        echo "ERROR: masterdip (FB.MiLight-Hub-ID) ist ungültig für device id ".$device->id."\n";
+        return;
+    }
+    if($device->address->slavedip == "") {
+        echo "ERROR: slavedip (Master-ID auf FB.MiLight-Hub) ist ungültig für device id ".$device->id."\n";
+        return;
+    }
+    if($device->address->tx433version == "") {
+        echo "ERROR: tx433version (Gruppe auf FB.MiLight-Hub) ist ungültig für device id ".$device->id."\n";
+        return;
+    }
+    if($device->address->tx433version < 0 || $device->address->tx433version > 4) {
+        echo "ERROR: slavedip (Gruppe auf FB.MiLight-Hub) muss zwischen 0-4 liegen für device id ".$device->id."\n";
+        return;
+    }
+
+    $MiLightHub = $xml->xpath("//milighthubs/milighthub/id[text()='".$device->address->masterdip."']/parent::*");
+    $MiLightHub = $MiLightHub[0];
+
+    $milightHubIP = trim((string)$MiLightHub->address);
+    if(!filter_var($milightHubIP, FILTER_VALIDATE_IP)) {
+        $milightIPHubCheck = @gethostbyname(trim((string)$MiLightHub->address));
+        if($milightHubIP == $milightIPHubCheck) {
+            $msg="FB.MiLight-Hub ".$milightHubIP." is not availible. Check IP or Hostname. \n";
+            debug($msg);
+            echo $msg;
+            return;
+        } else {
+            debug("Found this IP ".$milightIPHubCheck." for Gateway ".$milightHubIP);
+            $milightHubIP = $milightIPHubCheck;
+        }
+    }
+
+    $HubDeviceID="";$HubGroupID="";$HubCurlTarget="";$HubCurlPayload="";
+    $HubDeviceID = $device->address->slavedip;
+    $HubGroupID = $device->address->tx433version;
+
+    debug("Using FB.MiLight-Hub ID: ".$device->address->masterdip." / IP: ".$milightHubIP);
+            if (!$DryMode) {
+                $HubCurlTarget = "http://".$milightHubIP."/gateways/".(string)$HubDeviceID."/".(string)$HubDeviceType."/".$HubGroupID;
+            
+                if ($cmd == "SetColor") {
+                    $colorRGB = colorHEXtoRGB(trim($value));
+                    $HubCurlPayload = '{"status":"on","color": {"r": '.(integer)$colorRGB['R'].', "g": '.(integer)$colorRGB['G'].', "b": '.(integer)$colorRGB['B'].'},"level":'.(integer)$device->milight->brightnesscolor.'}';
+                    $result = sendCurl($HubCurlTarget,$HubCurlPayload,$MiLightHub->username,$MiLightHub->password);
+                    $HubCurlPayload = '{"saturation":'.(integer)$device->milight->saturation.'}';
+                    $device->milight->color = trim($value);
+                    $device->milight->mode = "Farbe";
+                }
+                elseif ($cmd == "SetBrightness") {
+                    $HubCurlPayload = '{"level":'.(integer)$value.'}';
+                    if ($device->milight->mode == "Farbe") $device->milight->brightnesscolor = trim($value);
+                    elseif ($device->milight->mode == "Weiß") $device->milight->brightnesswhite = trim($value);
+                    elseif ($device->milight->mode == "Programm") $device->milight->brightnessdisco = trim($value);
+                }
+                elseif ($cmd == "SetToWhite") {
+                    $HubCurlPayload = '{"status":"on","command":"set_white"}';
+                    $result = sendCurl($HubCurlTarget,$HubCurlPayload,$MiLightHub->username,$MiLightHub->password);
+                    $HubCurlPayload = '{"level":'.(integer)$device->milight->brightnesswhite.',"temperature":'.(integer)$device->milight->temperature.'}';
+                    //$HubCurlPayload = '{"level":'.(integer)$device->milight->brightnesswhite.'}';
+                    $device->milight->mode = "Weiß";
+                }
+                elseif ($cmd == "SetWhiteTemperature" && $device->milight->mode == "Weiß") {
+                    $HubCurlPayload = '{"temperature":'.(integer)$value.'}';
+                    $device->milight->temperature = trim($value);
+                }
+                elseif ($cmd == "SetColorSaturation" && $device->milight->mode == "Farbe") {
+                    $HubCurlPayload = '{"saturation":'.(integer)$value.'}';
+                    $device->milight->saturation = trim($value);
+                }
+                elseif ($cmd == "SetToNightMode") {
+                    $HubCurlPayload = '{"command":"night_mode"}';
+                    $result = sendCurl($HubCurlTarget,$HubCurlPayload,$MiLightHub->username,$MiLightHub->password);
+                    $HubCurlPayload = '{"command":"night_mode"}';
+                    $device->milight->mode = "Nacht";
+                }
+                elseif ($cmd == "rgbwDiscoMode") {
+                    if ($device->milight->mode != "Programm") {
+                        $HubCurlPayload = '{"status":"on","mode":0}';
+                        $result = sendCurl($HubCurlTarget,$HubCurlPayload,$MiLightHub->username,$MiLightHub->password);
+                        $HubCurlPayload = '{"level":'.(integer)$device->milight->brightnessdisco.'}';
+                    } else {
+                        $HubCurlPayload = '{"command":"next_mode"}';    
+                        $result = sendCurl($HubCurlTarget,$HubCurlPayload,$MiLightHub->username,$MiLightHub->password);
+                        $HubCurlPayload = '{"level":'.(integer)$device->milight->brightnessdisco.'}';    
+                    }
+                    
+                    $device->milight->mode = "Programm";
+                }
+                elseif ($cmd == "rgbwDiscoSlower" && $device->milight->mode == "Programm") {
+                    $HubCurlPayload = '{"command":"mode_speed_down"}';
+                }
+                elseif ($cmd == "rgbwDiscoFaster" && $device->milight->mode == "Programm") {
+                    $HubCurlPayload = '{"command":"mode_speed_up"}';
+
+                }
+            
+            }
+    
+    $result = sendCurl($HubCurlTarget,$HubCurlPayload,$MiLightHub->username,$MiLightHub->password);
+
+    debug("MiLight-Command for device='".$id."': Cmd='".$cmd."' / Value='".$value."' - HubDeviceID='".$HubDeviceID."' HubGroupID='".$HubGroupID."'");
+    
+    //echo $device->name . " wurde geschaltet: ".$action."  ";
+    if (!$DryMode) return("#OK#");
+    else return("#".$id."#".$cmd."#".$value."#");
+}
+
 function raspiasconnair($device, $action){
 
     global $debug;
@@ -1222,6 +1419,102 @@ function send_message($device, $action, $ViaTimer = FALSE, $TimerMLMode = "", $T
                 }
 			}
 
+            // Rueckgabe aus Schaltvorgang für Geraet speichern
+            $device->status = $SMstat;
+            // BE-Log schreiben
+            if ($LogMLMode != "") $retLog = LogToBackend('info',$device->name.' ('.$device->room.') switched to mode '.strtoupper($LogMLMode),'false',$ViaTimer,$ViaAction);
+            //hier nicht connair und cul ansprechen
+            return;
+        case "milight_rgbcct":
+            $SMstat=''; $LogMLMode="";
+            // Action in BE loggen wenn Action != aktueller Status
+            if ($action != $device->status) $retLog = LogToBackend('info',$device->name.' ('.$device->room.') turned '.strtoupper($action),'false',$ViaTimer,$ViaAction);
+            // Gerät schalten, Rueckgabe (neuer Status) erst mal zwischenspeichern
+            $SMstat = switch_fbmilighthub($device, $action,"rgb_cct");
+
+            // Wenn die Lampe EIN-geschaltet werden soll
+            if ($action == "ON") {
+
+                // Wenn die Lampe bereits AN ist UND die Action NICHT vom Timer kommt: Modi durchschalten
+                if ($device->status == "ON" && $ViaTimer == FALSE) {
+
+                    if ($device->milight->mode == "Weiß") {    // Aktueller Modus: WEISS: Auf FARBE schalten und loggen
+                        $MR = toggle_fbmilighthub($device->id,"SetColor",$device->milight->color,"rgb_cct");
+                        $LogMLMode = "Farbe <font color=\"".$device->milight->color."\">●</font> ".$device->milight->brightnesscolor."%";
+                    }
+                    elseif ($device->milight->mode == "Farbe") {   // Aktueller Modus: FARBE: Auf NACHT schalten und loggen
+                        $MR = toggle_fbmilighthub($device->id,"SetToNightMode",'',"rgb_cct");
+                        $LogMLMode = "Nacht";
+                    }
+                    elseif ($device->milight->mode == "Nacht") {   // Aktueller Modus: NACHT: Auf WEISS schalten und loggen
+                        $MR = toggle_fbmilighthub($device->id,"SetToWhite",'',"rgb_cct");
+                        $LogMLMode = "Weiß ● ".$device->milight->brightnesswhite."%";
+                    }
+                    elseif ($device->milight->mode == "Programm") {   // Aktueller Modus: PROGRAMM: Auf FARBE schalten und loggen
+                        $MR = toggle_fbmilighthub($device->id,"SetColor",$device->milight->color,"rgb_cct");
+                        $LogMLMode = "Farbe <font color=\"".$device->milight->color."\">●</font> ".$device->milight->brightnesscolor."%";
+                    }
+                }
+
+                // Wenn die Lampe derzeit AUS ist und die Action NICHT vom Timer kommt
+                // ODER die Action vom Timer kommt und im Timer kein Modus definiert ist: Gespeicherten Modus setzen
+                if ( ($device->status == "OFF" && $ViaTimer == FALSE) || ($ViaTimer == TRUE && $TimerMLMode == "") ) {
+                    
+                    if ($device->milight->mode == "Weiß") {
+                        $MR = toggle_fbmilighthub($device->id,"SetToWhite",'',"rgb_cct");
+                        $LogMLMode = "Weiß ● ".$device->milight->brightnesswhite."%";
+                    }
+                    elseif ($device->milight->mode == "Farbe") {
+                        //usleep(500000);
+                        $MR = toggle_fbmilighthub($device->id,"SetColor",$device->milight->color,"rgb_cct");
+                        $LogMLMode = "Farbe <font color=\"".$device->milight->color."\">●</font> ".$device->milight->brightnesscolor."%";
+                    }
+                    elseif ($device->milight->mode == "Nacht") {
+                        $MR = toggle_fbmilighthub($device->id,"SetToNightMode",'',"rgb_cct");
+                        $LogMLMode = "Nacht";
+                    }
+                    elseif ($device->milight->mode == "Programm") {
+                        sleep(1);
+                        $MR = toggle_fbmilighthub($device->id,"SetBrightness",$device->milight->brightnessdisco,"rgb_cct");
+                        $LogMLMode = "Programm ● ".$device->milight->brightnessdisco."%";
+                    }
+                }
+
+                // Wenn die Action vom Timer kommt und im Timer ein Modus definiert ist: Definierten Modus setzen
+                if ($ViaTimer == TRUE && $TimerMLMode != "") {
+
+                    if ($TimerMLMode == "Weiß") {   // Modus WEISS im Timer definiert: Setzen und loggen
+                        $MR = toggle_fbmilighthub($device->id,"SetToWhite",'',"rgb_cct");
+                        $LogMLMode = "Weiß ● ";
+                        
+                        if ($TimerMLBrightness != "") {    // Wurde auch eine Helligkeit definiert? Wenn JA: Diese setzen
+                            $MRB = toggle_fbmilighthub($device->id,"SetBrightness",$TimerMLBrightness,"rgb_cct");
+                            $LogMLMode .= $TimerMLBrightness."%";
+                        }
+                        else $LogMLMode .= $device->milight->brightnesswhite."%";
+                    }
+                    elseif ($TimerMLMode == "Farbe") {  // Modus FARBE im Timer definiert: Setzen und loggen
+                        if ($TimerMLColor != "") {  // Wurde auch eine Farbe definiert? Wenn JA: Diese setzen, sonst die gespeicherte Farbe setzen
+                            $MR = toggle_fbmilighthub($device->id,"SetColor",$TimerMLColor,"rgb_cct");
+                            $LogMLMode = "Farbe <font color=\"".$TimerMLColor."\">●</font> ";
+                        }
+                        else {
+                            $MR = toggle_fbmilighthub($device->id,"SetColor",$device->milight->color,"rgb_cct");
+                            $LogMLMode = "Farbe <font color=\"".$device->milight->color."\">●</font> ";
+                        }
+
+                        if ($TimerMLBrightness != "") {    // Wurde auch eine Helligkeit definiert? Wenn JA: Setzen
+                            $MRB = toggle_fbmilighthub($device->id,"SetBrightness",$TimerMLBrightness,"rgb_cct");
+                            $LogMLMode .= $TimerMLBrightness."%";
+                        }
+                        else $LogMLMode .= $device->milight->brightnesscolor."%";
+                    }
+                    elseif ($TimerMLMode == "Nacht") {  // Modus NACHT im Timer definiert: Setzen und loggen
+                        $MR = toggle_fbmilighthub($device->id,"SetToNightMode",'',"rgb_cct");
+                        $LogMLMode = "Nacht";
+                    }
+                }
+            }
             // Rueckgabe aus Schaltvorgang für Geraet speichern
 			$device->status = $SMstat;
             // BE-Log schreiben
