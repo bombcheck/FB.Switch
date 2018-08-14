@@ -47,7 +47,7 @@ foreach($xml->devices->device as $device) {
 		$ResStr .= $xml->global->AlertState .":";
 		if ($device->milight->temperature != "") $ResStr .= $device->milight->temperature.":";
 		else $ResStr .= "0:";
-		if ($device->milight->saturation != "") $ResStr .= $device->milight->saturation.":";
+		if ($device->milight->saturation != "") $ResStr .= $device->milight->saturation."|";
 		else $ResStr .= "100|";
 
 	}
