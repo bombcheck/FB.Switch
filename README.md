@@ -9,7 +9,8 @@
 * Kann unter iOS und Android ähnlich einer nativen App direkt vom Springboard/Launcher gestartet werden
 * Unterstützt das Schalten diverser Funksteckdosen (z.B. Brennenstuhl, Elro) über ein entsprechendes LAN-Gateway
 * Unterstützt das Schalten und die Verbrauchs- sowie Temperaturabfrage an einer vorhandenen FritzBox angeschlossener FritzDect 200-Steckdosen
-* Unterstützt das Schalten sowie die Farb- und Moduswahl von MiLight-RGBW-LED-Lampen über ein entsprechendes LAN-Gateway
+* Unterstützt das Schalten sowie die Farb- und Moduswahl von MiLight-RGBW-LED-Lampen über ein entsprechendes LAN-Gateway (bis einschließlich v5)
+* Unterstützt das Schalten sowie die Farb- und Moduswahl von MiLight-RGBCCT-LED-Lampen über den [FB.MiLight-Hub](https://github.com/bombcheck/esp8266_milight_hub)
 * Verwaltung von Geräten und Gerätegruppen
 * Definierung von Timern für Geräte und Gruppen. Für MiLight-Geräte kann im Timer definiert werden mit welchem Modus/Farbe/Helligkeit eingeschaltet werden soll
 * Definierung von Aktionen für Geräte und Gruppen. Für MiLight-Geräte kann in der Aktion definiert werden mit welchem Modus/Farbe/Helligkeit eingeschaltet werden soll.
@@ -27,7 +28,9 @@
 * 433 MHz Funksteckdose: Brennenstuhl RCS 1000 N und viele andere von Elro, Intertechno, Brennenstuhl
 * FritzBox-Router mit FritzDect200-Steckdosen
 * MiLight RGBW-Lampen / RGBW-LED-Strip-Controller
+* MiLight RGBCCT-Lampen / RGBCCT-LED-Strip-Controller
 * MiLight LAN-Gateway bis einschließlich v5
+* [FB.MiLight-Hub](https://github.com/bombcheck/esp8266_milight_hub) (MiLight-Gateway auf Basis eines ESP8266)
 
 ## Installation:
 * Einfach in einen Ordner auf dem Webserver kopieren.
