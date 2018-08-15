@@ -1117,8 +1117,6 @@ function toggle_fbmilighthub($id, $cmd, $value,$HubDeviceType) {
                 }
                 elseif ($cmd == "SetToNightMode") {
                     $HubCurlPayload = '{"command":"night_mode"}';
-                    $result = sendCurl($HubCurlTarget,$HubCurlPayload,$MiLightHub->username,$MiLightHub->password);
-                    $HubCurlPayload = '{"command":"night_mode"}';
                     $device->milight->mode = "Nacht";
                 }
                 elseif ($cmd == "rgbwDiscoMode") {
