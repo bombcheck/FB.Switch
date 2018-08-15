@@ -126,7 +126,7 @@ function resetNewDeviceForm() {
                         <option <?php echo ($data['vendor'] == "fbdect200") ? 'selected="selected"' : '' ?>  value="fbdect200">FritzBox DECT200</option>
                         <option <?php echo ($data['vendor'] == "ssh") ? 'selected="selected"' : '' ?>  value="ssh">SSH-Befehl absetzen</option>
                         <option <?php echo ($data['vendor'] == "milight") ? 'selected="selected"' : '' ?>  value="milight">MiLight</option>
-                        <option <?php echo ($data['vendor'] == "milight_rgbcct") ? 'selected="selected"' : '' ?>  value="milight_rgbcct">FB.MiLight-Hub (RGBCCT)</option>
+                        <option <?php echo ($data['vendor'] == "milight_rgbcct") ? 'selected="selected"' : '' ?>  value="milight_rgbcct">FB.MiLight-Hub (RGB+CCT)</option>
                     </select>
         </li>
        <?php
