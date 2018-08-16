@@ -1023,11 +1023,12 @@ function switch_fbmilighthub($device, $action,$HubDeviceType) {
     $HubCurlTarget = "http://".$milightHubIP."/gateways/".(string)$HubDeviceID."/".(string)$HubDeviceType."/".$HubGroupID;
             
     if($action == "ON") {
-        $HubCurlPayload = '{"status":"on"}';
+        if ($device->milight->mode != "Farbe" && $device->milight->mode != "Weiß" && $device->milight->mode != "Nacht") {
+	        $HubCurlPayload = '{"status":"on"}';
+    	}
     }
     elseif($action == "OFF") {
         $HubCurlPayload = '{"status":"off"}';
-
     }
     
     $result = sendCurl($HubCurlTarget,$HubCurlPayload,$MiLightHub->username,$MiLightHub->password);
