@@ -6,6 +6,15 @@
         var lastTimestamps = [0, 0];
         var lastEventTimers = [0, 0];
 
+        function TemperaturePercentToKelvin(percent) {
+            var MinKelvin = 2700;
+            var MaxKelvin = 6500;
+            var Diff = MaxKelvin - MinKelvin;
+            var KelvinPerPercent = Diff / 100;
+            var val = KelvinPerPercent * percent;
+            return MaxKelvin - val;
+        }
+
         function milight_colorswipe(dataToSend, evtId) {
           var timestamp = $.now();
           if (lastEventTimers[evtId] != 0) {

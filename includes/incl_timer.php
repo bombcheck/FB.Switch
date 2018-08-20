@@ -129,6 +129,8 @@
                 $tmp_milight_color = $tmp_device->milight->color;
                 $tmp_milight_brightnesscolor = $tmp_device->milight->brightnesscolor;
                 $tmp_milight_brightnesswhite = $tmp_device->milight->brightnesswhite;
+                $tmp_milight_temperature = $tmp_device->milight->temperature;
+                $tmp_milight_saturation = $tmp_device->milight->saturation;
             }      
         }
     }
@@ -231,7 +233,7 @@
         echo "</p>";
     }
 
-    if ($timer->type == "device" && ($tmp_vendor == "milight" || $tmp_vendor == "milight_rgbcct")) {
+    if ($timer->type == "device" && ($tmp_vendor == "milight" || $tmp_vendor == "milight_rgbcct") ) {
     	if ($timer->milight->mode != "") {
             echo "<p><b>Modus (vT): </b>";
 	        echo $timer->milight->mode;
@@ -241,10 +243,20 @@
 	            else echo " <font color=\"".$tmp_milight_color."\">●</font> ";
 	            if ($timer->milight->brightness != "") echo $timer->milight->brightness."%";
 	            else echo $tmp_milight_brightnesscolor."%";
+                
+                if ($tmp_vendor == "milight_rgbcct") {
+                    if ($timer->milight->saturation != "") echo " (Sat.: ".$timer->milight->saturation."%)";
+                    else echo " (Sat.: ".$tmp_milight_saturation."%)";
+                }
 	        }
 	        elseif ($timer->milight->mode == "Weiß") {
 	            if ($timer->milight->brightness != "") echo " ● ".$timer->milight->brightness."%";
 	            else echo " ● ".$tmp_milight_brightnesswhite."%";
+
+                if ($tmp_vendor == "milight_rgbcct") {
+                    if ($timer->milight->temperature != "") echo " (".TemperaturePercentToKelvin($timer->milight->temperature)."K)";
+                    else echo " (".TemperaturePercentToKelvin($tmp_milight_temperature)."K)";
+                }                                                    
 	        }
 	    }
 
@@ -255,9 +267,17 @@
 	        if ($tmp_milight_mode == "Farbe") {
 	            echo " <font color=\"".$tmp_milight_color."\">●</font> ";
 	            echo $tmp_milight_brightnesscolor."%";
+
+                if ($tmp_vendor == "milight_rgbcct") {
+                    echo " (Sat.: ".$tmp_milight_saturation."%)";
+                }
 	        }
 	        elseif ($tmp_milight_mode == "Weiß") {
 	            echo " ● ".$tmp_milight_brightnesswhite."%";
+
+                if ($tmp_vendor == "milight_rgbcct") {
+                    echo " (".TemperaturePercentToKelvin($tmp_milight_temperature)."K)";
+                }
 	        }
 	    }
 

@@ -1,4 +1,12 @@
 <?php
+function TemperaturePercentToKelvin($percent) {
+	$MinKelvin=2700;
+	$MaxKelvin=6500;
+	$Diff = $MaxKelvin - $MinKelvin;
+	$KelvinPerPercent = $Diff / 100;
+	$val = $KelvinPerPercent * $percent;
+	return $MaxKelvin - $val;
+}
 function colorHEXtoRGB($hex) {
     list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
     return array("R"=>$r, "G"=>$g, "B"=>$b);

@@ -454,10 +454,10 @@
                                 var fav_mode_text = $('.device_favs_<?php echo $device->id; ?>_energy');
                                 var BRtext = '';
                                 <?php if ($device->milight->mode == "Weiß") { ?>
-                                     BRtext = ' @ <?php echo $device->milight->brightnesswhite; ?>%';
+                                     BRtext = ' @ <?php echo $device->milight->brightnesswhite; ?>% (' + TemperaturePercentToKelvin(<?php echo $device->milight->temperature; ?>) + 'K)';
                                 <?php } ?>
                                 <?php if ($device->milight->mode == "Farbe") { ?>
-                                     BRtext = ' @ <?php echo $device->milight->brightnesscolor; ?>%';
+                                     BRtext = ' @ <?php echo $device->milight->brightnesscolor; ?>% (Sat.: <?php echo $device->milight->saturation; ?>)';
                                 <?php } ?>
                                 <?php if ($device->milight->mode == "Programm") { ?>
                                      BRtext = ' @ <?php echo $device->milight->brightnessdisco; ?>%';
