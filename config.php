@@ -9,6 +9,9 @@ $SysAlertMsg="FB.NET System Status KRITISCH";
 $NoTimerAlertMsg="Timer ist deaktiviert";
 $FileVer="2.45";
 
+$MilightRgbcctMinKelvin=2700;
+$MilightRgbcctMaxKelvin=6500;
+
 //config.xml dateisystem rechte überprüfen
 if(!file_exists($CONFIG_FILENAME)) {
     echo "Kann die Konfiguration (".$CONFIG_FILENAME.") nicht finden!\n";
