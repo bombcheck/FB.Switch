@@ -340,9 +340,13 @@ $(document).ready(function() {
 				<br>TX433-Version: Lampentyp (1: Weiß - 2: RGB/RGBW)
 				<br>Es darf immer nur ein Lampentyp je Gruppe auf der Bridge registriert sein.
 				<br><br>Vorhandene MiLight WiFi-Bridges:<br>
-				<?php foreach($xml->milightwifis->milightwifi as $milightwifi) {
-					echo "<ul>ID: ".$milightwifi->id." (IP: ".$milightwifi->address.")</ul>";
-				} ?>
+				<?php 
+                    $cntr=0;
+                    foreach($xml->milightwifis->milightwifi as $milightwifi) {
+                        if ($milightwifi->address != "") { $cntr++; echo "<ul>ID: ".$milightwifi->id." (IP: ".$milightwifi->address.")</ul>"; }
+				    }
+                    if ($cntr == 0) echo "Keine Bridges eingerichtet!";
+                    ?>
 			</div>
             <div id="fbmilight_help" <?php echo ( $data['vendor'] == 'milight_rgbcct' ) ? 'class="show"' : 'class="hide"' ?> >
                 Masterdip: FB.MiLight-Hub-ID
@@ -350,9 +354,13 @@ $(document).ready(function() {
                 <br>TX433-Version: Zu schaltende Gruppe (1-4 oder 0 für alle)
                 <br>Es darf immer nur ein Lampentyp je Gruppe auf dem Hub registriert sein.
                 <br><br>Vorhandene FB.MiLight-Hubs:<br>
-                <?php foreach($xml->milighthubs->milighthub as $milighthub) {
-                    echo "<ul>ID: ".$milighthub->id." (IP: ".$milighthub->address.")</ul>";
-                } ?>
+                <?php 
+                    $cntr=0;
+                    foreach($xml->milighthubs->milighthub as $milighthub) {
+                        if ($milighthub->address != "") { $cntr++; echo "<ul>ID: ".$milighthub->id." (IP: ".$milighthub->address.")</ul>"; }
+                    }
+                    if ($cntr == 0) echo "Keine Hubs eingerichtet!";
+                    ?>
             </div>
 			<div id="help" <?php echo ( $data['vendor'] != 'milight' && $data['vendor'] != 'milight_rgbcct' ) ? 'class="show"' : 'class="hide"' ?> >
 				TX433-Version sollte in der Regel "2" sein. Ansonsten mit "1" versuchen.
