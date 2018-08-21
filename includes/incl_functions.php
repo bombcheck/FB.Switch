@@ -1,5 +1,6 @@
 <?php
 function TemperaturePercentToKelvin($percent) {
+    if ($percent == "" || $percent < 1 || $percent > 100) return 0;
 	global $MilightRgbcctMinKelvin,$MilightRgbcctMaxKelvin;
 	$Diff = $MilightRgbcctMaxKelvin - $MilightRgbcctMinKelvin;
 	$KelvinPerPercent = $Diff / 100;

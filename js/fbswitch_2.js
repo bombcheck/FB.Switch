@@ -7,6 +7,7 @@
         var lastEventTimers = [0, 0];
 
         function TemperaturePercentToKelvin(percent) {
+            if (percent == "" || percent < 1 || percent > 100) return 0;
             var MinKelvin = <?php echo $MilightRgbcctMinKelvin; ?>;
             var MaxKelvin = <?php echo $MilightRgbcctMaxKelvin; ?>;
             var Diff = MaxKelvin - MinKelvin;
