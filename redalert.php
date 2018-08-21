@@ -1,4 +1,7 @@
 <?php
+// Deaktiviert, da nicht kompatibel mit neuen MiLight-Lampen...
+exit();
+
 ignore_user_abort(true);
 sleep(3);
 
