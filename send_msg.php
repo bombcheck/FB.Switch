@@ -1108,7 +1108,7 @@ function toggle_fbmilighthub($id, $cmd, $value,$HubDeviceType) {
                     //$HubCurlPayload = '{"level":'.(integer)$device->milight->brightnesswhite.'}';
                     $device->milight->mode = "Weiß";
                 }
-                elseif ($cmd == "SetWhiteTemperature" && $device->milight->mode == "Weiß") {
+                elseif ($cmd == "SetWhiteTemperature" && ( $device->milight->mode == "Weiß" || $device->milight->mode == "Farbe" ) ) {
                     $HubCurlPayload = '{"temperature":'.(integer)$value.'}';
                     $device->milight->temperature = trim($value);
                 }

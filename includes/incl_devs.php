@@ -514,19 +514,6 @@
                                                 <button name="milight_<?php echo $device->id; ?>_Modus_Nacht" id="milight_<?php echo $device->id; ?>_Modus_Nacht" data-icon="<?php echo ( $device->milight->mode == 'Nacht' ) ? 'check' : 'off' ?>" data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="send_milight_rgbcct('<?php echo $device->id; ?>','SetToNightMode','')">Nacht</button>
 
                                                 <!-- SECOND LINE: Temperature & Saturation -->
-                                                <div id="milight_<?php echo $device->id; ?>_temperature_controls" class="<?php echo ( $device->milight->mode == 'Weiß' ) ? 'show' : 'hide' ?>">
-                                                    <br><br>
-                                                    <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value) < 100) { $('#milight_<?php echo $device->id; ?>_temperature').attr('value',(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value) + 5) + '%'); $('#milight_<?php echo $device->id; ?>_temperature_kelvin').attr('value',(TemperaturePercentToKelvin(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value))) + 'K').button().button('refresh'); }">Wärmer</button>&nbsp;&nbsp;
-                                                    <?php
-                                                        $ThisTemperature = 0;
-                                                        $ThisTemperature = $device->milight->temperature;
-                                                        if ($ThisTemperature == "") $ThisTemperature = 0;
-                                                    ?>
-                                                    <input type="hidden" name="milight_<?php echo $device->id; ?>_temperature" id="milight_<?php echo $device->id; ?>_temperature" value="<?php echo $ThisTemperature; ?>%" />
-                                                    <button name="milight_<?php echo $device->id; ?>_temperature_kelvin" id="milight_<?php echo $device->id; ?>_temperature_kelvin" data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" value="<?php echo TemperaturePercentToKelvin($ThisTemperature); ?>K" onclick="send_milight_rgbcct('<?php echo $device->id; ?>','SetWhiteTemperature',parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value))"></button>&nbsp;&nbsp;
-                                                    <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value) > 0) { $('#milight_<?php echo $device->id; ?>_temperature').attr('value',(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value) - 5) + '%'); $('#milight_<?php echo $device->id; ?>_temperature_kelvin').attr('value',(TemperaturePercentToKelvin(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value))) + 'K').button().button('refresh'); }">Kälter</button>
-                                                </div>
-
                                                 <div id="milight_<?php echo $device->id; ?>_saturation_controls" class="<?php echo ( $device->milight->mode == 'Farbe' ) ? 'show' : 'hide' ?>">
                                                     <br><br>
                                                     <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_saturation').value) > 0) { $('#milight_<?php echo $device->id; ?>_saturation').attr('value',(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_saturation').value) - 5) + '%').button().button('refresh'); }">Weniger</button>&nbsp;&nbsp;
@@ -539,6 +526,19 @@
                                                     <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_saturation').value) < 100) { $('#milight_<?php echo $device->id; ?>_saturation').attr('value',(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_saturation').value) + 5) + '%').button().button('refresh'); }">Mehr</button>
                                                 </div>
 
+                                                <div id="milight_<?php echo $device->id; ?>_temperature_controls" class="<?php echo ( $device->milight->mode == 'Farbe' || $device->milight->mode == 'Weiß' ) ? 'show' : 'hide' ?>">
+                                                    <br><br>
+                                                    <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value) < 100) { $('#milight_<?php echo $device->id; ?>_temperature').attr('value',(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value) + 5) + '%'); $('#milight_<?php echo $device->id; ?>_temperature_kelvin').attr('value',(TemperaturePercentToKelvin(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value))) + 'K').button().button('refresh'); }">Wärmer</button>&nbsp;&nbsp;
+                                                    <?php
+                                                        $ThisTemperature = 0;
+                                                        $ThisTemperature = $device->milight->temperature;
+                                                        if ($ThisTemperature == "") $ThisTemperature = 0;
+                                                    ?>
+                                                    <input type="hidden" name="milight_<?php echo $device->id; ?>_temperature" id="milight_<?php echo $device->id; ?>_temperature" value="<?php echo $ThisTemperature; ?>%" />
+                                                    <button name="milight_<?php echo $device->id; ?>_temperature_kelvin" id="milight_<?php echo $device->id; ?>_temperature_kelvin" data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" value="<?php echo TemperaturePercentToKelvin($ThisTemperature); ?>K" onclick="send_milight_rgbcct('<?php echo $device->id; ?>','SetWhiteTemperature',parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value))"></button>&nbsp;&nbsp;
+                                                    <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value) > 0) { $('#milight_<?php echo $device->id; ?>_temperature').attr('value',(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value) - 5) + '%'); $('#milight_<?php echo $device->id; ?>_temperature_kelvin').attr('value',(TemperaturePercentToKelvin(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value))) + 'K').button().button('refresh'); }">Kälter</button>
+                                                </div>
+                                                
                                                 <!-- THIRD LINE: Brightness -->
                                                 <div id="milight_<?php echo $device->id; ?>_brightness_controls" class="<?php echo ( $device->milight->mode == 'Farbe' || $device->milight->mode == 'Weiß' || $device->milight->mode == 'Programm' ) ? 'show' : 'hide' ?>">
                                                     <br><br>

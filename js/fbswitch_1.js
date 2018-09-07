@@ -379,7 +379,6 @@
                                         {
                                             $("#milight_"+Device[0]+"_brightness_controls").removeClass('hide').addClass('show');
                                             if (Device[5] == 'milight_rgbcct') {
-                                                //$("#milight_"+Device[0]+"_temperature").attr('value',Device[14] + '%').button().button('refresh');
                                                 $("#milight_"+Device[0]+"_temperature").attr('value',Device[14] + '%');
                                                 $("#milight_"+Device[0]+"_temperature_kelvin").attr('value',TemperaturePercentToKelvin(Device[14]) + 'K').button().button('refresh');
                                                 $("#milight_"+Device[0]+"_saturation").attr('value',Device[15] + '%').button().button('refresh');
@@ -398,7 +397,7 @@
                                             	BRtext = ' @ ' + Device[7] + '%';
                                                 if (Device[5] == 'milight_rgbcct') {
                                                     $("#milight_"+Device[0]+"_saturation_controls").removeClass('hide').addClass('show');
-                                                    $("#milight_"+Device[0]+"_temperature_controls").removeClass('show').addClass('hide');
+                                                    $("#milight_"+Device[0]+"_temperature_controls").removeClass('hide').addClass('show');
                                                     BRtext = BRtext + ' (Sat.: ' + Device[15] + '%)';
                                                 }
                                                 $("#milight_"+Device[0]+"_brightness").attr('value',Device[7] + '%').button().button('refresh');
