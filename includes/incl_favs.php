@@ -326,9 +326,9 @@ if($active_user == "false" AND $_GET['user'] == ""  ){
                     $btnOffDataTheme="r";
                     $btnOnIcon="";
                     $btnOnJS="send_connair('on','device','".$device->id."'); switchRowTheme('on','".$device->id."','".$rowOnDataTheme."','".$rowOffDataTheme."');";
-                    if ($device->vendor == "milight") $btnOnJS.= " toggle_milight_buttons('on','".$device->id."')";
+                    if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") $btnOnJS.= " toggle_milight_buttons('on','".$device->id."')";
                     $btnOffJS="send_connair('off','device','".$device->id."'); switchRowTheme('off','".$device->id."','".$rowOnDataTheme."','".$rowOffDataTheme."');";
-                    if ($device->vendor == "milight") $btnOffJS.= " toggle_milight_buttons('off','".$device->id."')";
+                    if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") $btnOffJS.= " toggle_milight_buttons('off','".$device->id."')";
                     break;
                 case "BUTTON_COLOR":
                     $rowDataTheme=$theme_row;
@@ -344,9 +344,9 @@ if($active_user == "false" AND $_GET['user'] == ""  ){
                     }
                     $btnOnIcon="";
                     $btnOnJS="send_connair('on','device','".$device->id."'); switchButtonTheme('on','".$device->id."','".$btnOnColor."','".$btnOffColor."','".$btnCurColor."');";
-                    if ($device->vendor == "milight") $btnOnJS.= " toggle_milight_buttons('on','".$device->id."')";
+                    if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") $btnOnJS.= " toggle_milight_buttons('on','".$device->id."')";
                     $btnOffJS="send_connair('off','device','".$device->id."'); switchButtonTheme('off','".$device->id."','".$btnOnColor."','".$btnOffColor."','".$btnCurColor."');";
-                    if ($device->vendor == "milight") $btnOffJS.= " toggle_milight_buttons('off','".$device->id."')";
+                    if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") $btnOffJS.= " toggle_milight_buttons('off','".$device->id."')";
                     break;
                 case "BUTTON_ICON":
                     $onIcon="check";
@@ -360,9 +360,9 @@ if($active_user == "false" AND $_GET['user'] == ""  ){
                         $btnOnIcon=$offIcon;
                     }
                     $btnOnJS="send_connair('on','device','".$device->id."'); switchButtonIcon('on','".$device->id."','".$onIcon."','".$offIcon."');";
-                    if ($device->vendor == "milight") $btnOnJS.= " toggle_milight_buttons('on','".$device->id."')";
+                    if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") $btnOnJS.= " toggle_milight_buttons('on','".$device->id."')";
                     $btnOffJS="send_connair('off','device','".$device->id."'); switchButtonIcon('off','".$device->id."','".$onIcon."','".$offIcon."');";
-                    if ($device->vendor == "milight") $btnOffJS.= " toggle_milight_buttons('off','".$device->id."')";
+                    if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") $btnOffJS.= " toggle_milight_buttons('off','".$device->id."')";
                     break;
                 default:
                     $rowDataTheme=$theme_row;
@@ -370,9 +370,9 @@ if($active_user == "false" AND $_GET['user'] == ""  ){
                     $btnOffDataTheme="r";
                     $btnOnIcon="";
                     $btnOnJS="send_connair('on','device','".$device->id."');";
-                    if ($device->vendor == "milight") $btnOnJS.= " toggle_milight_buttons('on','".$device->id."')";
+                    if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") $btnOnJS.= " toggle_milight_buttons('on','".$device->id."')";
                     $btnOffJS="send_connair('off','device','".$device->id."');";
-                    if ($device->vendor == "milight") $btnOffJS.= " toggle_milight_buttons('off','".$device->id."')";
+                    if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") $btnOffJS.= " toggle_milight_buttons('off','".$device->id."')";
                     break;
             }
 

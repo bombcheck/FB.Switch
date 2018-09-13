@@ -7,7 +7,10 @@ $CONFIG_FILENAME = __DIR__."/data/config.xml";
 $plugin = false;
 $SysAlertMsg="FB.NET System Status KRITISCH";
 $NoTimerAlertMsg="Timer ist deaktiviert";
-$FileVer="2.43";
+$FileVer="2.45";
+
+$MilightRgbcctMinKelvin=2700;
+$MilightRgbcctMaxKelvin=6500;
 
 //config.xml dateisystem rechte überprüfen
 if(!file_exists($CONFIG_FILENAME)) {
@@ -284,6 +287,32 @@ function check_device($device) {
             }
             if($tx433version < 1 || $tx433version > 2) {
                 echo "Device-tx433version (MiLight Lampentyp) muss eine Zahl zwischen 1-2 sein!";
+                return false;
+            }
+            break;
+        case "milight_rgbcct":
+            if($masterdip == "") {
+                echo "Device-masterdip (FB.MiLight-Hub-ID) darf nicht leer sein!";
+                return false;
+            }        
+            if($slavedip == "") {
+                echo "Device-slavedip (Master-ID auf FB.MiLight-Hub) darf nicht leer sein!";
+                return false;
+            }        
+            if($tx433version == "") {
+                echo "Device-tx433version (Gruppe auf FB.MiLight-Hub) darf nicht leer sein!";
+                return false;
+            }        
+            if(!preg_match('/^[0-9]+$/',$masterdip)) {
+                echo "Device-masterdip (FB.MiLight-Hub-ID) muss eine Zahl sein!";
+                return false;
+            }        
+            if(!preg_match('/^[0-9]+$/',$tx433version)) {
+                echo "Device-tx433version (Gruppe auf FB.MiLight-Hub) muss eine Zahl sein!";
+                return false;
+            }        
+            if($tx433version < 0 || $tx433version > 4) {
+                echo "Device-slavedip (Gruppe auf FB.MiLight-Hub) muss eine Zahl zwischen 0-4 sein!";
                 return false;
             }
             break;

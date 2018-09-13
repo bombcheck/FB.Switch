@@ -6,6 +6,18 @@
         var lastTimestamps = [0, 0];
         var lastEventTimers = [0, 0];
 
+        function TemperaturePercentToKelvin(percent) {
+            var MinKelvin = <?php echo $MilightRgbcctMinKelvin; ?>;
+            var MaxKelvin = <?php echo $MilightRgbcctMaxKelvin; ?>;
+            if (percent === "") return 0;
+            if (percent < 1) return MaxKelvin;
+            if (percent > 100) return MinKelvin;
+            var Diff = MaxKelvin - MinKelvin;
+            var KelvinPerPercent = Diff / 100;
+            var val = KelvinPerPercent * percent;
+            return MaxKelvin - val;
+        }
+
         function milight_colorswipe(dataToSend, evtId) {
           var timestamp = $.now();
           if (lastEventTimers[evtId] != 0) {
@@ -84,6 +96,32 @@
                 },
                 error: function(response) {
 					PlaySound('errorSound');
+                    BusyAni('hide');
+                    toast('Konnte MiLight-Kommando nicht senden!');
+                }
+            });
+        }
+
+        function send_milight_rgbcct(id, command, value) {
+            PlaySound('buttonClickSound');
+            BusyAni('show');
+            
+            var ToDo = "sendmilightrgbcct";
+            var data={ 'todo': ToDo, 'id': id, 'command': command, 'value': value };
+            //toast( 'todo:' + ToDo + ',id:' + id + ',command:' + command + ',value:' + value);
+            $.ajax({
+                type:'POST', 
+                url: '<?php echo $_SERVER['PHP_SELF']; ?>', 
+                data: data,
+                async: true,
+                success: function(response) {
+                    CheckDeviceStatus();
+                    PlaySound('doneSound');
+                    BusyAni('hide');
+                    if (response.indexOf('#OK#') < 0) toast(response);
+                },
+                error: function(response) {
+                    PlaySound('errorSound');
                     BusyAni('hide');
                     toast('Konnte MiLight-Kommando nicht senden!');
                 }

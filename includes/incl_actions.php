@@ -116,7 +116,7 @@
                             if ($do['action'] == "on") echo "AN";
                             if ($do['action'] == "off") echo "AUS";
                             if ($do['type'] == "device") {
-                                if ($devicesFound[0]->vendor == "milight" && $do['action'] == "on") {
+                                if ( ($devicesFound[0]->vendor == "milight" || $devicesFound[0]->vendor == "milight_rgbcct") && $do['action'] == "on") {
                                             if ($do['mode'] != "") {
                                                 echo " (vA) @ ";
                                                 echo $do['mode'];
@@ -126,10 +126,20 @@
                                                     else echo " <font color=\"".$devicesFound[0]->milight->color."\">●</font> ";
                                                     if ($do['brightness'] != "") echo $do['brightness']."%";
                                                     else echo $devicesFound[0]->milight->brightnesscolor."%";
+
+                                                    if ($devicesFound[0]->vendor == "milight_rgbcct") {
+                                                        if ($do['saturation'] != "") echo " (Sat.: ".$do['saturation']."%)";
+                                                        else echo " (Sat.: ".$devicesFound[0]->milight->saturation."%)";
+                                                    }
                                                 }
                                                 elseif ($do['mode'] == "Weiß") {
                                                     if ($do['brightness'] != "") echo " ● ".$do['brightness']."%";
                                                     else echo " ● ".$devicesFound[0]->milight->brightnesswhite."%";
+
+                                                    if ($devicesFound[0]->vendor == "milight_rgbcct") {
+                                                        if ($do['temperature'] != "") echo " (".TemperaturePercentToKelvin($do['temperature'])."K)";
+                                                        else echo " (".TemperaturePercentToKelvin($devicesFound[0]->milight->temperature)."K)";
+                                                    }                                                    
                                                 }
                                             }
 
@@ -140,9 +150,17 @@
                                                 if ($devicesFound[0]->milight->mode == "Farbe") {
                                                     echo " <font color=\"".$devicesFound[0]->milight->color."\">●</font> ";
                                                     echo $devicesFound[0]->milight->brightnesscolor."%";
+
+                                                    if ($devicesFound[0]->vendor == "milight_rgbcct") {
+                                                        echo " (Sat.: ".$devicesFound[0]->milight->saturation."%)";
+                                                    }
                                                 }
                                                 elseif ($devicesFound[0]->milight->mode == "Weiß") {
                                                     echo " ● ".$devicesFound[0]->milight->brightnesswhite."%";
+
+                                                    if ($devicesFound[0]->vendor == "milight_rgbcct") {
+                                                        echo " (".TemperaturePercentToKelvin($devicesFound[0]->milight->temperature)."K)";
+                                                    }                                                    
                                                 }
                                             }
                                 }

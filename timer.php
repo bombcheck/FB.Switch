@@ -17,7 +17,7 @@ function debug_timer($msg) {
 function ping($host)
 {
 	$ret=-1;$out="";$FBping="";
-	/* $FBping = exec("ping -q -c1 ".$host." |grep round-trip");
+	/* $FBping = exec("/opt/bin/ping -q -c1 ".$host." |grep round-trip");
 	$FBping = str_replace("round-trip min/avg/max = ","",$FBping);
 	$FBping = explode("/",$FBping);
 	if ($FBping[1] != "") return 0;

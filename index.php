@@ -52,7 +52,7 @@ if (isset($_GET['action'])) {
     }
 }
 if (isset($_POST['todo'])) {
-    if ($_POST['todo'] == "sendmilight") {
+    if ($_POST['todo'] == "sendmilight" || $_POST['todo'] == "sendmilightrgbcct") {
         $r_MLid = (string)$_POST['id'];
         $r_MLcmd = (string)$_POST['command'];
         $r_MLval = (string)$_POST['value'];
@@ -157,7 +157,11 @@ if (isset($r_action)) {
 elseif (isset($r_MLcmd)) {
     require("send_msg.php");
     debug("Executing MiLight-Command '".$r_MLcmd."' for Device-ID '".$r_MLid."'");  
-    echo toggle_milight($r_MLid,$r_MLcmd,$r_MLval);
+    if ($_POST['todo'] == "sendmilight" ) {
+        echo toggle_milight($r_MLid,$r_MLcmd,$r_MLval);
+    } elseif ($_POST['todo'] == "sendmilightrgbcct") {
+        echo toggle_fbmilighthub($r_MLid,$r_MLcmd,$r_MLval,"rgb_cct");
+    }
     config_save();
 }
 else {

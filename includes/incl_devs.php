@@ -204,9 +204,9 @@
                 $btnOffDataTheme="r";
                 $btnOnIcon="";
                 $btnOnJS="send_connair('on','device','".$device->id."'); switchRowTheme('on','".$device->id."','".$rowOnDataTheme."','".$rowOffDataTheme."');";
-                if ($device->vendor == "milight") $btnOnJS.= " toggle_milight_buttons('on','".$device->id."')";
+                if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") $btnOnJS.= " toggle_milight_buttons('on','".$device->id."')";
                 $btnOffJS="send_connair('off','device','".$device->id."'); switchRowTheme('off','".$device->id."','".$rowOnDataTheme."','".$rowOffDataTheme."');";
-                if ($device->vendor == "milight") $btnOffJS.= " toggle_milight_buttons('off','".$device->id."')";
+                if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") $btnOffJS.= " toggle_milight_buttons('off','".$device->id."')";
             break;
             case "BUTTON_COLOR":
                 $rowDataTheme=$theme_row;
@@ -222,9 +222,9 @@
                 }
                 $btnOnIcon="";
                 $btnOnJS="send_connair('on','device','".$device->id."'); switchButtonTheme('on','".$device->id."','".$btnOnColor."','".$btnOffColor."','".$btnCurColor."');";
-                if ($device->vendor == "milight") $btnOnJS.= " toggle_milight_buttons('on','".$device->id."')";
+                if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") $btnOnJS.= " toggle_milight_buttons('on','".$device->id."')";
                 $btnOffJS="send_connair('off','device','".$device->id."'); switchButtonTheme('off','".$device->id."','".$btnOnColor."','".$btnOffColor."','".$btnCurColor."');";
-                if ($device->vendor == "milight") $btnOffJS.= " toggle_milight_buttons('off','".$device->id."')";
+                if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") $btnOffJS.= " toggle_milight_buttons('off','".$device->id."')";
             break;
             case "BUTTON_ICON":
                 $onIcon="check";
@@ -238,9 +238,9 @@
                     $btnOnIcon=$offIcon;
                 }
                 $btnOnJS="send_connair('on','device','".$device->id."'); switchButtonIcon('on','".$device->id."','".$onIcon."','".$offIcon."');";
-                if ($device->vendor == "milight") $btnOnJS.= " toggle_milight_buttons('on','".$device->id."')";
+                if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") $btnOnJS.= " toggle_milight_buttons('on','".$device->id."')";
                 $btnOffJS="send_connair('off','device','".$device->id."'); switchButtonIcon('off','".$device->id."','".$onIcon."','".$offIcon."');";
-                if ($device->vendor == "milight") $btnOffJS.= " toggle_milight_buttons('off','".$device->id."')";
+                if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") $btnOffJS.= " toggle_milight_buttons('off','".$device->id."')";
             break;
             default:
                 $rowDataTheme=$theme_row;
@@ -248,13 +248,13 @@
                 $btnOffDataTheme="r";
                 $btnOnIcon="";
                 $btnOnJS="send_connair('on','device','".$device->id."');";
-                if ($device->vendor == "milight") $btnOnJS.= " toggle_milight_buttons('on','".$device->id."')";
+                if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") $btnOnJS.= " toggle_milight_buttons('on','".$device->id."')";
                 $btnOffJS="send_connair('off','device','".$device->id."');";
-                if ($device->vendor == "milight") $btnOffJS.= " toggle_milight_buttons('off','".$device->id."')";
+                if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") $btnOffJS.= " toggle_milight_buttons('off','".$device->id."')";
             break;
         }
 
-?>
+        ?>
                 <li id="deviceRow<?php echo $device->id; ?>" data-theme="<?php echo $rowDataTheme; ?>">
                     <div class="ui-grid-a">
                      
@@ -263,26 +263,26 @@
                         if(file_exists('data/images/'. $device->id.'.png')) {
                             echo '
                             <div id="picture"';
-                                if ($device->vendor == "milight") echo ' style="cursor:pointer;-webkit-tap-highlight-color: rgba(0,0,0,0);" onClick="showmilightpanel(milight_'.$device->id.'_panel);"';
+                                if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") echo ' style="cursor:pointer;-webkit-tap-highlight-color: rgba(0,0,0,0);" onClick="showmilightpanel(milight_'.$device->id.'_panel);"';
                                     echo '><img src="data/images/'. $device->id.'.png" height="60px" width="60px" ></img>
                             </div>
                             <div id="text"';
-                            if ($device->vendor == "milight") echo ' style="cursor:pointer;-webkit-tap-highlight-color: rgba(0,0,0,0);" onClick="showmilightpanel(milight_'.$device->id.'_panel);"';
+                            if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") echo ' style="cursor:pointer;-webkit-tap-highlight-color: rgba(0,0,0,0);" onClick="showmilightpanel(milight_'.$device->id.'_panel);"';
                                 echo '><h2>';
                                     echo $device->name.'</h2>';
                                 if($debug != "true") {
                                 	echo "<p";
-                                	if ($device->vendor == "milight") echo ' style="cursor:pointer;-webkit-tap-highlight-color: rgba(0,0,0,0);" onClick="showmilightpanel(milight_'.$device->id.'_panel);"';
+                                	if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") echo ' style="cursor:pointer;-webkit-tap-highlight-color: rgba(0,0,0,0);" onClick="showmilightpanel(milight_'.$device->id.'_panel);"';
                                 	echo "><font class=\"device_devs_".$device->id."_energy\"></font></p>";
                                 }
                             echo '</div>';
                         }else{
                             echo '<h2';
-                                if ($device->vendor == "milight") echo ' style="cursor:pointer;-webkit-tap-highlight-color: rgba(0,0,0,0);" onClick="showmilightpanel(milight_'.$device->id.'_panel);"';
+                                if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") echo ' style="cursor:pointer;-webkit-tap-highlight-color: rgba(0,0,0,0);" onClick="showmilightpanel(milight_'.$device->id.'_panel);"';
                                     echo '>'.$device->name.'</h2>';
                             if($debug != "true") {
                             	echo "<p";
-                            	if ($device->vendor == "milight") echo ' style="cursor:pointer;-webkit-tap-highlight-color: rgba(0,0,0,0);" onClick="showmilightpanel(milight_'.$device->id.'_panel);"';
+                            	if ($device->vendor == "milight" || $device->vendor == "milight_rgbcct") echo ' style="cursor:pointer;-webkit-tap-highlight-color: rgba(0,0,0,0);" onClick="showmilightpanel(milight_'.$device->id.'_panel);"';
                             	echo "><font class=\"device_devs_".$device->id."_energy\"></font></p>";
                             }
                         }
@@ -411,13 +411,7 @@
                                                 <button name="milight_<?php echo $device->id; ?>_Modus_Farbe" id="milight_<?php echo $device->id; ?>_Modus_Farbe" data-icon="<?php echo ( $device->milight->mode == 'Farbe' ) ? 'check' : 'off' ?>" data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true">Farbe</button>&nbsp;&nbsp;
                                                 <button name="milight_<?php echo $device->id; ?>_Modus_Nacht" id="milight_<?php echo $device->id; ?>_Modus_Nacht" data-icon="<?php echo ( $device->milight->mode == 'Nacht' ) ? 'check' : 'off' ?>" data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="send_milight('<?php echo $device->id; ?>','SetToNightMode','')">Nacht</button>
 
-                                                <br><br>
-												<!-- SECOND LINE: Disco-Mode -->
-                                                <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="send_milight('<?php echo $device->id; ?>','rgbwDiscoSlower','')">S-</button>&nbsp;&nbsp;
-                                                <button name="milight_<?php echo $device->id; ?>_Modus_Programm" id="milight_<?php echo $device->id; ?>_Modus_Programm" data-icon="<?php echo ( $device->milight->mode == 'Programm' ) ? 'check' : 'off' ?>" data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="send_milight('<?php echo $device->id; ?>','rgbwDiscoMode','')">Disko</button>&nbsp;&nbsp;
-                                                <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="send_milight('<?php echo $device->id; ?>','rgbwDiscoFaster','')">S+</button>
-
-												<!-- THIRD LINE: Brightness -->
+												<!-- SECOND LINE: Brightness -->
                                                 <div id="milight_<?php echo $device->id; ?>_brightness_controls" class="<?php echo ( $device->milight->mode == 'Farbe' || $device->milight->mode == 'Weiß' || $device->milight->mode == 'Programm' ) ? 'show' : 'hide' ?>">
                                                     <br><br>
                                                     <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) > 5) { $('#milight_<?php echo $device->id; ?>_brightness').attr('value',(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) - 5) + '%').button().button('refresh'); }">Dunkler</button>&nbsp;&nbsp;
@@ -431,8 +425,142 @@
                                                     <button name="milight_<?php echo $device->id; ?>_brightness" id="milight_<?php echo $device->id; ?>_brightness" data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" value="<?php echo $ThisBrightness; ?>%" onclick="send_milight('<?php echo $device->id; ?>','SetBrightness',parseInt(this.value))"></button>&nbsp;&nbsp;
                                                     <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) < 100) { $('#milight_<?php echo $device->id; ?>_brightness').attr('value',(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) + 5) + '%').button().button('refresh'); }">Heller</button>
                                                 </div>
+
+                                                <br><br>
+												<!-- THIRD LINE: Disco-Mode -->
+                                                <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="send_milight('<?php echo $device->id; ?>','rgbwDiscoSlower','')">S-</button>&nbsp;&nbsp;
+                                                <button name="milight_<?php echo $device->id; ?>_Modus_Programm" id="milight_<?php echo $device->id; ?>_Modus_Programm" data-icon="<?php echo ( $device->milight->mode == 'Programm' ) ? 'check' : 'off' ?>" data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="send_milight('<?php echo $device->id; ?>','rgbwDiscoMode','')">Disko</button>&nbsp;&nbsp;
+                                                <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="send_milight('<?php echo $device->id; ?>','rgbwDiscoFaster','')">S+</button>
+
                                             </div>
                                         <?php } ?>
+                                    </div>
+                            </div>
+                        </li>
+                    </ul>
+                  <br>
+                </div>
+            <?php }
+
+            if ($device->vendor == "milight_rgbcct") {
+
+                    $MiLightHub = $xml->xpath("//milighthubs/milighthub/id[text()='".$device->address->masterdip."']/parent::*"); 
+                    $MiLightHub = $MiLightHub[0];
+                    ?>
+                    <script type="text/JavaScript">
+                        $(document).ready(function() {
+                            <?php if ($device->milight->mode != "" && $device->status == "ON") { ?>
+                                var dev_mode_text = $('.device_devs_<?php echo $device->id; ?>_energy');
+                                var fav_mode_text = $('.device_favs_<?php echo $device->id; ?>_energy');
+                                var BRtext = '';
+                                <?php if ($device->milight->mode == "Weiß") { ?>
+                                     BRtext = ' @ <?php echo $device->milight->brightnesswhite; ?>% (' + TemperaturePercentToKelvin(<?php echo $device->milight->temperature; ?>) + 'K)';
+                                <?php } ?>
+                                <?php if ($device->milight->mode == "Farbe") { ?>
+                                     BRtext = ' @ <?php echo $device->milight->brightnesscolor; ?>% (Sat.: <?php echo $device->milight->saturation; ?>)';
+                                <?php } ?>
+                                <?php if ($device->milight->mode == "Programm") { ?>
+                                     BRtext = ' @ <?php echo $device->milight->brightnessdisco; ?>%';
+                                <?php } ?>
+
+                                dev_mode_text.eq(0 % dev_mode_text.length).text('Modus: <?php echo $device->milight->mode; ?>' + BRtext);
+                                fav_mode_text.eq(0 % fav_mode_text.length).text('Modus: <?php echo $device->milight->mode; ?>' + BRtext);
+                            <?php } ?>
+
+                            $("#milight_<?php echo $device->id; ?>_Modus_Farbe").css("background","<?php echo $device->milight->color; ?>");
+
+                            $("#milight_<?php echo $device->id; ?>_Modus_Farbe").spectrum({
+                                color: "<?php echo $device->milight->color; ?>",
+                                showPaletteOnly: true,
+                                togglePaletteOnly: true,
+                                hideAfterPaletteSelect: false,
+                                togglePaletteMoreText: 'Farbauswahl >>',
+                                togglePaletteLessText: '<< Einklappen',
+                                chooseText: "Schliessen",
+                                cancelText: "",
+                                showInitial: true,
+                                showButtons: true,
+                                containerClassName: 'sColorPicker',
+                                preferredFormat: "hsl",
+                                palette: [
+                                    ['hsl 0 1 0.5', 'hsl 6 1 0.5', 'hsl 12 1 0.5', 'hsl 17 1 0.5', 'hsl 23 1 0.5', 'hsl 29 1 0.5', 'hsl 34 1 0.5', 'hsl 40 1 0.5'],
+                                    ['hsl 46 1 0.5', 'hsl 51 1 0.5', 'hsl 57 1 0.5', 'hsl 63 1 0.5', 'hsl 68 1 0.5', 'hsl 74 1 0.5', 'hsl 80 1 0.5', 'hsl 85 1 0.5'],
+                                    ['hsl 91 1 0.5', 'hsl 96 1 0.5', 'hsl 102 1 0.5', 'hsl 108 1 0.5', 'hsl 113 1 0.5', 'hsl 119 1 0.5', 'hsl 125 1 0.5', 'hsl 130 1 0.5'],
+                                    ['hsl 136 1 0.5', 'hsl 142 1 0.5', 'hsl 147 1 0.5', 'hsl 153 1 0.5', 'hsl 159 1 0.5', 'hsl 164 1 0.5', 'hsl 170 1 0.5', 'hsl 176 1 0.5'],
+                                    ['hsl 181 1 0.5', 'hsl 187 1 0.5', 'hsl 192 1 0.5', 'hsl 198 1 0.5', 'hsl 204 1 0.5', 'hsl 209 1 0.5', 'hsl 215 1 0.5', 'hsl 221 1 0.5'],
+                                    ['hsl 226 1 0.5', 'hsl 232 1 0.5', 'hsl 238 1 0.5', 'hsl 243 1 0.5', 'hsl 249 1 0.5', 'hsl 255 1 0.5', 'hsl 260 1 0.5', 'hsl 266 1 0.5'],
+                                    ['hsl 272 1 0.5', 'hsl 277 1 0.5', 'hsl 283 1 0.5', 'hsl 288 1 0.5', 'hsl 294 1 0.5', 'hsl 300 1 0.5', 'hsl 305 1 0.5', 'hsl 311 1 0.5'],
+                                    ['hsl 317 1 0.5', 'hsl 322 1 0.5', 'hsl 328 1 0.5', 'hsl 334 1 0.5', 'hsl 339 1 0.5', 'hsl 345 1 0.5', 'hsl 351 1 0.5', 'hsl 357 1 0.5']
+                                ],
+                                hide: function(color) {
+                                    send_milight_rgbcct('<?php echo $device->id; ?>','SetColor',color.toHexString());
+                                }
+                            });
+                        });
+                    </script>
+
+                <div id="milight_<?php echo $device->id; ?>_panel" class="hide">
+                    <ul data-role="listview" data-theme="<?php echo $theme_row; ?>" data-divider-theme="<?php echo $theme_divider; ?>" data-filter-theme="<?php echo $theme_divider; ?>" data-inset="false">
+                        <li data-role="fieldcontain" data-filter="false" data-inset="false" id="deviceRow<?php echo $device->id; ?>" data-theme="<?php echo $rowDataTheme; ?>">
+                            <div class="ui-grid-a" id="milightpanel" style="width:98%;">
+                                <div class="ui-block-a <?php echo ( $device->status == 'OFF' ) ? 'show' : 'hide' ?>" id="milight_<?php echo $device->id; ?>_offtext" style="width:98%;text-align:left">
+                                    <h2 style="font-size:13px">Gerät einschalten, um Modi zu ändern.<br><br></h2>
+                                </div>
+                                    <div class="ui-block-a <?php echo ( $device->status == 'ON' ) ? 'show' : 'hide' ?>" id="milight_<?php echo $device->id; ?>_buttons" style="width:98%;text-align:left; font-size: 8px;!important" >
+                                           <div class="box-btn-switch-milight" style="width:98%;">
+                                                <!-- FIRST LINE: Modi -->
+                                                <button name="milight_<?php echo $device->id; ?>_Modus_Weiss" id="milight_<?php echo $device->id; ?>_Modus_Weiss" data-icon="<?php echo ( $device->milight->mode == 'Weiß' ) ? 'check' : 'off' ?>" data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="send_milight_rgbcct('<?php echo $device->id; ?>','SetToWhite','')">Weiß</button>&nbsp;&nbsp;
+                                                <button name="milight_<?php echo $device->id; ?>_Modus_Farbe" id="milight_<?php echo $device->id; ?>_Modus_Farbe" data-icon="<?php echo ( $device->milight->mode == 'Farbe' ) ? 'check' : 'off' ?>" data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true">Farbe</button>&nbsp;&nbsp;
+                                                <button name="milight_<?php echo $device->id; ?>_Modus_Nacht" id="milight_<?php echo $device->id; ?>_Modus_Nacht" data-icon="<?php echo ( $device->milight->mode == 'Nacht' ) ? 'check' : 'off' ?>" data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="send_milight_rgbcct('<?php echo $device->id; ?>','SetToNightMode','')">Nacht</button>
+
+                                                <!-- SECOND LINE: Temperature & Saturation -->
+                                                <div id="milight_<?php echo $device->id; ?>_saturation_controls" class="<?php echo ( $device->milight->mode == 'Farbe' ) ? 'show' : 'hide' ?>">
+                                                    <br><br>
+                                                    <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_saturation').value) > 0) { $('#milight_<?php echo $device->id; ?>_saturation').attr('value',(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_saturation').value) - 5) + '%').button().button('refresh'); }">Weniger</button>&nbsp;&nbsp;
+                                                    <?php
+                                                        $ThisSaturation = 0;
+                                                        $ThisSaturation = $device->milight->saturation;
+                                                        if ($ThisSaturation == "") $ThisSaturation = 100;
+                                                    ?>
+                                                    <button name="milight_<?php echo $device->id; ?>_saturation" id="milight_<?php echo $device->id; ?>_saturation" data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" value="<?php echo $ThisSaturation; ?>%" onclick="send_milight_rgbcct('<?php echo $device->id; ?>','SetColorSaturation',parseInt(this.value))"></button>&nbsp;&nbsp;
+                                                    <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_saturation').value) < 100) { $('#milight_<?php echo $device->id; ?>_saturation').attr('value',(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_saturation').value) + 5) + '%').button().button('refresh'); }">Mehr</button>
+                                                </div>
+
+                                                <div id="milight_<?php echo $device->id; ?>_temperature_controls" class="<?php echo ( $device->milight->mode == 'Farbe' || $device->milight->mode == 'Weiß' ) ? 'show' : 'hide' ?>">
+                                                    <br><br>
+                                                    <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value) < 100) { $('#milight_<?php echo $device->id; ?>_temperature').attr('value',(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value) + 5) + '%'); $('#milight_<?php echo $device->id; ?>_temperature_kelvin').attr('value',(TemperaturePercentToKelvin(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value))) + 'K').button().button('refresh'); }">Wärmer</button>&nbsp;&nbsp;
+                                                    <?php
+                                                        $ThisTemperature = 0;
+                                                        $ThisTemperature = $device->milight->temperature;
+                                                        if ($ThisTemperature == "") $ThisTemperature = 0;
+                                                    ?>
+                                                    <input type="hidden" name="milight_<?php echo $device->id; ?>_temperature" id="milight_<?php echo $device->id; ?>_temperature" value="<?php echo $ThisTemperature; ?>%" />
+                                                    <button name="milight_<?php echo $device->id; ?>_temperature_kelvin" id="milight_<?php echo $device->id; ?>_temperature_kelvin" data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" value="<?php echo TemperaturePercentToKelvin($ThisTemperature); ?>K" onclick="send_milight_rgbcct('<?php echo $device->id; ?>','SetWhiteTemperature',parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value))"></button>&nbsp;&nbsp;
+                                                    <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value) > 0) { $('#milight_<?php echo $device->id; ?>_temperature').attr('value',(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value) - 5) + '%'); $('#milight_<?php echo $device->id; ?>_temperature_kelvin').attr('value',(TemperaturePercentToKelvin(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_temperature').value))) + 'K').button().button('refresh'); }">Kälter</button>
+                                                </div>
+                                                
+                                                <!-- THIRD LINE: Brightness -->
+                                                <div id="milight_<?php echo $device->id; ?>_brightness_controls" class="<?php echo ( $device->milight->mode == 'Farbe' || $device->milight->mode == 'Weiß' || $device->milight->mode == 'Programm' ) ? 'show' : 'hide' ?>">
+                                                    <br><br>
+                                                    <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) > 5) { $('#milight_<?php echo $device->id; ?>_brightness').attr('value',(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) - 5) + '%').button().button('refresh'); }">Dunkler</button>&nbsp;&nbsp;
+                                                    <?php
+                                                        $ThisBrightness = 0;
+                                                        if ($device->milight->mode == 'Farbe') $ThisBrightness = $device->milight->brightnesscolor;
+                                                        elseif ($device->milight->mode == 'Weiß') $ThisBrightness = $device->milight->brightnesswhite;
+                                                        elseif ($device->milight->mode == 'Programm') $ThisBrightness = $device->milight->brightnessdisco;
+                                                        if ($ThisBrightness == "") $ThisBrightness = 0;
+                                                    ?>
+                                                    <button name="milight_<?php echo $device->id; ?>_brightness" id="milight_<?php echo $device->id; ?>_brightness" data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" value="<?php echo $ThisBrightness; ?>%" onclick="send_milight_rgbcct('<?php echo $device->id; ?>','SetBrightness',parseInt(this.value))"></button>&nbsp;&nbsp;
+                                                    <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="if (parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) < 100) { $('#milight_<?php echo $device->id; ?>_brightness').attr('value',(parseInt(document.getElementById('milight_<?php echo $device->id; ?>_brightness').value) + 5) + '%').button().button('refresh'); }">Heller</button>
+                                                </div>
+
+                                                <br><br>
+                                                <!-- FOURTH LINE: Disco-Mode -->
+                                                <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="send_milight_rgbcct('<?php echo $device->id; ?>','rgbwDiscoSlower','')">S-</button>&nbsp;&nbsp;
+                                                <button name="milight_<?php echo $device->id; ?>_Modus_Programm" id="milight_<?php echo $device->id; ?>_Modus_Programm" data-icon="<?php echo ( $device->milight->mode == 'Programm' ) ? 'check' : 'off' ?>" data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="send_milight_rgbcct('<?php echo $device->id; ?>','rgbwDiscoMode','')">Disko</button>&nbsp;&nbsp;
+                                                <button data-theme="<?php echo $theme_row; ?>" data-mini="true" data-inline="true" onclick="send_milight_rgbcct('<?php echo $device->id; ?>','rgbwDiscoFaster','')">S+</button>
+
+                                            </div>
                                     </div>
                             </div>
                         </li>

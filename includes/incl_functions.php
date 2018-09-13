@@ -1,4 +1,19 @@
 <?php
+function TemperaturePercentToKelvin($percent) {
+    global $MilightRgbcctMinKelvin,$MilightRgbcctMaxKelvin;
+    if ($percent === "" ) return 0;
+    if ($percent < 1) return $MilightRgbcctMaxKelvin;
+    if ($percent > 100) return $MilightRgbcctMinKelvin;
+	global $MilightRgbcctMinKelvin,$MilightRgbcctMaxKelvin;
+	$Diff = $MilightRgbcctMaxKelvin - $MilightRgbcctMinKelvin;
+	$KelvinPerPercent = $Diff / 100;
+	$val = $KelvinPerPercent * $percent;
+	return $MilightRgbcctMaxKelvin - $val;
+}
+function colorHEXtoRGB($hex) {
+    list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
+    return array("R"=>$r, "G"=>$g, "B"=>$b);
+}
 function compareDevicesByName($a, $b) {
    return strcmp($a->name,$b->name);
 }
